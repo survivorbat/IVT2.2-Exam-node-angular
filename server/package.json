@@ -1,0 +1,11 @@
+{
+  "name": "ivt1.2-server",
+  "version": "1.0.0",
+  "description": "the backend server that gives the angular frontend the api",
+  "main": "server.js",
+  "scripts": {
+    "test": "node node_modules/mocha/bin/_mocha ./test/*test.js --reporter spec --exit"
+  },
+  "author": "Maarten van der Heijden",
+  "license": "ISC"
+}
