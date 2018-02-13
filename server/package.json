@@ -4,8 +4,9 @@
   "description": "the backend server that gives the angular frontend the api",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon .",
-    "test": "node node_modules/mocha/bin/_mocha ./test/*test.js --reporter spec --exit"
+    "start": "node .",
+    "test": "node node_modules/mocha/bin/_mocha ./test/*test.js --reporter spec --exit",
+    "startmon": "nodemon ."
   },
   "author": "Maarten van der Heijden",
   "license": "ISC",
