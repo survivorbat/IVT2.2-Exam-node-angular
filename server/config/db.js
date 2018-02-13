@@ -25,14 +25,49 @@ const schema = new Schema({
         type: String,
         required: true
     },
-    subtitle: String,
-    director: {
+    subtitle: {
         type: String,
-        required: true
+        required: false,
+        default: ""
+    },
+    directors: {
+        type: [String],
+        required: true,
+        default: []
+    },
+    writers: {
+        type: [String],
+        required: false,
+        default:[]
+    },
+    stars: {
+        type: [String],
+        required: false,
+        default: []
+    },
+    reviews: {
+        type: [Object],
+        required: false,
+        default: []
+    },
+    popularity: {
+        type: Number,
+        required: false,
+        default: 0
+    },
+    media: {
+        type: [String],
+        required: false,
+        default: []
+    },
+    coverPicture: {
+        type: String,
+        required:false,
+        default: ""
     },
     year: {
         type: String,
-        required: true
+        required: true,
     },
     duration: {
         type: String,
