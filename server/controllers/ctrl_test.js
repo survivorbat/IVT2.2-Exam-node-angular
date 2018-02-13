@@ -1,4 +1,5 @@
-const mongoose = require('../config/db').mongoose;
+const db = require('../config/db')
+const mongoose = db.mongoose;
 
 module.exports = {
     ping(req, res, next){

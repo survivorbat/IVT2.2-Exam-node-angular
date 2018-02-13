@@ -1,6 +1,6 @@
 {
     "webPort": "300",
-    "dbHost": "mongodb://localhost",
+    "dbHost": "mongodb://localhost/test",
     "dbUser": "",
     "dbDatabase": ""
 }

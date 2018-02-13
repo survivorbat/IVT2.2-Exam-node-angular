@@ -3,8 +3,6 @@ const app = express();
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const router = require('./router');
-const db = require('./config/db');
-db.tryConnect();
 
 /* Middleware */
 app.use(logger('dev'));

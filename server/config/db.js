@@ -7,7 +7,6 @@ const options = {
     reconnectTries: Number.MAX_VALUE, // Never stop trying to reconnect
     reconnectInterval: 500, // Reconnect every 500ms
     poolSize: 10, // Maintain up to 10 socket connections
-    // If not connected, return errors immediately rather than waiting for reconnect
     bufferMaxEntries: 0
   };
 
@@ -27,7 +26,33 @@ const tryConnect = () => {
     });
 }
 
+tryConnect();
+
+const Schema = mongoose.Schema;
+const schema = new Schema({
+    title: {
+        type: String,
+        required: true
+    },
+    subtitle: String,
+    director: {
+        type: String,
+        required: true
+    },
+    year: {
+        type: String,
+        required: true
+    },
+    duration: {
+        type: String,
+        required: true
+    },
+    genre: String
+});
+const Film = mongoose.model('Film', schema);
+
 module.exports = {
     tryConnect,
-    mongoose
+    mongoose,
+    Film
 }

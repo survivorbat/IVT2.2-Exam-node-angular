@@ -14,9 +14,11 @@ router.use(expressJWT({
 
 const authenticationrouter = require('./routes/authentication');
 const testrouter = require('./routes/test');
+const filmrouter = require('./routes/film');
 
 router.use("/api/",authenticationrouter);
 router.use("/api/ping",testrouter);
+router.use("/api/films",filmrouter);
 
 router.use((error,req,res,next) => {
 	res.status(500).send({
