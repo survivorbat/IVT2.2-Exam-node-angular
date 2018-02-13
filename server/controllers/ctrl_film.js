@@ -12,7 +12,7 @@ module.exports = {
             }
             films = films.map(film => {
                 film = film.toObject();
-                film.url = "https://bioscoopapp.herokuapp.com/api/films/"+film._id;
+                film.url = req.protocol+"://"+req.get('host')+"/api/films/"+film._id;
                 return film;
             });
             res.status(200).json(films);
@@ -31,7 +31,7 @@ module.exports = {
             }
             try {
             film = film.toObject();
-            film.url = "https://bioscoopapp.herokuapp.com/api/films/"+film._id;
+            film.url = req.protocol+"://"+req.get('host')+"/api/films/"+film._id;
             }
             catch(e){
                 res.status(404).json({});
