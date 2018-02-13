@@ -9,6 +9,7 @@ router.use(expressJWT({
     path: [
         { url: '/api/token', methods: ['POST']  },
         { url: '/api/films', methods: ['GET']  } ,
+        { url: /\/films*/, methods: ['GET']  } ,
         { url: '/api/shows', methods: ['GET']  } ,
         { url: '/api/locations', methods: ['GET']  },
         { url: '/api/rooms', methods: ['GET']  } 
