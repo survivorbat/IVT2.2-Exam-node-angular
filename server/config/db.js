@@ -46,7 +46,7 @@ const schema = new Schema({
         default: []
     },
     reviews: {
-        type: [Object],
+        type: [{title: String, body: String, Writer: String}],
         required: false,
         default: []
     },
