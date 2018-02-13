@@ -19,18 +19,19 @@ module.exports = {
         });
     },
     getById(req, res, next){
-        Film.find({_id: req.params._id},(err, films) => {
+        Film.findOne({_id: req.params._id},(err, film) => {
             if(err){
+                if(err.name="CastError"){
+                    res.status(400).json({"errors":"Invalid ID value"});
+                    return;
+                }
                 console.log(err);
                 res.status(500).json({"errors":"An error occured"});
                 return;
             }
-            films = films.map(film => {
-                film = film.toObject();
-                film.url = "https://bioscoopapp.herokuapp.com/api/films/"+film._id;
-                return film;
-            });
-            res.status(200).json(films);
+            film = film.toObject();
+            film.url = "https://bioscoopapp.herokuapp.com/api/films/"+film._id;
+            res.status(200).json(film);
         });
     },
     post(req,res,next){

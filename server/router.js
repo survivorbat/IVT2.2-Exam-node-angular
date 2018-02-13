@@ -8,7 +8,6 @@ router.use(expressJWT({
 }).unless({ 
     path: [
         { url: '/api/token', methods: ['POST']  },
-        { url: '/api/films', methods: ['GET']  } ,
         { url: /\/films*/, methods: ['GET']  } ,
         { url: '/api/shows', methods: ['GET']  } ,
         { url: '/api/locations', methods: ['GET']  },
