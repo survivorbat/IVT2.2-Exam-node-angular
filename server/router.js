@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const config = require('./config/config'); 
 const expressJWT = require('express-jwt'); 
 require('dotenv').config();
 
@@ -8,7 +7,11 @@ router.use(expressJWT({
     secret: process.env.SECRET_KEY 
 }).unless({ 
     path: [
-        { url: '/api/token', methods: ['POST']  } 
+        { url: '/api/token', methods: ['POST']  },
+        { url: '/api/films', methods: ['GET']  } ,
+        { url: '/api/shows', methods: ['GET']  } ,
+        { url: '/api/locations', methods: ['GET']  },
+        { url: '/api/rooms', methods: ['GET']  } 
     ]
 }));
 

@@ -6,6 +6,7 @@ module.exports = {
     getAll(req, res, next){
         Film.find((err, films) => {
             if(err){
+                console.log(err);
                 res.status(500).json({"errors":"An error occured"});
                 return;
             }
