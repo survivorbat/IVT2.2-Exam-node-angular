@@ -10,7 +10,6 @@ const options = {
 };
 const timeout = 1000;
 
-
 mongoose.connect(process.env.DB_HOST, options, (error) => {
     if(error){
         console.log("Error connecting to ",process.env.DB_HOST, error);
@@ -20,7 +19,7 @@ mongoose.connect(process.env.DB_HOST, options, (error) => {
 });
 
 const Schema = mongoose.Schema;
-const schema = new Schema({
+const filmSchema = new Schema({
     title: {
         type: String,
         required: true
@@ -42,11 +41,6 @@ const schema = new Schema({
     },
     stars: {
         type: [String],
-        required: false,
-        default: []
-    },
-    reviews: {
-        type: [{title: String, body: String, Writer: String}],
         required: false,
         default: []
     },
@@ -75,9 +69,90 @@ const schema = new Schema({
     },
     genre: String
 });
-const Film = mongoose.model('Film', schema);
+const Film = mongoose.model('Film', filmSchema);
+
+const locationSchema = new Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    street: {type: String, required:true}, 
+    zip: {type: String, required:true}, 
+    city: {type: String, required:true}, 
+    state: {type: String, required:true}, 
+    number: {type: Number, required:true}, 
+});
+const Location = mongoose.model('Location', locationSchema);
+
+const roomSchema = new Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    rows: {
+        type: Number,
+        required: true
+    },
+    columns: {
+        type: Number,
+        required:true
+    },
+    location: {
+        type: locationSchema,
+        required: true
+    }
+});
+const Room = mongoose.model('Room', roomSchema);
+
+const showingSchema = new Schema({
+    film: {
+        type: filmSchema,
+        required: true
+    },
+    date: {
+        type: Date,
+        required: true,
+    },
+    room: {
+        type: roomSchema,
+        required: true,
+    },
+    specialties: {
+        type: [String]
+    },
+    price: {
+        type: Number,
+        default: 5.00
+    },
+    ticketSold: {
+        type: Number,
+        default: 0
+    }
+});
+
+const Showing = mongoose.model('Showing', showingSchema);
+
+const ticketSchema = new Schema({
+    showing: {
+        type: showingSchema,
+        required: true
+    },
+    row: {
+        type: Number,
+        required: true
+    },
+    column: {
+        type: Number,
+        required:true
+    }
+});
+const Ticket = mongoose.model('Ticket', ticketSchema);
 
 module.exports = {
     mongoose,
-    Film
+    Film,
+    Location,
+    Room,
+    Ticket,
+    Showing
 }

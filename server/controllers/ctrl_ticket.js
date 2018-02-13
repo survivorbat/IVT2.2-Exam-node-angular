@@ -1,25 +1,25 @@
 const db = require('../config/db');
 const mongoose = db.mongoose;
-const Film = db.Film;
+const Ticket = db.Ticket;
 
 module.exports = {
     getAll(req, res, next){
-        Film.find((err, films) => {
+        Ticket.find((err, tickets) => {
             if(err){
                 console.log(err);
                 res.status(500).json({"errors":"An error occured"});
                 return;
             }
-            films = films.map(film => {
-                film = film.toObject();
-                film.url = req.protocol+"://"+req.get('host')+"/api/films/"+film._id;
-                return film;
+            tickets = tickets.map(ticket => {
+                ticket = ticket.toObject();
+                ticket.url = req.protocol+"://"+req.get('host')+"/api/tickets/"+ticket._id;
+                return ticket;
             });
-            res.status(200).json(films);
+            res.status(200).json(tickets);
         });
     },
     getById(req, res, next){
-        Film.findOne({_id: req.params._id},(err, film) => {
+        Ticket.findOne({_id: req.params._id},(err, ticket) => {
             if(err){
                 if(err.name="CastError"){
                     res.status(400).json({"errors":"Invalid ID value"});
@@ -30,19 +30,19 @@ module.exports = {
                 return;
             }
             try {
-            film = film.toObject();
-            film.url = req.protocol+"://"+req.get('host')+"/api/films/"+film._id;
+            ticket = ticket.toObject();
+            ticket.url = req.protocol+"://"+req.get('host')+"/api/tickets/"+ticket._id;
             }
             catch(e){
                 res.status(404).json({});
                 return;
             }
-            res.status(200).json(film);
+            res.status(200).json(ticket);
         });
     },
     post(req,res,next){
-        const newFilm = new Film(req.body, {});
-        newFilm.save((err) => {
+        const newTicket = new Ticket(req.body, {});
+        newTicket.save((err) => {
             if(err){
                 if(err.name="ValidationError"){
                     res.status(400).json({message: err.message});
@@ -55,7 +55,7 @@ module.exports = {
         });
     },
     update(req, res, next){
-        Film.findByIdAndUpdate(req.params._id,req.body,(err) => {
+        Ticket.findByIdAndUpdate(req.params._id,req.body,(err) => {
             if(err){
                 if(err.name="CastError"){
                     res.status(400).json({"errors":"Invalid ID value"});
@@ -71,7 +71,7 @@ module.exports = {
         });
     },
     delete(req,res,next){
-        Film.findByIdAndRemove(req.params._id, (err, result) => {
+        Ticket.findByIdAndRemove(req.params._id, (err, result) => {
             if(err){
                 if(err.name="CastError"){
                     res.status(400).json({"errors":"Invalid ID value"});
@@ -81,7 +81,7 @@ module.exports = {
                 res.status(500).json({"errors":"An error occured"});
                 return;
             }
-            res.status(200).json({message:"succes",deletedObject: result});
+            res.status(200).json({message:"success",deletedObject: result});
         });
     }
 }

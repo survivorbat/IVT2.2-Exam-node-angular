@@ -81,7 +81,7 @@ module.exports = {
                 res.status(500).json({"errors":"An error occured"});
                 return;
             }
-            res.status(200).json({message:"succes",deletedObject: result});
+            res.status(200).json({message:"success",deletedObject: result});
         });
     }
 }

@@ -1,25 +1,26 @@
 const db = require('../config/db');
 const mongoose = db.mongoose;
-const Film = db.Film;
+const Room = db.Room;
+const Location = db.Location;
 
 module.exports = {
     getAll(req, res, next){
-        Film.find((err, films) => {
+        Room.find((err, rooms) => {
             if(err){
                 console.log(err);
                 res.status(500).json({"errors":"An error occured"});
                 return;
             }
-            films = films.map(film => {
-                film = film.toObject();
-                film.url = req.protocol+"://"+req.get('host')+"/api/films/"+film._id;
-                return film;
+            rooms = rooms.map(room => {
+                room = room.toObject();
+                room.url = req.protocol+"://"+req.get('host')+"/api/rooms/"+room._id;
+                return room;
             });
-            res.status(200).json(films);
+            res.status(200).json(rooms);
         });
     },
     getById(req, res, next){
-        Film.findOne({_id: req.params._id},(err, film) => {
+        Room.findOne({_id: req.params._id},(err, room) => {
             if(err){
                 if(err.name="CastError"){
                     res.status(400).json({"errors":"Invalid ID value"});
@@ -30,32 +31,44 @@ module.exports = {
                 return;
             }
             try {
-            film = film.toObject();
-            film.url = req.protocol+"://"+req.get('host')+"/api/films/"+film._id;
+                room = room.toObject();
+                room.url = req.protocol+"://"+req.get('host')+"/api/rooms/"+room._id;
             }
             catch(e){
                 res.status(404).json({});
                 return;
             }
-            res.status(200).json(film);
+            res.status(200).json(room);
         });
     },
     post(req,res,next){
-        const newFilm = new Film(req.body, {});
-        newFilm.save((err) => {
+        Location.findOne({name: req.body.location}, (err, location) => {
             if(err){
-                if(err.name="ValidationError"){
-                    res.status(400).json({message: err.message});
-                } else {
-                    res.status(500).json({"errors":"An error occured"});
-                }
+                console.log(err);
+                res.status(500).json({"errors":"An error occured"});
                 return;
             }
-            res.status(201).json({"message":"succes"});
+            if(!location){
+                res.status(400).json({"errors":"Location does not exist"});
+                return;
+            }
+            req.body.location = location.toObject();
+            const newRoom = new Room(req.body, {});
+            newRoom.save((err, result) => {
+                if(err){
+                    if(err.name="ValidationError"){
+                        res.status(400).json({message: err.message});
+                    } else {
+                        res.status(500).json({"errors":"An error occured"});
+                    }
+                    return;
+                }
+                res.status(201).json({"message":"succces!","createdObject":result});
+            });
         });
     },
     update(req, res, next){
-        Film.findByIdAndUpdate(req.params._id,req.body,(err) => {
+        Room.findByIdAndUpdate(req.params._id,req.body,(err) => {
             if(err){
                 if(err.name="CastError"){
                     res.status(400).json({"errors":"Invalid ID value"});
@@ -71,7 +84,7 @@ module.exports = {
         });
     },
     delete(req,res,next){
-        Film.findByIdAndRemove(req.params._id, (err, result) => {
+        Room.findByIdAndRemove(req.params._id, (err, result) => {
             if(err){
                 if(err.name="CastError"){
                     res.status(400).json({"errors":"Invalid ID value"});
@@ -81,7 +94,11 @@ module.exports = {
                 res.status(500).json({"errors":"An error occured"});
                 return;
             }
-            res.status(200).json({message:"succes",deletedObject: result});
+            if(!result){
+                res.status(404).json({});
+                return;
+            }
+            res.status(200).json({message:"success",deletedObject: result});
         });
     }
 }
