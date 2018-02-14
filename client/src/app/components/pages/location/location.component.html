@@ -15,7 +15,7 @@
       <p class="card-text">{{location.street}}, {{location.number}} ({{location.zip}})</p>
     </main>
 </section>
-<section *ngIf="location" class="row">
+<section *ngIf="location" class="row" style="margin-top:10px">
     <main class="col-md-12">
       <div class="card bg-dark locationitem" style="margin-bottom:10px" *ngFor="let room of rooms">
         <div class="card-body">
