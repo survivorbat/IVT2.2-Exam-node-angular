@@ -8,9 +8,9 @@ import Film from '../../../domain/Film';
   styleUrls: ['./films.component.scss']
 })
 export class FilmsComponent implements OnInit {
-  private films: Film[];
-  private error: boolean;
-  private loading: boolean;
+  films: Film[];
+  error: boolean;
+  loading: boolean;
   constructor(private filmservice: FilmsService) {
     this.loading=true;
   }

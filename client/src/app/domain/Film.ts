@@ -10,4 +10,7 @@ export default class Film {
     stars: String[];
     writers: String[];
     directors: String[];
+    setId(id: String){
+        this._id=id;
+    }
 }
