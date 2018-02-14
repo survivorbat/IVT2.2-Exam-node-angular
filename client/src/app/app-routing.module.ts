@@ -8,6 +8,7 @@ import { AdminComponent } from './components/pages/admin/admin.component';
 import { FilmComponent } from './components/pages/film/film.component';
 import { LocationComponent } from './components/pages/location/location.component';
 import { DevComponent } from './components/pages/dev/dev.component';
+import { RoomlistComponent } from './components/datadisplay/roomlist/roomlist.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'showings', pathMatch: 'full' },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'info', component: InfoComponent, pathMatch: 'full' },
   { path: 'dev', component: DevComponent, pathMatch: 'full' },
   { path: 'admin', component: AdminComponent, pathMatch: 'full' },
+  { path: 'test', component: RoomlistComponent, pathMatch: 'full' },
 ];
 
 @NgModule({

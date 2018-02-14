@@ -29,10 +29,10 @@ export class LocationComponent implements OnInit {
     })
   }
   getLocation(): void {
-    this.locationservice.getById(this.location._id).subscribe(res => {this.location=res;this.getRooms()}, err => {this.error=true;this.loading=false});
+    this.locationservice.getById(this.location.getId()).subscribe(res => {this.location=res;this.getRooms()}, err => {this.error=true;this.loading=false});
   }
   getRooms(): void {
-    this.roomsservice.getByLocation(this.location._id).subscribe(rooms => {this.rooms=rooms;this.loading=false}, error => {});
+    this.roomsservice.getByLocation(this.location.getId()).subscribe(rooms => {this.rooms=rooms;this.loading=false}, error => {});
   }
   ngOnDestroy(){
     this.params.unsubscribe();

@@ -8,5 +8,8 @@ export default class Location {
     city: String;
     setId(id: String){
         this._id=id;
+    };
+    getId(): String{
+        return this._id;
     }
 }
