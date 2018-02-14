@@ -5,15 +5,17 @@
     <a routerLink="/locations">Terug</a>
   </main>
 </section>
-<section *ngIf="loading" class="row">
-  Aan het laden...
-</section>
 <section *ngIf="location" class="row">
     <main class="col-md-12">
       <h1 class="card-title font-weight-bold">{{location.name}} zalen</h1>
       <p class="card-text" style="margin-bottom:0">{{location.city}} ({{location.state}})</p>
       <p class="card-text">{{location.street}}, {{location.number}} ({{location.zip}})</p>
     </main>
+</section>
+<section *ngIf="loading" class="row">
+  <main class="col-md-12">
+    Aan het laden...
+  </main>
 </section>
 <section *ngIf="location" class="row" style="margin-top:10px">
     <main class="col-md-12">

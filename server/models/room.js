@@ -18,10 +18,6 @@ const roomSchema = new Schema({
     location: {
         type: locationSchema,
         required: true
-    },
-    country: {
-        type: String,
-        required: true
     }
 });
 const Room = mongoose.model('Room', roomSchema);

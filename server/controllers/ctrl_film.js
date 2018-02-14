@@ -9,6 +9,10 @@ module.exports = {
                 res.status(500).json({"errors":"An error occured"});
                 return;
             }
+            if(!films){
+                res.status(200).json([]);
+                return;
+            }
             films = films.map(film => {
                 film = film.toObject();
                 film.url = req.protocol+"://"+req.get('host')+"/api/films/"+film._id;
@@ -84,6 +88,10 @@ module.exports = {
                 }
                 console.log(err);
                 res.status(500).json({"errors":"An error occured"});
+                return;
+            }
+            if(!result){
+                res.status(404).json({});
                 return;
             }
             Showing.find({"film": result._id}).remove((err, result) => {

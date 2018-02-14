@@ -9,6 +9,10 @@ module.exports = {
                 res.status(500).json({"errors":"An error occured"});
                 return;
             }
+            if(!locations){
+                res.status(200).json([]);
+                return;
+            }
             locations = locations.map(location => {
                 location = location.toObject();
                 location.url = req.protocol+"://"+req.get('host')+"/api/locations/"+location._id;

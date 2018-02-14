@@ -1,5 +1,6 @@
 const {Room} = require('../models/room');
 const {Location} = require('../models/location');
+const {Showing} = require('../models/showing');
 
 module.exports = {
     getAll(req, res, next){
@@ -7,6 +8,10 @@ module.exports = {
             if(err){
                 console.log(err);
                 res.status(500).json({"errors":"An error occured"});
+                return;
+            }
+            if(!rooms){
+                res.status(200).json([]);
                 return;
             }
             rooms = rooms.map(room => {
@@ -58,7 +63,7 @@ module.exports = {
         });
     },
     post(req,res,next){
-        Location.findOne({name: req.body.location}, (err, location) => {
+        Location.findOne({_id: req.body.location}, (err, location) => {
             if(err){
                 console.log(err);
                 res.status(500).json({"errors":"An error occured"});

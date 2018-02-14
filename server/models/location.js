@@ -10,7 +10,11 @@ const locationSchema = new Schema({
     zip: {type: String, required:true}, 
     city: {type: String, required:true}, 
     state: {type: String, required:true}, 
-    number: {type: Number, required:true}, 
+    number: {type: Number, required:true},
+    country: {
+        type: String,
+        required: true
+    }
 });
 const Location = mongoose.model('Location', locationSchema);
 

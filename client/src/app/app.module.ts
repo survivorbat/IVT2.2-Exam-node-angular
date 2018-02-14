@@ -19,6 +19,7 @@ import { AdminComponent } from './components/pages/admin/admin.component';
 import { FilmComponent } from './components/pages/film/film.component';
 import { LocationComponent } from './components/pages/location/location.component';
 import { RoomsService } from './services/rooms.service';
+import { DevComponent } from './components/pages/dev/dev.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { RoomsService } from './services/rooms.service';
     InfoComponent,
     AdminComponent,
     FilmComponent,
-    LocationComponent
+    LocationComponent,
+    DevComponent
   ],
   imports: [
     BrowserModule,

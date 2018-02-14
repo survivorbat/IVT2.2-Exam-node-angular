@@ -11,6 +11,10 @@ module.exports = {
                 res.status(500).json({"errors":"An error occured"});
                 return;
             }
+            if(!showings){
+                res.status(200).json([]);
+                return;
+            }
             showings = showings.map(showing => {
                 showing = showing.toObject();
                 showing.url = req.protocol+"://"+req.get('host')+"/api/showings/"+showing._id;
@@ -110,6 +114,10 @@ module.exports = {
                 }
                 console.log(err);
                 res.status(500).json({"errors":"An error occured"});
+                return;
+            }
+            if(!result){
+                res.status(404).json({});
                 return;
             }
             Ticket.find({"showing._id": result._id}).remove((err, result) => {

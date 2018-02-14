@@ -7,6 +7,7 @@ import { InfoComponent } from './components/pages/info/info.component';
 import { AdminComponent } from './components/pages/admin/admin.component';
 import { FilmComponent } from './components/pages/film/film.component';
 import { LocationComponent } from './components/pages/location/location.component';
+import { DevComponent } from './components/pages/dev/dev.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'showings', pathMatch: 'full' },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'locations', component: LocationsComponent, pathMatch: 'full' },
   { path: 'locations/:id', component: LocationComponent, pathMatch: 'full' },
   { path: 'info', component: InfoComponent, pathMatch: 'full' },
+  { path: 'dev', component: DevComponent, pathMatch: 'full' },
   { path: 'admin', component: AdminComponent, pathMatch: 'full' },
 ];
 

@@ -9,6 +9,10 @@ module.exports = {
                 res.status(500).json({"errors":"An error occured"});
                 return;
             }
+            if(!tickets){
+                res.status(200).json([]);
+                return;
+            }
             tickets = tickets.map(ticket => {
                 ticket = ticket.toObject();
                 ticket.url = req.protocol+"://"+req.get('host')+"/api/tickets/"+ticket._id;
@@ -98,6 +102,10 @@ module.exports = {
                 }
                 console.log(err);
                 res.status(500).json({"errors":"An error occured"});
+                return;
+            }
+            if(!result){
+                res.status(404).json({});
                 return;
             }
             res.status(200).json({message:"success",deletedObject: result});
