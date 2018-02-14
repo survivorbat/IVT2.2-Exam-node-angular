@@ -11,4 +11,7 @@ export class FilmsService {
   getAll(): Observable<Film[]>{
     return this.http.get<Film[]>(this.URL);
   }
+  getById(id: string): Observable<Film>{
+    return this.http.get<Film>(this.URL+"/"+id);
+  }
 }

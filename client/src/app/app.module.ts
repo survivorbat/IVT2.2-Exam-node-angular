@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, TemplateRef } from '@angular/core';
 import { FormsModule }    from '@angular/forms';
 import { HttpClientModule, HttpClient }    from '@angular/common/http';
 import { AppRoutingModule }     from './app-routing.module';
@@ -16,6 +16,7 @@ import { FilmsComponent } from './components/pages/films/films.component';
 import { LocationsComponent } from './components/pages/locations/locations.component';
 import { InfoComponent } from './components/pages/info/info.component';
 import { AdminComponent } from './components/pages/admin/admin.component';
+import { FilmComponent } from './components/pages/film/film.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { AdminComponent } from './components/pages/admin/admin.component';
     FilmsComponent,
     LocationsComponent,
     InfoComponent,
-    AdminComponent
+    AdminComponent,
+    FilmComponent
   ],
   imports: [
     BrowserModule,

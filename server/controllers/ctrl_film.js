@@ -40,6 +40,9 @@ module.exports = {
         });
     },
     post(req,res,next){
+        req.body.stars = req.body.stars.split(',');
+        req.body.writers = req.body.writers.split(',');
+        req.body.directors = req.body.directors.split(',');
         const newFilm = new Film(req.body, {});
         newFilm.save((err) => {
             if(err){
@@ -54,6 +57,9 @@ module.exports = {
         });
     },
     update(req, res, next){
+        if(req.body.stars!==undefined) req.body.stars = req.body.stars.split(',');
+        if(req.body.writers!==undefined) req.body.writers = req.body.writers.split(',');
+        if(req.body.directors!==undefined) req.body.directors = req.body.directors.split(',');
         Film.findByIdAndUpdate(req.params._id,req.body,(err) => {
             if(err){
                 if(err.name="CastError"){

@@ -9,13 +9,25 @@ import Film from '../../../domain/Film';
 })
 export class FilmsComponent implements OnInit {
   private films: Film[];
-  constructor(private filmservice: FilmsService) { }
+  private error: boolean;
+  private loading: boolean;
+  constructor(private filmservice: FilmsService) {
+    this.loading=true;
+  }
 
   ngOnInit() {
     this.getFilms();
   }
 
   getFilms(): void {
-    this.filmservice.getAll().subscribe(films => this.films=films, error => console.log(error));
+    this.filmservice.getAll().subscribe(films => {this.films=films; this.loading=false;}, error => {this.error=error;this.loading=false});
+  }
+
+  getArrayFromNumber(num: Number): Number[]{
+    let rs: Number[] = [];
+    for(let i=0;i<num;i++){
+      rs.push(0);
+    }
+    return rs;
   }
 }

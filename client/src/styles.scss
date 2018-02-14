@@ -7,3 +7,12 @@ body {
     background-repeat: no-repeat;
     font-family: 'Open Sans', sans-serif;
 }
+
+a:link, a, a:visited {
+    text-decoration: inherit;
+    color: inherit;
+}
+
+.text-small {
+    font-size:smaller;
+}

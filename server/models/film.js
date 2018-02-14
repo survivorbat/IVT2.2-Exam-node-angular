@@ -31,11 +31,6 @@ const filmSchema = new Schema({
         required: false,
         default: 0
     },
-    media: {
-        type: [String],
-        required: false,
-        default: []
-    },
     coverPicture: {
         type: String,
         required:false,
@@ -46,6 +41,10 @@ const filmSchema = new Schema({
         required: true,
     },
     duration: {
+        type: String,
+        required: true
+    },
+    description: {
         type: String,
         required: true
     },
