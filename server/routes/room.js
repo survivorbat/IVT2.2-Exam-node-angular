@@ -7,6 +7,7 @@ const roomcontroller = require('../controllers/ctrl_room');
 routes.get('/', roomcontroller.getAll);
 routes.post('/', roomcontroller.post);
 routes.get('/:_id', roomcontroller.getById);
+routes.get('/location/:_id', roomcontroller.getByLocation);
 routes.delete('/:_id', roomcontroller.delete);
 routes.patch('/:_id', roomcontroller.update);
 

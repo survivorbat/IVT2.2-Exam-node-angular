@@ -10,7 +10,7 @@
 </section>
 <section *ngIf="location" class="row">
     <main class="col-md-12">
-      <h1 class="card-title font-weight-bold">{{location.name}}</h1>
+      <h1 class="card-title font-weight-bold">{{location.name}} zalen</h1>
       <p class="card-text" style="margin-bottom:0">{{location.city}} ({{location.state}})</p>
       <p class="card-text">{{location.street}}, {{location.number}} ({{location.zip}})</p>
     </main>
@@ -20,7 +20,7 @@
       <div class="card bg-dark locationitem" style="margin-bottom:10px" *ngFor="let room of rooms">
         <div class="card-body">
             <h4 class="card-title font-weight-bold">{{room.name}}</h4>
-            <p>{{room.rows}} rijen en {{room.columns}} kolommen aan stoelen</p>
+            <p>{{room.rows}} rijen en {{room.columns}} kolommen aan stoelen.</p>
         </div>
       </div>
     </main>

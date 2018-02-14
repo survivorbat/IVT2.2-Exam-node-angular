@@ -11,6 +11,9 @@ export class RoomsService {
   getAll(): Observable<Room[]>{
     return this.http.get<Room[]>(this.URL);
   }
+  getByLocation(location: String): Observable<Room[]>{
+    return this.http.get<Room[]>(this.URL+"/location/"+location);
+  }
   getById(id: String): Observable<Room>{
     return this.http.get<Room>(this.URL+"/"+id);
   }

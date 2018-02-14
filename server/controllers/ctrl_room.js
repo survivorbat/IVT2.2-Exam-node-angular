@@ -41,6 +41,22 @@ module.exports = {
             res.status(200).json(room);
         });
     },
+    getByLocation(req, res, next){
+        Room.find({"location._id":req.params._id},(err, rooms) => {
+            if(err){
+                console.log(err);
+                res.status(500).json({"errors":"An error occured"});
+                return;
+            }
+            rooms = rooms.map(room => {
+                room = room.toObject();
+                room.url = req.protocol+"://"+req.get('host')+"/api/rooms/"+room._id;
+                room.location.url = req.protocol+"://"+req.get('host')+"/api/locations/"+room.location._id;
+                return room;
+            });
+            res.status(200).json(rooms);
+        });
+    },
     post(req,res,next){
         Location.findOne({name: req.body.location}, (err, location) => {
             if(err){

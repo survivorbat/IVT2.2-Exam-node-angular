@@ -1,7 +1,7 @@
 export default class Room {
     _id: String;
     location: Location;
-    rows: Number;
-    columns: Number;
+    rows: number;
+    columns: number;
     name: String;
 }
