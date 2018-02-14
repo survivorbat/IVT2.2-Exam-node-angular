@@ -17,6 +17,8 @@ import { LocationsComponent } from './components/pages/locations/locations.compo
 import { InfoComponent } from './components/pages/info/info.component';
 import { AdminComponent } from './components/pages/admin/admin.component';
 import { FilmComponent } from './components/pages/film/film.component';
+import { LocationComponent } from './components/pages/location/location.component';
+import { RoomsService } from './services/rooms.service';
 
 
 @NgModule({
@@ -31,14 +33,15 @@ import { FilmComponent } from './components/pages/film/film.component';
     LocationsComponent,
     InfoComponent,
     AdminComponent,
-    FilmComponent
+    FilmComponent,
+    LocationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [FilmsService, LocationsService],
+  providers: [FilmsService, LocationsService, RoomsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
