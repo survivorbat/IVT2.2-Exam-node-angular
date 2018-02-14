@@ -1,6 +1,5 @@
-const db = require('../config/db');
-const mongoose = db.mongoose;
-const Film = db.Film;
+const {Film} = require('../models/film');
+const {Showing} = require('../models/showing');
 
 module.exports = {
     getAll(req, res, next){
@@ -81,6 +80,9 @@ module.exports = {
                 res.status(500).json({"errors":"An error occured"});
                 return;
             }
+            Showing.find({"film": result._id}).remove((err, result) => {
+                console.log(result);
+            })
             res.status(200).json({message:"succes",deletedObject: result});
         });
     }

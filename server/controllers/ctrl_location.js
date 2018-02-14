@@ -1,7 +1,5 @@
-const db = require('../config/db');
-const mongoose = db.mongoose;
-const Location = db.Location;
-const Room = db.Room;
+const {Location} = require('../models/location');
+const {Room} = require('../models/room');
 
 module.exports = {
     getAll(req, res, next){
@@ -30,14 +28,12 @@ module.exports = {
                 res.status(500).json({"errors":"An error occured"});
                 return;
             }
-            try {
-            location = location.toObject();
-            location.url = req.protocol+"://"+req.get('host')+"/api/locations/"+location._id;
-            }
-            catch(e){
+            if(!location){
                 res.status(404).json({});
                 return;
             }
+            location = location.toObject();
+            location.url = req.protocol+"://"+req.get('host')+"/api/locations/"+location._id;
             res.status(200).json(location);
         });
     },

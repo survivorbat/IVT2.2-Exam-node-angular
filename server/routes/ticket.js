@@ -1,13 +1,13 @@
 const express = require('express');
 const routes = express.Router();
 
-const locationcontroller = require('../controllers/ctrl_location');
+const ticketcontroller = require('../controllers/ctrl_ticket');
 
 //Use the function in the controller if the user uses a post for /login.
-routes.get('/', locationcontroller.getAll);
-routes.post('/', locationcontroller.post);
-routes.get('/:_id', locationcontroller.getById);
-routes.delete('/:_id', locationcontroller.delete);
-routes.patch('/:_id', locationcontroller.update);
+routes.get('/', ticketcontroller.getAll);
+routes.post('/', ticketcontroller.post);
+routes.get('/:_id', ticketcontroller.getById);
+routes.delete('/:_id', ticketcontroller.delete);
+routes.patch('/:_id', ticketcontroller.update);
 
 module.exports = routes;

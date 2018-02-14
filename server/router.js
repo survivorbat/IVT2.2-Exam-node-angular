@@ -7,12 +7,13 @@ router.use(expressJWT({
     secret: process.env.SECRET_KEY 
 }).unless({ 
     path: [
+        { url: '/api', methods: ['GET']  },
         { url: '/api/token', methods: ['POST']  },
-        { url: /\/films*/, methods: ['GET']  } ,
-        { url: '/api/shows', methods: ['GET']  } ,
-        { url: '/api/locations', methods: ['GET']  },
-        { url: '/api/rooms', methods: ['GET']  },
-        { url: '/api/tickets', methods: ['GET']  } 
+        { url: /\/locations*/, methods: ['GET']  } ,
+        { url: /\/rooms*/, methods: ['GET']  } ,
+        { url: /\/showings*/, methods: ['GET']  },
+        { url: /\/films*/, methods: ['GET']  },
+        { url: /\/tickets*/, methods: ['GET']  } 
     ]
 }));
 
@@ -30,6 +31,42 @@ router.use("/api/locations",locationrouter);
 router.use("/api/rooms",roomrouter);
 router.use("/api/tickets",ticketrouter);
 
+router.get("/api", (req,res,next) => {
+    res.status(200).json({
+        message:"Welcome to the Avancinema API! Please, make yourself at home :)",
+        routes: [
+            {
+                resource_name: "",
+                url: req.protocol+"://"+req.get('host')+"/api",
+            },
+            {
+                resource_name: "Films",
+                url: req.protocol+"://"+req.get('host')+"/api/films",
+            },
+            {
+                resource_name: "Showings",
+                url: req.protocol+"://"+req.get('host')+"/api/showings",  
+            },
+            {
+                resource_name: "Locations",
+                url: req.protocol+"://"+req.get('host')+"/api/locations",
+            },
+            {
+                resource_name: "Rooms",
+                url: req.protocol+"://"+req.get('host')+"/api/rooms",
+            },
+            {
+                resource_name: "Tickets",
+                url: req.protocol+"://"+req.get('host')+"/api/tickets",
+            },
+            {
+                resource_name: "Token",
+                url: req.protocol+"://"+req.get('host')+"/api/token",
+                method: "POST"
+            },
+        ]
+    });
+})
 router.use((error,req,res,next) => {
 	res.status(error.status || 500).send({
         message: error.message,

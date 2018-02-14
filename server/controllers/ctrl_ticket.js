@@ -1,6 +1,5 @@
-const db = require('../config/db');
-const mongoose = db.mongoose;
-const Ticket = db.Ticket;
+const {Ticket} = require('../models/ticket');
+const {Showing} = require('../models/showing');
 
 module.exports = {
     getAll(req, res, next){
@@ -13,6 +12,10 @@ module.exports = {
             tickets = tickets.map(ticket => {
                 ticket = ticket.toObject();
                 ticket.url = req.protocol+"://"+req.get('host')+"/api/tickets/"+ticket._id;
+                ticket.showing.url = req.protocol+"://"+req.get('host')+"/api/showings/"+ticket.showing._id;
+                ticket.showing.film.url = req.protocol+"://"+req.get('host')+"/api/films/"+ticket.showing.film._id;
+                ticket.showing.room.url = req.protocol+"://"+req.get('host')+"/api/rooms/"+ticket.showing.room._id;
+                ticket.showing.room.location.url = req.protocol+"://"+req.get('host')+"/api/locations/"+ticket.showing.room.location._id;
                 return ticket;
             });
             res.status(200).json(tickets);
@@ -30,8 +33,12 @@ module.exports = {
                 return;
             }
             try {
-            ticket = ticket.toObject();
-            ticket.url = req.protocol+"://"+req.get('host')+"/api/tickets/"+ticket._id;
+                ticket = ticket.toObject();
+                ticket.url = req.protocol+"://"+req.get('host')+"/api/tickets/"+ticket._id;
+                ticket.showing.url = req.protocol+"://"+req.get('host')+"/api/showings/"+ticket.showing._id;
+                ticket.showing.film.url = req.protocol+"://"+req.get('host')+"/api/films/"+ticket.showing.film._id;
+                ticket.showing.room.url = req.protocol+"://"+req.get('host')+"/api/rooms/"+ticket.showing.room._id;
+                ticket.showing.room.location.url = req.protocol+"://"+req.get('host')+"/api/locations/"+ticket.showing.room.location._id;
             }
             catch(e){
                 res.status(404).json({});
@@ -41,18 +48,30 @@ module.exports = {
         });
     },
     post(req,res,next){
-        const newTicket = new Ticket(req.body, {});
-        newTicket.save((err) => {
+        Showing.findById(req.body.showing, (err, showing) => {
             if(err){
-                if(err.name="ValidationError"){
-                    res.status(400).json({message: err.message});
-                } else {
-                    res.status(500).json({"errors":"An error occured"});
-                }
+                console.log(err);
+                res.status(500).json({"errors":"An error occured"});
                 return;
             }
-            res.status(201).json({"message":"succes"});
-        });
+            if(!showing){
+                res.status(400).json({"errors":"Showing does not exist. Please add a showing field with an existing showing."});
+                return;
+            }
+            req.body.showing = showing;
+            const newTicket = new Ticket(req.body, {});
+            newTicket.save((err, result) => {
+                if(err){
+                    if(err.name="ValidationError"){
+                        res.status(400).json({message: err.message});
+                    } else {
+                        res.status(500).json({"errors":"An error occured"});
+                    }
+                    return;
+                }
+                res.status(201).json({"message":"succces!","createdObject":result});
+            });
+        })
     },
     update(req, res, next){
         Ticket.findByIdAndUpdate(req.params._id,req.body,(err) => {

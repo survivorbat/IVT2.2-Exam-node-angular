@@ -1,7 +1,5 @@
-const db = require('../config/db');
-const mongoose = db.mongoose;
-const Room = db.Room;
-const Location = db.Location;
+const {Room} = require('../models/room');
+const {Location} = require('../models/location');
 
 module.exports = {
     getAll(req, res, next){
@@ -14,6 +12,7 @@ module.exports = {
             rooms = rooms.map(room => {
                 room = room.toObject();
                 room.url = req.protocol+"://"+req.get('host')+"/api/rooms/"+room._id;
+                room.location.url = req.protocol+"://"+req.get('host')+"/api/locations/"+room.location._id;
                 return room;
             });
             res.status(200).json(rooms);
@@ -32,6 +31,7 @@ module.exports = {
             }
             try {
                 room = room.toObject();
+                room.location.url = req.protocol+"://"+req.get('host')+"/api/locations/"+room.location._id;
                 room.url = req.protocol+"://"+req.get('host')+"/api/rooms/"+room._id;
             }
             catch(e){
@@ -98,6 +98,9 @@ module.exports = {
                 res.status(404).json({});
                 return;
             }
+            Showing.find({"room._id": result._id}).remove((err, result) => {
+                console.log(result);
+            })
             res.status(200).json({message:"success",deletedObject: result});
         });
     }
