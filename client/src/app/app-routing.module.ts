@@ -9,10 +9,12 @@ import { FilmComponent } from './components/pages/film/film.component';
 import { LocationComponent } from './components/pages/location/location.component';
 import { DevComponent } from './components/pages/dev/dev.component';
 import { RoomlistComponent } from './components/datadisplay/roomlist/roomlist.component';
+import { ShowingComponent } from './components/pages/showing/showing.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'showings', pathMatch: 'full' },
   { path: 'showings', component: ShowingsComponent, pathMatch: 'full' },
+  { path: 'showings/:id', component: ShowingComponent, pathMatch: 'full' },
   { path: 'films', component: FilmsComponent, pathMatch: 'full' },
   { path: 'films/:id', component: FilmComponent, pathMatch: 'full' },
   { path: 'locations', component: LocationsComponent, pathMatch: 'full' },

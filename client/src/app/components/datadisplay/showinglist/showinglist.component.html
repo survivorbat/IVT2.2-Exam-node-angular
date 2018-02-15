@@ -9,7 +9,7 @@
               <h3 class="card-title font-weight-bold">{{showing.film.title}} ({{showing.film.year}})</h3>
               <h5 class="card-text text-warning font-weight-bold">{{showing.date.replace('T',' ').substring(0,16)}}</h5>
               <h6 *ngIf="showing.film.subtitle" class="card-text">{{showing.film.subtitle}}</h6>
-              <p class="card-text">{{showing.room.chairs}}</p>
+              <p class="card-text text-muted">€{{showing.price}} p.p.</p>
           </div>
         </a>
       </div>

@@ -7,6 +7,7 @@ const ticketcontroller = require('../controllers/ctrl_ticket');
 routes.get('/', ticketcontroller.getAll);
 routes.post('/', ticketcontroller.post);
 routes.get('/:_id', ticketcontroller.getById);
+routes.get('/showing/:_id', ticketcontroller.getByShowing);
 routes.delete('/:_id', ticketcontroller.delete);
 routes.patch('/:_id', ticketcontroller.update);
 

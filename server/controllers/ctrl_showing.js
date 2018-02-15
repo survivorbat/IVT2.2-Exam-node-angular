@@ -3,6 +3,9 @@ const {Showing} = require('../models/showing');
 const {Room} = require('../models/room');
 const {Ticket} = require('../models/ticket');
 
+function sortByDate(a,b){
+    return new Date(a.date)>new Date(b.date);
+}
 module.exports = {
     getAll(req, res, next){
         Showing.find((err, showings) => {
@@ -18,12 +21,14 @@ module.exports = {
             showings = showings.map(showing => {
                 showing = showing.toObject();
                 showing.url = req.protocol+"://"+req.get('host')+"/api/showings/"+showing._id;
+                showing.tickets_url = req.protocol+"://"+req.get('host')+"/api/tickets/showing/"+showing._id;
                 showing.film.url = req.protocol+"://"+req.get('host')+"/api/films/"+showing.film._id;
                 showing.room.url = req.protocol+"://"+req.get('host')+"/api/rooms/"+showing.room._id;
                 showing.room.location.url = req.protocol+"://"+req.get('host')+"/api/locations/"+showing.room.location._id;
+                showing.room.location.showings_url = req.protocol+"://"+req.get('host')+"/api/showings/location/"+showing.room.location._id;
                 return showing;
             });
-            res.status(200).json(showings);
+            res.status(200).json(showings.sort((a,b) => sortByDate(a,b)));
         });
     },
     getById(req, res, next){
@@ -40,15 +45,41 @@ module.exports = {
             try {
                 showing = showing.toObject();
                 showing.url = req.protocol+"://"+req.get('host')+"/api/showings/"+showing._id;
+                showing.tickets_url = req.protocol+"://"+req.get('host')+"/api/tickets/showing/"+showing._id;
                 showing.film.url = req.protocol+"://"+req.get('host')+"/api/films/"+showing.film._id;
                 showing.room.url = req.protocol+"://"+req.get('host')+"/api/rooms/"+showing.room._id;
                 showing.room.location.url = req.protocol+"://"+req.get('host')+"/api/locations/"+showing.room.location._id;
+                showing.room.location.showings_url = req.protocol+"://"+req.get('host')+"/api/showings/location/"+showing.room.location._id;
             }
             catch(e){
                 res.status(404).json({});
                 return;
             }
             res.status(200).json(showing);
+        });
+    },
+    getByLocation(req, res, next){
+        Showing.find({"room.location._id": req.params._id},(err, showings) => {
+            if(err){
+                console.log(err);
+                res.status(500).json({"errors":"An error occured"});
+                return;
+            }
+            if(!showings){
+                res.status(200).json([]);
+                return;
+            }
+            showings = showings.map(showing => {
+                showing = showing.toObject();
+                showing.url = req.protocol+"://"+req.get('host')+"/api/showings/"+showing._id;
+                showing.tickets_url = req.protocol+"://"+req.get('host')+"/api/tickets/showing/"+showing._id;
+                showing.film.url = req.protocol+"://"+req.get('host')+"/api/films/"+showing.film._id;
+                showing.room.url = req.protocol+"://"+req.get('host')+"/api/rooms/"+showing.room._id;
+                showing.room.location.url = req.protocol+"://"+req.get('host')+"/api/locations/"+showing.room.location._id;
+                showing.room.location.showings_url = req.protocol+"://"+req.get('host')+"/api/showings/location/"+showing.room.location._id;
+                return showing;
+            });
+            res.status(200).json(showings.sort((a,b) => sortByDate(a,b)));
         });
     },
     post(req,res,next){

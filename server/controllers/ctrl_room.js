@@ -18,6 +18,7 @@ module.exports = {
                 room = room.toObject();
                 room.url = req.protocol+"://"+req.get('host')+"/api/rooms/"+room._id;
                 room.location.url = req.protocol+"://"+req.get('host')+"/api/locations/"+room.location._id;
+                room.location.showings_url = req.protocol+"://"+req.get('host')+"/api/showings/location/"+room.location._id;
                 return room;
             });
             res.status(200).json(rooms);
@@ -37,7 +38,9 @@ module.exports = {
             try {
                 room = room.toObject();
                 room.location.url = req.protocol+"://"+req.get('host')+"/api/locations/"+room.location._id;
+                room.location.showings_url = req.protocol+"://"+req.get('host')+"/api/showings/location/"+room.location._id;
                 room.url = req.protocol+"://"+req.get('host')+"/api/rooms/"+room._id;
+                
             }
             catch(e){
                 res.status(404).json({});
@@ -57,6 +60,7 @@ module.exports = {
                 room = room.toObject();
                 room.url = req.protocol+"://"+req.get('host')+"/api/rooms/"+room._id;
                 room.location.url = req.protocol+"://"+req.get('host')+"/api/locations/"+room.location._id;
+                room.location.showings_url = req.protocol+"://"+req.get('host')+"/api/showings/location/"+room.location._id;
                 return room;
             });
             res.status(200).json(rooms);

@@ -10,8 +10,8 @@ export default class Room {
 
     public get chairs(): number {
         return this._rows*this._columns;
-    }
-    
+	}
+	
 	public get id(): String {
 		return this._id;
 	}

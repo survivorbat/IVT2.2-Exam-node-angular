@@ -16,7 +16,7 @@ export class LocationComponent implements OnInit {
   error: boolean;
   loading: boolean;
   private params: Subscription;
-  constructor(private route: ActivatedRoute, private locationservice : LocationsService, private roomsservice: RoomsService) { 
+  constructor(private route: ActivatedRoute, private locationservice : LocationsService) { 
     this.loading=true;
     this.location = new Location();
   }

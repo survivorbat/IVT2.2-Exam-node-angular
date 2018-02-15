@@ -2,7 +2,7 @@ import Film from "./Film";
 import Room from "./Room";
 
 export default class Showing {
-    private _id: Number;
+    private _id: String;
     private _specialties: Array<String>;
     private _price: Number;
     private _ticketSold: Number;
@@ -58,11 +58,11 @@ export default class Showing {
 		this._date = value;
 	}
 
-	public get id(): Number {
+	public get id(): String {
 		return this._id;
 	}
 
-	public set id(value: Number) {
+	public set id(value: String) {
 		this._id = value;
 	}
 

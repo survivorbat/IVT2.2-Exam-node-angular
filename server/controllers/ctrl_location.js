@@ -16,6 +16,7 @@ module.exports = {
             locations = locations.map(location => {
                 location = location.toObject();
                 location.url = req.protocol+"://"+req.get('host')+"/api/locations/"+location._id;
+                location.showings_url = req.protocol+"://"+req.get('host')+"/api/showings/location/"+location._id;
                 return location;
             });
             res.status(200).json(locations);
@@ -38,6 +39,7 @@ module.exports = {
             }
             location = location.toObject();
             location.url = req.protocol+"://"+req.get('host')+"/api/locations/"+location._id;
+            location.showings_url = req.protocol+"://"+req.get('host')+"/api/showings/location/"+location._id;
             res.status(200).json(location);
         });
     },

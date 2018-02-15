@@ -25,6 +25,9 @@ import { LocationlistComponent } from './components/datadisplay/locationlist/loc
 import { RoomlistComponent } from './components/datadisplay/roomlist/roomlist.component';
 import { ShowinglistComponent } from './components/datadisplay/showinglist/showinglist.component';
 import { ShowingsService } from './services/showingservice.service';
+import { ShowingComponent } from './components/pages/showing/showing.component';
+import { NewticketComponent } from './components/forms/newticket/newticket.component';
+import { RepeatDirective } from './directives/repeat.directive';
 
 
 @NgModule({
@@ -45,7 +48,10 @@ import { ShowingsService } from './services/showingservice.service';
     FilmlistComponent,
     LocationlistComponent,
     RoomlistComponent,
-    ShowinglistComponent
+    ShowinglistComponent,
+    ShowingComponent,
+    NewticketComponent,
+    RepeatDirective
   ],
   imports: [
     BrowserModule,

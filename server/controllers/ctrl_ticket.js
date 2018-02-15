@@ -17,16 +17,43 @@ module.exports = {
                 ticket = ticket.toObject();
                 ticket.url = req.protocol+"://"+req.get('host')+"/api/tickets/"+ticket._id;
                 ticket.showing.url = req.protocol+"://"+req.get('host')+"/api/showings/"+ticket.showing._id;
+                ticket.showing.tickets_url = req.protocol+"://"+req.get('host')+"/api/tickets/showing/"+ticket.showing._id;
                 ticket.showing.film.url = req.protocol+"://"+req.get('host')+"/api/films/"+ticket.showing.film._id;
                 ticket.showing.room.url = req.protocol+"://"+req.get('host')+"/api/rooms/"+ticket.showing.room._id;
                 ticket.showing.room.location.url = req.protocol+"://"+req.get('host')+"/api/locations/"+ticket.showing.room.location._id;
+                ticket.showing.room.location.showings_url = req.protocol+"://"+req.get('host')+"/api/showings/location/"+ticket.showing.room.location._id;
+                return ticket; 
+            });
+            res.status(200).json(tickets);
+        });
+    },
+    getByShowing(req, res, next){
+        Ticket.find({"showing._id": req.params._id},(err, tickets) => {
+            if(err){
+                console.log(err);
+                res.status(500).json({"errors":"An error occured"});
+                return;
+            }
+            if(!tickets){
+                res.status(200).json([]);
+                return;
+            }
+            tickets = tickets.map(ticket => {
+                ticket = ticket.toObject();
+                ticket.url = req.protocol+"://"+req.get('host')+"/api/tickets/"+ticket._id;
+                ticket.showing.url = req.protocol+"://"+req.get('host')+"/api/showings/"+ticket.showing._id;
+                ticket.showing.tickets_url = req.protocol+"://"+req.get('host')+"/api/tickets/showing/"+ticket.showing._id;
+                ticket.showing.film.url = req.protocol+"://"+req.get('host')+"/api/films/"+ticket.showing.film._id;
+                ticket.showing.room.url = req.protocol+"://"+req.get('host')+"/api/rooms/"+ticket.showing.room._id;
+                ticket.showing.room.location.url = req.protocol+"://"+req.get('host')+"/api/locations/"+ticket.showing.room.location._id;
+                ticket.showing.room.location.showings_url = req.protocol+"://"+req.get('host')+"/api/showings/location/"+ticket.showing.room.location._id;
                 return ticket;
             });
             res.status(200).json(tickets);
         });
     },
     getById(req, res, next){
-        Ticket.findOne({_id: req.params._id},(err, ticket) => {
+        Ticket.findById(req.params._id,(err, ticket) => {
             if(err){
                 if(err.name="CastError"){
                     res.status(400).json({"errors":"Invalid ID value"});
@@ -36,15 +63,22 @@ module.exports = {
                 res.status(500).json({"errors":"An error occured"});
                 return;
             }
+            if(!ticket){
+                res.status(404).json({});
+                return;
+            }
             try {
                 ticket = ticket.toObject();
                 ticket.url = req.protocol+"://"+req.get('host')+"/api/tickets/"+ticket._id;
                 ticket.showing.url = req.protocol+"://"+req.get('host')+"/api/showings/"+ticket.showing._id;
+                ticket.showing.tickets_url = req.protocol+"://"+req.get('host')+"/api/tickets/showing/"+ticket.showing._id;
                 ticket.showing.film.url = req.protocol+"://"+req.get('host')+"/api/films/"+ticket.showing.film._id;
                 ticket.showing.room.url = req.protocol+"://"+req.get('host')+"/api/rooms/"+ticket.showing.room._id;
                 ticket.showing.room.location.url = req.protocol+"://"+req.get('host')+"/api/locations/"+ticket.showing.room.location._id;
+                ticket.showing.room.location.showings_url = req.protocol+"://"+req.get('host')+"/api/showings/location/"+ticket.showing.room.location._id;
             }
             catch(e){
+                console.log(e);
                 res.status(404).json({});
                 return;
             }
