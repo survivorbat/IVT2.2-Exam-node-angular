@@ -13,11 +13,13 @@ router.use(expressJWT({
         { url: /\/rooms*/, methods: ['GET']  } ,
         { url: /\/showings*/, methods: ['GET']  },
         { url: /\/films*/, methods: ['GET']  },
-        { url: /\/tickets*/, methods: ['GET']  } 
+        { url: /\/tickets*/, methods: ['GET']  },
+        { url: /\/users*/, methods: ['POST']  },
     ]
 }));
 
 const authenticationrouter = require('./routes/authentication');
+const userrouter = require('./routes/user');
 const filmrouter = require('./routes/film');
 const showingrouter = require('./routes/showing');
 const locationrouter = require('./routes/location');
@@ -25,6 +27,7 @@ const roomrouter = require('./routes/room');
 const ticketrouter = require('./routes/ticket');
 
 router.use("/api/",authenticationrouter);
+router.use("/api/users",userrouter);
 router.use("/api/films",filmrouter);
 router.use("/api/showings",showingrouter);
 router.use("/api/locations",locationrouter);
