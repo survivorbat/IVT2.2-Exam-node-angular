@@ -7,7 +7,7 @@
 </section>
 <section *ngIf="location" class="row">
     <main class="col-md-12">
-      <h1 class="card-title font-weight-bold">{{location.name}} zalen</h1>
+      <h1 class="card-title font-weight-bold">{{location.name}}</h1>
       <p class="card-text" style="margin-bottom:0">{{location.city}} ({{location.state}})</p>
       <p class="card-text">{{location.street}}, {{location.number}} ({{location.zip}})</p>
     </main>
@@ -18,10 +18,12 @@
   </main>
 </section>
 <section *ngIf="location" class="row" style="margin-top:10px">
-    <main class="col-md-6">
-      <app-roomlist [location]="location"></app-roomlist>
-    </main>
-    <aside class="col-md-6">
+    <main class="col-md-10">
+      <h2>Voorstellingen</h2>
       <app-showinglist [location]="location"></app-showinglist>
-    </aside>
+    </main>
+    <aside class="col-md-2">
+        <h2>Zalen</h2>
+        <app-roomlist [location]="location"></app-roomlist>
+      </aside>
 </section>
