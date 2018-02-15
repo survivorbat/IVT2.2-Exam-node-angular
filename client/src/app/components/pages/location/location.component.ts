@@ -15,7 +15,6 @@ export class LocationComponent implements OnInit {
   location: Location;
   error: boolean;
   loading: boolean;
-  rooms: Room[];
   private params: Subscription;
   constructor(private route: ActivatedRoute, private locationservice : LocationsService, private roomsservice: RoomsService) { 
     this.loading=true;
@@ -24,15 +23,12 @@ export class LocationComponent implements OnInit {
 
   ngOnInit() {
     this.params = this.route.params.subscribe(params => {
-      this.location.setId(params.id);
+      this.location.id = params.id;
       this.getLocation();
     })
   }
   getLocation(): void {
-    this.locationservice.getById(this.location.getId()).subscribe(res => {this.location=res;this.getRooms()}, err => {this.error=true;this.loading=false});
-  }
-  getRooms(): void {
-    this.roomsservice.getByLocation(this.location.getId()).subscribe(rooms => {this.rooms=rooms;this.loading=false}, error => {});
+    this.locationservice.getById(this.location.id).subscribe(res => {this.location=res;this.loading=false}, err => {this.error=true;this.loading=false});
   }
   ngOnDestroy(){
     this.params.unsubscribe();

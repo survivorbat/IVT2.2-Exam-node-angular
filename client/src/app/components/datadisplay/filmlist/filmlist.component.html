@@ -1,7 +1,7 @@
 <section *ngIf="films" class="row">
   <main class="col-md-12">
     <div class="card-columns">
-      <div class="card bg-dark filmitem" *ngFor="let film of films">
+      <div class="card bg-dark clickable-item" *ngFor="let film of films">
         <a routerLink="/films/{{film._id}}">
           <img *ngIf="film.coverPicture!==''" src="{{film.coverPicture}}" alt="Coverpicture of the movie {{film.title}}" class="card-img-top img-fluid">
           <img *ngIf="film.coverPicture==''" src="assets/placeholder.png" alt="Geen foto beschikbaar" class="card-img-top img-fluid">

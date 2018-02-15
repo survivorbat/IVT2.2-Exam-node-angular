@@ -16,3 +16,14 @@ a:link, a, a:visited {
 .text-small {
     font-size:smaller;
 }
+
+.clickable-item {
+    opacity:0.95;
+    cursor: pointer;
+    &:hover {
+        opacity:1;
+        border-color:white;
+        color:white;
+        border-width: 1px;
+    }
+}

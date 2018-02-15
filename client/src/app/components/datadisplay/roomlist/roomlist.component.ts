@@ -27,9 +27,9 @@ export class RoomlistComponent implements OnInit {
   }
   getRooms(): void {
     if(this._location!==undefined){
-      this.roomsservice.getByLocation(this._location._id).subscribe(rooms => {this.rooms=rooms;this.loading=false}, error => {});
+      this.roomsservice.getByLocation(this._location.id).subscribe(rooms => {this.rooms=rooms;this.loading=false}, error => {this.loading=false});
     } else {
-      this.roomsservice.getAll().subscribe(rooms => {this.rooms=rooms;this.loading=false}, error => {});
+      this.roomsservice.getAll().subscribe(rooms => {this.rooms=rooms;this.loading=false;}, error => {this.loading=false});
     }
   }
 }

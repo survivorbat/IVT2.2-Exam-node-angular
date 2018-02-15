@@ -23,6 +23,8 @@ import { DevComponent } from './components/pages/dev/dev.component';
 import { FilmlistComponent } from './components/datadisplay/filmlist/filmlist.component';
 import { LocationlistComponent } from './components/datadisplay/locationlist/locationlist.component';
 import { RoomlistComponent } from './components/datadisplay/roomlist/roomlist.component';
+import { ShowinglistComponent } from './components/datadisplay/showinglist/showinglist.component';
+import { ShowingsService } from './services/showingservice.service';
 
 
 @NgModule({
@@ -42,14 +44,15 @@ import { RoomlistComponent } from './components/datadisplay/roomlist/roomlist.co
     DevComponent,
     FilmlistComponent,
     LocationlistComponent,
-    RoomlistComponent
+    RoomlistComponent,
+    ShowinglistComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [FilmsService, LocationsService, RoomsService],
+  providers: [FilmsService, LocationsService, RoomsService, ShowingsService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,6 @@
 <section *ngIf="locations" class="row">
   <main class="col-md-12">
-    <div class="card bg-dark locationitem" *ngFor="let location of locations" style="margin-bottom:10px">
+    <div class="card bg-dark clickable-item" *ngFor="let location of locations" style="margin-bottom:10px">
       <a routerLink="/locations/{{location._id}}">
         <div class="card-body">
             <h1 class="card-title font-weight-bold">{{location.name}}</h1>
