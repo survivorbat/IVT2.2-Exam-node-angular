@@ -8,7 +8,7 @@ function sortByDate(a,b){
 }
 module.exports = {
     getAll(req, res, next){
-        Showing.find().populate({path:'film',path:'room', populate:{path: 'location'}}).exec((err, showings) => {
+        Showing.find().populate('film').populate({path:'room', populate:{path: 'location'}}).exec((err, showings) => {
             if(err){
                 console.log(err);
                 res.status(500).json({"errors":"An error occured"});
@@ -32,7 +32,7 @@ module.exports = {
         });
     },
     getById(req, res, next){
-        Showing.findOne({_id: req.params._id}).populate({path:'film',path:'room', populate:{path: 'location'}}).exec((err, showing) => {
+        Showing.findOne({_id: req.params._id}).populate('film').populate({path:'room', populate:{path: 'location'}}).exec((err, showing) => {
             if(err){
                 if(err.name="CastError"){
                     res.status(400).json({"errors":"Invalid ID value"});
@@ -59,7 +59,7 @@ module.exports = {
         });
     },
     getByLocation(req, res, next){
-        Showing.find().populate({path:'film',path:'room', populate:{path: 'location'}}).exec((err, showings) => {
+        Showing.find().populate('film').populate({path:'room', populate:{path: 'location'}}).exec((err, showings) => {
             if(err){
                 console.log(err);
                 res.status(500).json({"errors":"An error occured"});
