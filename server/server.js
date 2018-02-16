@@ -3,7 +3,7 @@ const app = express();
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const router = require('./router');
-
+const validator = require('express-validator');
 /* Middleware */
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -15,6 +15,8 @@ app.use(function(req, res, next) {
 	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 	next();
 });
+
+app.use(validator())
 
 app.use(router);
 

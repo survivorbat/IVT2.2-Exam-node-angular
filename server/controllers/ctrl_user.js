@@ -1,4 +1,5 @@
 const {session} = require('../config/neodb');
+const { validationResult } = require('express-validator/check');
 
 module.exports = {
     getAll(req, res, next){
@@ -16,7 +17,10 @@ module.exports = {
 
     },
     post(req,res,next){
-        if(req.body.email===undefined || req.body.password===undefined || req.body.firstname===undefined || req.body.lastname===undefined || req.body.age===undefined) return res.status(400).json({"message":"Wrong parameters, please only use firstname, lastname, age, email and password"});
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(422).json({ errors: errors.mapped() });
+        }
         const params = {email: req.body.email, password: req.body.password, firstname: req.body.firstname, lastname: req.body.lastname, age: req.body.age};
         const search_query = "MATCH (n:User) WHERE n.email=$email RETURN n";
         session.run(search_query,params).then((result) => {

@@ -27,6 +27,10 @@ const locationrouter = require('./routes/location');
 const roomrouter = require('./routes/room');
 const ticketrouter = require('./routes/ticket');
 
+router.options(/\/api*/, (req,res) => {
+    res.status(204).send();
+});
+
 router.use("/api/",authenticationrouter);
 router.use("/api/users",userrouter);
 router.use("/api/films",filmrouter);

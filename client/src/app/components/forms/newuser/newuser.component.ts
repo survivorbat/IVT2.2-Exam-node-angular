@@ -18,6 +18,7 @@ export class NewuserComponent implements OnInit {
     this.newUser=new User();
   }
   submit(){
+    console.log(this.newUser);
     this.userservice.addUser(this.newUser).subscribe((res: any) => {
       console.log(res);
     });
