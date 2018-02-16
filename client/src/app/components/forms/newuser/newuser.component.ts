@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import User from '../../../domain/User';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-newuser',
@@ -6,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./newuser.component.scss']
 })
 export class NewuserComponent implements OnInit {
-
-  constructor() { }
+  newUser: User;
+  constructor(private userservice: UserService) { }
 
   ngOnInit() {
+    this.newUser=new User();
   }
-
+  reset(){
+    this.newUser=new User();
+  }
+  submit(){
+    this.userservice.addUser(this.newUser).subscribe((res: any) => {
+      console.log(res);
+    });
+  }
 }

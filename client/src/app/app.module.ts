@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, TemplateRef } from '@angular/core';
-import { FormsModule }    from '@angular/forms';
+import { FormsModule }  from '@angular/forms';
 import { HttpClientModule, HttpClient }    from '@angular/common/http';
 import { AppRoutingModule }     from './app-routing.module';
 
@@ -30,6 +30,8 @@ import { RepeatDirective } from './directives/repeat.directive';
 import { RoomComponent } from './components/pages/room/room.component';
 import { UserComponent } from './components/pages/user/user.component';
 import { NewuserComponent } from './components/forms/newuser/newuser.component';
+import { LoginComponent } from './components/forms/login/login.component';
+import { UserService } from './services/user.service';
 
 
 @NgModule({
@@ -55,14 +57,16 @@ import { NewuserComponent } from './components/forms/newuser/newuser.component';
     RepeatDirective,
     RoomComponent,
     UserComponent,
-    NewuserComponent
+    NewuserComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [FilmsService, LocationsService, RoomsService, ShowingsService ],
+  providers: [FilmsService, LocationsService, RoomsService, ShowingsService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

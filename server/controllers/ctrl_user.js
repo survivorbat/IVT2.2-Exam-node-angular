@@ -2,7 +2,7 @@ const {session} = require('../config/neodb');
 
 module.exports = {
     getAll(req, res, next){
-        const query = "MATCH (u:User) RETURN u";
+        const query = "MATCH (u:User) RETURN u.firstname as firstname,u.lastname as lastname,u.age as age,u.email as email";
         session.run(query)
             .then(function(result) {
                 res.status(200).json(result.records);
@@ -16,8 +16,8 @@ module.exports = {
 
     },
     post(req,res,next){
-        if(req.body.email===undefined || req.body.password===undefined) return res.status(400).json({"message":"No email and/or password found"});
-        const params = {email: req.body.email, password: req.body.password};
+        if(req.body.email===undefined || req.body.password===undefined || req.body.firstname===undefined || req.body.lastname===undefined || req.body.age===undefined) return res.status(400).json({"message":"Wrong parameters, please only use firstname, lastname, age, email and password"});
+        const params = {email: req.body.email, password: req.body.password, firstname: req.body.firstname, lastname: req.body.lastname, age: req.body.age};
         const search_query = "MATCH (n:User) WHERE n.email=$email RETURN n";
         session.run(search_query,params).then((result) => {
             if(result.records[0]===undefined){
