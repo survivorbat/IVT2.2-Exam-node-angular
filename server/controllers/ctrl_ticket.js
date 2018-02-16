@@ -3,32 +3,7 @@ const {Showing} = require('../models/showing');
 
 module.exports = {
     getAll(req, res, next){
-        Ticket.find().populate('showing').populate('showing.room').exec((err, tickets) => {
-            if(err){
-                console.log(err);
-                res.status(500).json({"errors":"An error occured"});
-                return;
-            }
-            if(!tickets){
-                res.status(200).json([]);
-                return;
-            }
-            tickets = tickets.map(ticket => {
-                ticket = ticket.toObject();
-                ticket.url = req.protocol+"://"+req.get('host')+"/api/tickets/"+ticket._id;
-                ticket.showing.url = req.protocol+"://"+req.get('host')+"/api/showings/"+ticket.showing._id;
-                ticket.showing.tickets_url = req.protocol+"://"+req.get('host')+"/api/tickets/showing/"+ticket.showing._id;
-                // ticket.showing.film.url = req.protocol+"://"+req.get('host')+"/api/films/"+ticket.showing.film._id;
-                // ticket.showing.room.url = req.protocol+"://"+req.get('host')+"/api/rooms/"+ticket.showing.room._id;
-                // ticket.showing.room.location.url = req.protocol+"://"+req.get('host')+"/api/locations/"+ticket.showing.room.location._id;
-                // ticket.showing.room.location.showings_url = req.protocol+"://"+req.get('host')+"/api/showings/location/"+ticket.showing.room.location._id;
-                return ticket; 
-            });
-            res.status(200).json(tickets);
-        });
-    },
-    getByShowing(req, res, next){
-        Ticket.find({"showing": req.params._id}).populate('showing').exec((err, tickets) => {
+        Ticket.find().populate({path:'showing', populate: {path:'film'}, populate: {path:'room', populate:{path: 'location'}}}).exec((err, tickets) => {
             if(err){
                 console.log(err);
                 res.status(500).json({"errors":"An error occured"});
@@ -47,13 +22,39 @@ module.exports = {
                 ticket.showing.room.url = req.protocol+"://"+req.get('host')+"/api/rooms/"+ticket.showing.room._id;
                 ticket.showing.room.location.url = req.protocol+"://"+req.get('host')+"/api/locations/"+ticket.showing.room.location._id;
                 ticket.showing.room.location.showings_url = req.protocol+"://"+req.get('host')+"/api/showings/location/"+ticket.showing.room.location._id;
+                return ticket; 
+            });
+            res.status(200).json(tickets);
+        });
+    },
+    getByShowing(req, res, next){
+        Ticket.find().populate({path:'showing', populate: {path:'film'}, populate: {path:'room', populate:{path: 'location'}}}).exec((err, tickets) => {
+            if(err){
+                console.log(err);
+                res.status(500).json({"errors":"An error occured"});
+                return;
+            }
+            if(!tickets){
+                res.status(200).json([]);
+                return;
+            }
+            tickets = tickets.filter((ticket) => ticket.showing._id==req.params._id );
+            tickets = tickets.map(ticket => {
+                ticket = ticket.toObject();
+                ticket.url = req.protocol+"://"+req.get('host')+"/api/tickets/"+ticket._id;
+                ticket.showing.url = req.protocol+"://"+req.get('host')+"/api/showings/"+ticket.showing._id;
+                ticket.showing.tickets_url = req.protocol+"://"+req.get('host')+"/api/tickets/showing/"+ticket.showing._id;
+                ticket.showing.film.url = req.protocol+"://"+req.get('host')+"/api/films/"+ticket.showing.film._id;
+                ticket.showing.room.url = req.protocol+"://"+req.get('host')+"/api/rooms/"+ticket.showing.room._id;
+                ticket.showing.room.location.url = req.protocol+"://"+req.get('host')+"/api/locations/"+ticket.showing.room.location._id;
+                ticket.showing.room.location.showings_url = req.protocol+"://"+req.get('host')+"/api/showings/location/"+ticket.showing.room.location._id;
                 return ticket;
             });
             res.status(200).json(tickets);
         });
     },
     getById(req, res, next){
-        Ticket.findById(req.params._id).populate('showing').exec((err, ticket) => {
+        Ticket.findById(req.params._id).populate({path:'showing', populate: {path:'film'}, populate: {path:'room', populate:{path: 'location'}}}).exec((err, ticket) => {
             if(err){
                 if(err.name="CastError"){
                     res.status(400).json({"errors":"Invalid ID value"});
