@@ -1,5 +1,4 @@
 const mongoose = require('../config/db');
-const {locationSchema} = require('./location');
 
 const Schema = mongoose.Schema;
 const roomSchema = new Schema({
@@ -16,7 +15,8 @@ const roomSchema = new Schema({
         required:true
     },
     location: {
-        type: locationSchema,
+        type: Schema.Types.ObjectId,
+        ref: 'Location',
         required: true
     }
 });

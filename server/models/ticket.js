@@ -1,10 +1,10 @@
 const mongoose = require('../config/db');
-const { showingSchema } = require('./showing');
 
 const Schema = mongoose.Schema;
 const ticketSchema = new Schema({
     showing: {
-        type: showingSchema,
+        type: Schema.Types.ObjectId,
+        ref: 'Showing',
         required: true
     },
     row: {

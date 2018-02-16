@@ -8,7 +8,7 @@ function sortByDate(a,b){
 }
 module.exports = {
     getAll(req, res, next){
-        Showing.find((err, showings) => {
+        Showing.find().populate('film').populate('room').exec((err, showings) => {
             if(err){
                 console.log(err);
                 res.status(500).json({"errors":"An error occured"});
@@ -32,7 +32,7 @@ module.exports = {
         });
     },
     getById(req, res, next){
-        Showing.findOne({_id: req.params._id},(err, showing) => {
+        Showing.findOne({_id: req.params._id}).populate('film').populate('room').exec((err, showing) => {
             if(err){
                 if(err.name="CastError"){
                     res.status(400).json({"errors":"Invalid ID value"});
@@ -59,7 +59,7 @@ module.exports = {
         });
     },
     getByLocation(req, res, next){
-        Showing.find({"room.location._id": req.params._id},(err, showings) => {
+        Showing.find({"room.location": req.params._id}).populate('room').populate('film').exec((err, showings) => {
             if(err){
                 console.log(err);
                 res.status(500).json({"errors":"An error occured"});
@@ -83,42 +83,18 @@ module.exports = {
         });
     },
     post(req,res,next){
-        Room.findById(req.body.room, (err, result) => {
+        const newShowing = new Showing(req.body, {});
+        newShowing.save((err, newshowing) => {
             if(err){
-                console.log(err);
-                res.status(500).json({"errors":"An error occured"});
-                return;
-            }
-            if(!result){
-                res.status(400).json({"errors":"Room does not exist. Please add a room field with an existing room."});
-                return;
-            }
-            req.body.room=result;
-            Film.findById(req.body.film, (err, result) => {
-                if(err){
-                    console.log(err);
+                if(err.name="ValidationError"){
+                    res.status(400).json({message: err.message});
+                } else {
                     res.status(500).json({"errors":"An error occured"});
-                    return;
                 }
-                if(!result){
-                    res.status(400).json({"errors":"Film does not exist. Please add a film field with an existing film."});
-                    return;
-                }
-                req.body.film=result;
-                const newShowing = new Showing(req.body, {});
-                newShowing.save((err, newshowing) => {
-                    if(err){
-                        if(err.name="ValidationError"){
-                            res.status(400).json({message: err.message});
-                        } else {
-                            res.status(500).json({"errors":"An error occured"});
-                        }
-                        return;
-                    }
-                    res.status(201).json({"message":"succces!","createdObject":newshowing});
-                });
-            })
-        })
+                return;
+            }
+            res.status(201).json({"message":"succces!","createdObject":newshowing});
+        });
     },
     update(req, res, next){
         Showing.findByIdAndUpdate(req.params._id,req.body,(err) => {

@@ -1,11 +1,10 @@
 const mongoose = require('../config/db');
-const { filmSchema } = require('./film');
-const { roomSchema } = require('./room');
 
 const Schema = mongoose.Schema;
 const showingSchema = new Schema({
     film: {
-        type: filmSchema,
+        type: Schema.Types.ObjectId,
+        ref: 'Film',
         required: true
     },
     date: {
@@ -13,7 +12,8 @@ const showingSchema = new Schema({
         required: true,
     },
     room: {
-        type: roomSchema,
+        type: Schema.Types.ObjectId,
+        ref: 'Room',
         required: true,
     },
     specialties: {
@@ -22,10 +22,6 @@ const showingSchema = new Schema({
     price: {
         type: Number,
         default: 5.00
-    },
-    ticketSold: {
-        type: Number,
-        default: 0
     }
 });
 

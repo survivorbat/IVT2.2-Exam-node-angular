@@ -1,10 +1,9 @@
 const {Room} = require('../models/room');
-const {Location} = require('../models/location');
 const {Showing} = require('../models/showing');
 
 module.exports = {
     getAll(req, res, next){
-        Room.find((err, rooms) => {
+        Room.find().populate('location').exec((err, rooms) => {
             if(err){
                 console.log(err);
                 res.status(500).json({"errors":"An error occured"});
@@ -23,9 +22,9 @@ module.exports = {
             });
             res.status(200).json(rooms);
         });
-    },
+    }, 
     getById(req, res, next){
-        Room.findOne({_id: req.params._id},(err, room) => {
+        Room.findOne({_id: req.params._id}).populate('location').exec((err, room) => {
             if(err){
                 if(err.name="CastError"){
                     res.status(400).json({"errors":"Invalid ID value"});
@@ -50,7 +49,7 @@ module.exports = {
         });
     },
     getByLocation(req, res, next){
-        Room.find({"location._id":req.params._id},(err, rooms) => {
+        Room.find({"location._id":req.params._id}).populate('location').exec((err, rooms) => {
             if(err){
                 console.log(err);
                 res.status(500).json({"errors":"An error occured"});
@@ -67,29 +66,17 @@ module.exports = {
         });
     },
     post(req,res,next){
-        Location.findOne({_id: req.body.location}, (err, location) => {
+        const newRoom = new Room(req.body, {});
+        newRoom.save((err, result) => {
             if(err){
-                console.log(err);
-                res.status(500).json({"errors":"An error occured"});
-                return;
-            }
-            if(!location){
-                res.status(400).json({"errors":"Location does not exist"});
-                return;
-            }
-            req.body.location = location.toObject();
-            const newRoom = new Room(req.body, {});
-            newRoom.save((err, result) => {
-                if(err){
-                    if(err.name="ValidationError"){
-                        res.status(400).json({message: err.message});
-                    } else {
-                        res.status(500).json({"errors":"An error occured"});
-                    }
-                    return;
+                if(err.name="ValidationError"){
+                    res.status(400).json({message: err.message});
+                } else {
+                    res.status(500).json({"errors":"An error occured"});
                 }
-                res.status(201).json({"message":"succces!","createdObject":result});
-            });
+                return;
+            }
+            res.status(201).json({"message":"succces!","createdObject":result});
         });
     },
     update(req, res, next){
