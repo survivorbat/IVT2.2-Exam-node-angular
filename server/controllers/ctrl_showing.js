@@ -25,6 +25,7 @@ module.exports = {
                 showing.film.url = req.protocol+"://"+req.get('host')+"/api/films/"+showing.film._id;
                 showing.room.url = req.protocol+"://"+req.get('host')+"/api/rooms/"+showing.room._id;
                 showing.room.location.url = req.protocol+"://"+req.get('host')+"/api/locations/"+showing.room.location._id;
+                showing.room.location.rooms_url = req.protocol+"://"+req.get('host')+"/api/rooms/location/"+showing.room.location._id;
                 showing.room.location.showings_url = req.protocol+"://"+req.get('host')+"/api/showings/location/"+showing.room.location._id;
                 return showing;
             });
@@ -49,6 +50,7 @@ module.exports = {
                 showing.film.url = req.protocol+"://"+req.get('host')+"/api/films/"+showing.film._id;
                 showing.room.url = req.protocol+"://"+req.get('host')+"/api/rooms/"+showing.room._id;
                 showing.room.location.url = req.protocol+"://"+req.get('host')+"/api/locations/"+showing.room.location._id;
+                showing.room.location.rooms_url = req.protocol+"://"+req.get('host')+"/api/rooms/location/"+showing.room.location._id;
                 showing.room.location.showings_url = req.protocol+"://"+req.get('host')+"/api/showings/location/"+showing.room.location._id;
             }
             catch(e){
@@ -77,6 +79,7 @@ module.exports = {
                 showing.film.url = req.protocol+"://"+req.get('host')+"/api/films/"+showing.film._id;
                 showing.room.url = req.protocol+"://"+req.get('host')+"/api/rooms/"+showing.room._id;
                 showing.room.location.url = req.protocol+"://"+req.get('host')+"/api/locations/"+showing.room.location._id;
+                showing.room.location.rooms_url = req.protocol+"://"+req.get('host')+"/api/rooms/location/"+showing.room.location._id;
                 showing.room.location.showings_url = req.protocol+"://"+req.get('host')+"/api/showings/location/"+showing.room.location._id;
                 return showing;
             });

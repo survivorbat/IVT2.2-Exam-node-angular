@@ -21,6 +21,7 @@ module.exports = {
                 ticket.showing.film.url = req.protocol+"://"+req.get('host')+"/api/films/"+ticket.showing.film._id;
                 ticket.showing.room.url = req.protocol+"://"+req.get('host')+"/api/rooms/"+ticket.showing.room._id;
                 ticket.showing.room.location.url = req.protocol+"://"+req.get('host')+"/api/locations/"+ticket.showing.room.location._id;
+                ticket.showing.room.location.rooms_url = req.protocol+"://"+req.get('host')+"/api/rooms/location/"+ticket.showing.room.location._id;
                 ticket.showing.room.location.showings_url = req.protocol+"://"+req.get('host')+"/api/showings/location/"+ticket.showing.room.location._id;
                 return ticket; 
             });
@@ -47,6 +48,7 @@ module.exports = {
                 ticket.showing.film.url = req.protocol+"://"+req.get('host')+"/api/films/"+ticket.showing.film._id;
                 ticket.showing.room.url = req.protocol+"://"+req.get('host')+"/api/rooms/"+ticket.showing.room._id;
                 ticket.showing.room.location.url = req.protocol+"://"+req.get('host')+"/api/locations/"+ticket.showing.room.location._id;
+                ticket.showing.room.location.rooms_url = req.protocol+"://"+req.get('host')+"/api/rooms/location/"+ticket.showing.room.location._id;
                 ticket.showing.room.location.showings_url = req.protocol+"://"+req.get('host')+"/api/showings/location/"+ticket.showing.room.location._id;
                 return ticket;
             });
@@ -76,6 +78,7 @@ module.exports = {
                 ticket.showing.film.url = req.protocol+"://"+req.get('host')+"/api/films/"+ticket.showing.film._id;
                 ticket.showing.room.url = req.protocol+"://"+req.get('host')+"/api/rooms/"+ticket.showing.room._id;
                 ticket.showing.room.location.url = req.protocol+"://"+req.get('host')+"/api/locations/"+ticket.showing.room.location._id;
+                ticket.showing.room.location.rooms_url = req.protocol+"://"+req.get('host')+"/api/rooms/location/"+ticket.showing.room.location._id;
                 ticket.showing.room.location.showings_url = req.protocol+"://"+req.get('host')+"/api/showings/location/"+ticket.showing.room.location._id;
             }
             catch(e){

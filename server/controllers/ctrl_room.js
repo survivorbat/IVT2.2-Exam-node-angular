@@ -17,6 +17,7 @@ module.exports = {
                 room = room.toObject();
                 room.url = req.protocol+"://"+req.get('host')+"/api/rooms/"+room._id;
                 room.location.url = req.protocol+"://"+req.get('host')+"/api/locations/"+room.location._id;
+                room.location.rooms_url = req.protocol+"://"+req.get('host')+"/api/rooms/location/"+room.location._id;
                 room.location.showings_url = req.protocol+"://"+req.get('host')+"/api/showings/location/"+room.location._id;
                 return room;
             });
@@ -37,6 +38,7 @@ module.exports = {
             try {
                 room = room.toObject();
                 room.location.url = req.protocol+"://"+req.get('host')+"/api/locations/"+room.location._id;
+                room.location.rooms_url = req.protocol+"://"+req.get('host')+"/api/rooms/location/"+room.location._id;
                 room.location.showings_url = req.protocol+"://"+req.get('host')+"/api/showings/location/"+room.location._id;
                 room.url = req.protocol+"://"+req.get('host')+"/api/rooms/"+room._id;
                 
@@ -49,16 +51,18 @@ module.exports = {
         });
     },
     getByLocation(req, res, next){
-        Room.find({"location":req.params._id}).populate('location').exec((err, rooms) => {
+        Room.find().populate('location').exec((err, rooms) => {
             if(err){
                 console.log(err);
                 res.status(500).json({"errors":"An error occured"});
                 return;
             }
+            rooms = rooms.filter((room) => room.location._id==req.params._id );
             rooms = rooms.map(room => {
                 room = room.toObject();
                 room.url = req.protocol+"://"+req.get('host')+"/api/rooms/"+room._id;
                 room.location.url = req.protocol+"://"+req.get('host')+"/api/locations/"+room.location._id;
+                room.location.rooms_url = req.protocol+"://"+req.get('host')+"/api/rooms/location/"+room.location._id;
                 room.location.showings_url = req.protocol+"://"+req.get('host')+"/api/showings/location/"+room.location._id;
                 return room;
             });
