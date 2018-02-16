@@ -28,6 +28,5 @@ const showingSchema = new Schema({
 const Showing = mongoose.model('Showing', showingSchema);
 
 module.exports = {
-    showingSchema,
     Showing
 };

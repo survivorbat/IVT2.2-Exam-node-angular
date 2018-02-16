@@ -49,7 +49,7 @@ module.exports = {
         });
     },
     getByLocation(req, res, next){
-        Room.find({"location._id":req.params._id}).populate('location').exec((err, rooms) => {
+        Room.find({"location":req.params._id}).populate('location').exec((err, rooms) => {
             if(err){
                 console.log(err);
                 res.status(500).json({"errors":"An error occured"});
