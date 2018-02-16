@@ -7,6 +7,7 @@ router.use(expressJWT({
     secret: process.env.SECRET_KEY 
 }).unless({ 
     path: [
+        { url: /\/api*/, methods: ['OPTIONS']  },
         { url: '/api', methods: ['GET']  },
         { url: '/api/token', methods: ['POST']  },
         { url: /\/locations*/, methods: ['GET']  } ,
