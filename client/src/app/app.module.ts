@@ -19,7 +19,6 @@ import { AdminComponent } from './components/pages/admin/admin.component';
 import { FilmComponent } from './components/pages/film/film.component';
 import { LocationComponent } from './components/pages/location/location.component';
 import { RoomsService } from './services/rooms.service';
-import { DevComponent } from './components/pages/dev/dev.component';
 import { FilmlistComponent } from './components/datadisplay/filmlist/filmlist.component';
 import { LocationlistComponent } from './components/datadisplay/locationlist/locationlist.component';
 import { RoomlistComponent } from './components/datadisplay/roomlist/roomlist.component';
@@ -28,6 +27,9 @@ import { ShowingsService } from './services/showingservice.service';
 import { ShowingComponent } from './components/pages/showing/showing.component';
 import { NewticketComponent } from './components/forms/newticket/newticket.component';
 import { RepeatDirective } from './directives/repeat.directive';
+import { RoomComponent } from './components/pages/room/room.component';
+import { UserComponent } from './components/pages/user/user.component';
+import { NewuserComponent } from './components/forms/newuser/newuser.component';
 
 
 @NgModule({
@@ -44,14 +46,16 @@ import { RepeatDirective } from './directives/repeat.directive';
     AdminComponent,
     FilmComponent,
     LocationComponent,
-    DevComponent,
     FilmlistComponent,
     LocationlistComponent,
     RoomlistComponent,
     ShowinglistComponent,
     ShowingComponent,
     NewticketComponent,
-    RepeatDirective
+    RepeatDirective,
+    RoomComponent,
+    UserComponent,
+    NewuserComponent
   ],
   imports: [
     BrowserModule,

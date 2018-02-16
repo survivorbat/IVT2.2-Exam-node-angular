@@ -27,3 +27,11 @@ a:link, a, a:visited {
         border-width: 1px;
     }
 }
+
+.link {
+    color: rgb(255, 138, 138) !important;
+    &:hover {
+        color: rgb(255,200,200) !important;
+        text-decoration: underline;
+    }
+}

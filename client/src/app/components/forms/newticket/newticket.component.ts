@@ -14,5 +14,10 @@ export class NewticketComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  isLoggedIn(){
+    if(window.localStorage.getItem('loggedin')==='true'){
+      return true;
+    }
+    return false;
+  }
 }

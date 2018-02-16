@@ -11,13 +11,14 @@ module.exports = {
             .then(function(result) {
                 if(!result.records[0]) return res.status(401).json({ "error": "Invalid credentials"});
                 if(result.records[0].length===1){
-                    const token = auth.encryptAuthToken();
+                    const token = auth.encryptAuthToken(result.records[0]._fields[0].properties.authlevel.low);
                     return res.status(201).json({"token": token});
                 } else {
                     return res.status(401).json({ "error": "Invalid credentials"});
                 }
             })
             .catch(function(error) {
+                console.log(error);
                 res.status(500).json({message:"An error occured"});
                 return;
             });
