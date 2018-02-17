@@ -13,4 +13,8 @@ export class UserService {
   addUser(user: User): any {
     return this.http.post(this.URL, user);
   }
+
+  checkUser(user: User): any {
+    return this.http.post("http://localhost:5000/api/token", user);
+  }
 }

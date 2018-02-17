@@ -2,11 +2,14 @@ const moment = require('moment');
 const jwt = require('jwt-simple');
 require('dotenv').config();
 
-function encryptAuthToken(userid){
+function encryptAuthToken(authlevel,userid){
 	const payload = {
 		exp: moment().add(2, 'hours').unix(),
 		iat: moment().unix(),
-		sub: userid
+		sub: {
+			authlevel: authlevel,
+			userid: userid
+		}
 	};
 	return jwt.encode(payload, process.env.SECRET_KEY);
 }

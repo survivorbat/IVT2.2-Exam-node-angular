@@ -17,4 +17,7 @@ export class UserComponent implements OnInit {
     }
     return false;
   }
+  logout(){
+    window.localStorage.clear();
+  }
 }

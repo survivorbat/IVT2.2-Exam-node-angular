@@ -1,7 +1,7 @@
-export default class User extends Object {
+export default class User {
     email: String;
     firstname: String;
     lastname: String;
 	age: number;
-	password: String;    
+    password: String;  
 }

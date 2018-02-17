@@ -15,7 +15,7 @@ module.exports = {
             .then(function(result) {
                 if(!result.records[0]) return res.status(401).json({ "error": "Invalid credentials"});
                 if(result.records[0].length===1){
-                    const token = auth.encryptAuthToken(result.records[0]._fields[0].properties.authlevel.low);
+                    const token = auth.encryptAuthToken(result.records[0]._fields[0].properties.authlevel.low,result.records[0]._fields[0].identity.low);
                     return res.status(201).json({"token": token});
                 } else {
                     return res.status(401).json({ "error": "Invalid credentials"});

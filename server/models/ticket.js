@@ -14,6 +14,10 @@ const ticketSchema = new Schema({
     column: {
         type: Number,
         required:true
+    },
+    userid: {
+        type: Number,
+        required: true
     }
 });
 const Ticket = mongoose.model('Ticket', ticketSchema);
