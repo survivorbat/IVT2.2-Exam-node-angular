@@ -14,7 +14,6 @@ router.use(expressJWT({
         { url: /\/rooms*/, methods: ['GET']  } ,
         { url: /\/showings*/, methods: ['GET']  },
         { url: /\/films*/, methods: ['GET']  },
-        { url: /\/tickets*/, methods: ['GET']  },
         { url: /\/users*/, methods: ['POST']  },
     ]
 }));

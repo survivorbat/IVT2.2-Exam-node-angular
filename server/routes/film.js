@@ -8,10 +8,10 @@ routes.get('/', filmcontroller.getAll);
 routes.get('/:_id', filmcontroller.getById);
 
 routes.use((req,res,next) => {
-    if(req.user.sub<1){
-        res.status(403).json({message:"UNAUTHORIZED"});
-    } else {
+    if(req.user.sub.authlevel>0){
         next();
+    } else {
+        res.status(403).json({message:"UNAUTHORIZED"});
     }
 })
 routes.post('/', filmcontroller.post);

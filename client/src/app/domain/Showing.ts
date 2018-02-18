@@ -2,7 +2,7 @@ import Film from "./Film";
 import Room from "./Room";
 
 export default class Showing {
-    id: String;
+    _id: String;
     specialties: Array<String>;
     price: Number;
     ticketSold: Number;

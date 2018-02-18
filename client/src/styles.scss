@@ -17,9 +17,14 @@ a:link, a, a:visited {
     font-size:smaller;
 }
 
+.row {
+    margin-bottom:1em;
+}
+
 .clickable-item {
     opacity:0.95;
     cursor: pointer;
+    margin-bottom:1em;
     &:hover {
         opacity:1;
         border-color:white;

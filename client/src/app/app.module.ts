@@ -32,6 +32,8 @@ import { UserComponent } from './components/pages/user/user.component';
 import { NewuserComponent } from './components/forms/newuser/newuser.component';
 import { LoginComponent } from './components/forms/login/login.component';
 import { UserService } from './services/user.service';
+import { TicketService } from './services/ticket.service';
+import { TicketlistComponent } from './components/datadisplay/ticketlist/ticketlist.component';
 
 
 @NgModule({
@@ -58,7 +60,8 @@ import { UserService } from './services/user.service';
     RoomComponent,
     UserComponent,
     NewuserComponent,
-    LoginComponent
+    LoginComponent,
+    TicketlistComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +69,7 @@ import { UserService } from './services/user.service';
     HttpClientModule,
     FormsModule
   ],
-  providers: [FilmsService, LocationsService, RoomsService, ShowingsService, UserService],
+  providers: [FilmsService, LocationsService, RoomsService, ShowingsService, UserService, TicketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

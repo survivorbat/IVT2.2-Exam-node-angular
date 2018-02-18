@@ -21,12 +21,12 @@ export class ShowingComponent implements OnInit {
 
   ngOnInit() {
     this.params = this.route.params.subscribe(params => {
-      this.showing.id = params.id;
+      this.showing._id = params.id;
       this.getShowing();
     })
   }
   getShowing(): void {
-    this.showingservice.getById(this.showing.id).subscribe(res => {this.showing=res;this.loading=false}, err => {this.error=true;this.loading=false});
+    this.showingservice.getById(this.showing._id).subscribe(res => {this.showing=res;this.loading=false}, err => {this.error=true;this.loading=false});
   }
   ngOnDestroy(){
     this.params.unsubscribe();

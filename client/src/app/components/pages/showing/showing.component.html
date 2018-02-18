@@ -5,7 +5,7 @@
     <a routerLink="/locations">Terug</a>
   </main>
 </section>
-<section *ngIf="showing" class="row">
+<section *ngIf="showing && showing.film" class="row">
   <main class="col-md-9">
     <h1 class="font-weight-bold">{{showing.film.title}} ({{showing.film.year}})</h1>
     <h4>{{showing.film.subtitle}}</h4>
@@ -19,7 +19,7 @@
     <p>{{showing.room.name}}, {{showing.room.location.name}}</p>
     <app-newticket [showing]=showing></app-newticket>
   </main>
-  <aside class="col-md-3">
+  <aside class="col-md-3" *ngIf="showing.film.coverPicture">
       <img *ngIf="showing.film.coverPicture!==''" src="{{showing.film.coverPicture}}" alt="Coverpicture of the movie {{showing.film.title}}" class="card-img-top">
       <span class="text-small" *ngFor="let point of getArrayFromNumber(showing.film.popularity)">⭐</span>
   </aside>

@@ -9,10 +9,10 @@ routes.get('/:_id', roomcontroller.getById);
 routes.get('/location/:_id', roomcontroller.getByLocation);
 
 routes.use((req,res,next) => {
-    if(req.user.sub<1){
-        res.status(403).json({message:"UNAUTHORIZED"});
-    } else {
+    if(req.user.sub.authlevel>0){
         next();
+    } else {
+        res.status(403).json({message:"UNAUTHORIZED"});
     }
 })
 routes.post('/', roomcontroller.post);

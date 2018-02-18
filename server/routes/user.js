@@ -13,10 +13,10 @@ routes.post('/', [
     ] ,usercontroller.post);
 
 routes.use((req,res,next) => {
-    if(req.user.sub.authlevel<1){
-        res.status(403).json({message:"UNAUTHORIZED"});
-    } else {
+    if(req.user.sub.authlevel>0){
         next();
+    } else {
+        res.status(403).json({message:"UNAUTHORIZED"});
     }
 })
 
