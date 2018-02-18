@@ -5,7 +5,7 @@ import Showing from '../domain/Showing';
 
 @Injectable()
 export class ShowingsService {
-  private URL: string = "http://avancinema.herokuapp.com/api/showings";
+  private URL: string = "https://avancinema.herokuapp.com/api/showings";
   constructor(private http: HttpClient) {}
 
   getAll(): Observable<Showing[]>{

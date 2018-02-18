@@ -27,9 +27,9 @@ export class ShowinglistComponent implements OnInit {
   }
   getShowings(): void {
     if(this._location!==undefined){
-      this.showingsservice.getByLocation(this._location.id).subscribe(showings => {this.showings=showings;this.loading=false}, error => {this.loading=false});
+      this.showingsservice.getByLocation(this._location.id).subscribe(showings => {this.showings=showings;this.loading=false}, error => {this.loading=false;this.error=true});
     } else {
-      this.showingsservice.getAll().subscribe(showings => {this.showings=showings;this.loading=false;console.log(this.showings)}, error => {this.loading=false});
+      this.showingsservice.getAll().subscribe(showings => {this.showings=showings;this.loading=false;console.log(this.showings)}, error => {this.loading=false;this.error=true});
     }
   }
   getArrayFromNumber(num: Number): Number[]{

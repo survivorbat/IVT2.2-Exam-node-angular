@@ -5,7 +5,7 @@ import Location from '../domain/Location';
 
 @Injectable()
 export class LocationsService {
-  private URL: string = "http://avancinema.herokuapp.com/api/locations";
+  private URL: string = "https://avancinema.herokuapp.com/api/locations";
   constructor(private http: HttpClient) {}
 
   getAll(): Observable<Location[]>{

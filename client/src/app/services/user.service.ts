@@ -8,13 +8,13 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  private URL: string = "http://avancinema.herokuapp.com/api/users";
+  private URL: string = "https://avancinema.herokuapp.com/api/users";
 
   addUser(user: User): any {
     return this.http.post(this.URL, user);
   }
 
   checkUser(user: User): any {
-    return this.http.post("http://avancinema.herokuapp.com/api/token", user);
+    return this.http.post("https://avancinema.herokuapp.com/api/token", user);
   }
 }

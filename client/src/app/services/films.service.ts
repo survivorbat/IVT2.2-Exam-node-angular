@@ -5,7 +5,7 @@ import Film from '../domain/Film';
 
 @Injectable()
 export class FilmsService {
-  private URL: string = "http://avancinema.herokuapp.com/api/films";
+  private URL: string = "https://avancinema.herokuapp.com/api/films";
   constructor(private http: HttpClient) {}
 
   getAll(): Observable<Film[]>{

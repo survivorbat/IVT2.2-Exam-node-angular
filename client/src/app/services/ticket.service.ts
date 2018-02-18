@@ -7,7 +7,7 @@ import User from '../domain/User';
 
 @Injectable()
 export class TicketService {
-  private URL: string = "http://avancinema.herokuapp.com/api/tickets";
+  private URL: string = "https://avancinema.herokuapp.com/api/tickets";
   constructor(private http: HttpClient) {}
 
   getAll(): Observable<Ticket[]>{

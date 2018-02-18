@@ -5,7 +5,7 @@ import Room from '../domain/Room';
 
 @Injectable()
 export class RoomsService {
-  private URL: string = "http://avancinema.herokuapp.com/api/rooms";
+  private URL: string = "https://avancinema.herokuapp.com/api/rooms";
   constructor(private http: HttpClient) {}
 
   getAll(): Observable<Room[]>{
