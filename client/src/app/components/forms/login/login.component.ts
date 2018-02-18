@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
       this.formresult="Succesvol ingelogd!";
       localStorage.setItem('API_TOKEN',res.token);
       localStorage.setItem('loggedin',"true");
+      localStorage.setItem('level',res.authlevel);
     }, error => {
       if(error.status===401){
         this.formresult="Deze gegevens zijn niet bij ons bekend, heeft u misschien een typefout gemaakt?";

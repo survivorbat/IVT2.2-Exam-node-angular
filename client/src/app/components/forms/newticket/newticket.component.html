@@ -1,12 +1,17 @@
 <section class="row">
   <main class="col-md-12">
     <h2>Kaarten bestellen</h2>
-    <div class="form-group row" *ngIf="isLoggedIn()">
+    <div class="form-group row bg-dark" *ngIf="isLoggedIn()">
       <div class="col-md-4">
         <label for="name">Aantal kaarten</label>
       </div>
       <div class="col-md-8">
         <input type="number" class="form-control" placeholder="Aantal" min="0" max="100" step="1">
+      </div>
+    </div>
+    <div class="form-group row" *ngIf="isLoggedIn()">
+      <div class="col-md-12">
+        <button >Bestellen</button>
       </div>
     </div>
     <span *ngIf="!isLoggedIn()">U moet ingelogd zijn om kaarten te bestellen, dit kunt u doen via de <a class="link" routerLink="/users">account</a> pagina.</span>
