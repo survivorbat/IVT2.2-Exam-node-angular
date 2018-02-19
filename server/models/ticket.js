@@ -10,13 +10,13 @@ const ticketSchema = new Schema({
     row: {
         type: Number,
         required: true,
-        min: 1,
+        min: 0,
         max: 200
     },
     column: {
         type: Number,
         required:true,
-        min: 1,
+        min: 0,
         max: 200
     },
     userid: {
