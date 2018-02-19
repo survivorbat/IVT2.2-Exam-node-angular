@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
 
+mongoose.Promise = global.Promise;
+
 const options = {
     autoIndex: false, // Don't build indexes
     reconnectTries: Number.MAX_VALUE, // Never stop trying to reconnect
@@ -16,6 +18,16 @@ mongoose.connect(process.env.DB_HOST, options, (error) => {
     } else {
         console.log("Succesfully connected to ",process.env.DB_HOST);
     }
+});
+
+mongoose.connection.on('error', (error) => {
+    console.log(error.toString());
+    mongoose.disconnect();
+});
+
+mongoose.connection.on('disconnected', () => {
+    console.log('Unable to connect to Mongo, reconnecting...');
+    setTimeout(() => connect(), reconnectTimeout);
 });
 
 module.exports = mongoose;
