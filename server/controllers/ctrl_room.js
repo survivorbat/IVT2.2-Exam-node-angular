@@ -8,14 +8,19 @@ module.exports = {
                 res.status(200).json([]);
                 return;
             }
-            rooms = rooms.map(room => {
-                room = room.toObject();
-                room.url = req.protocol+"://"+req.get('host')+"/api/rooms/"+room._id;
-                room.location.url = req.protocol+"://"+req.get('host')+"/api/locations/"+room.location._id;
-                room.location.rooms_url = req.protocol+"://"+req.get('host')+"/api/rooms/location/"+room.location._id;
-                room.location.showings_url = req.protocol+"://"+req.get('host')+"/api/showings/location/"+room.location._id;
-                return room;
-            });
+            try {
+                rooms = rooms.map(room => {
+                    room = room.toObject();
+                    room.url = req.protocol+"://"+req.get('host')+"/api/rooms/"+room._id;
+                    room.location.url = req.protocol+"://"+req.get('host')+"/api/locations/"+room.location._id;
+                    room.location.rooms_url = req.protocol+"://"+req.get('host')+"/api/rooms/location/"+room.location._id;
+                    room.location.showings_url = req.protocol+"://"+req.get('host')+"/api/showings/location/"+room.location._id;
+                    return room;
+                });
+            }
+            catch (e){
+                
+            }
             res.status(200).json(rooms);
         }).catch(err => next(err));
     }, 
@@ -39,14 +44,19 @@ module.exports = {
     getByLocation(req, res, next){
         Room.find().populate('location').exec().then(rooms => {
             rooms = rooms.filter((room) => room.location._id==req.params._id );
-            rooms = rooms.map(room => {
-                room = room.toObject();
-                room.url = req.protocol+"://"+req.get('host')+"/api/rooms/"+room._id;
-                room.location.url = req.protocol+"://"+req.get('host')+"/api/locations/"+room.location._id;
-                room.location.rooms_url = req.protocol+"://"+req.get('host')+"/api/rooms/location/"+room.location._id;
-                room.location.showings_url = req.protocol+"://"+req.get('host')+"/api/showings/location/"+room.location._id;
-                return room;
-            });
+            try {
+                rooms = rooms.map(room => {
+                    room = room.toObject();
+                    room.url = req.protocol+"://"+req.get('host')+"/api/rooms/"+room._id;
+                    room.location.url = req.protocol+"://"+req.get('host')+"/api/locations/"+room.location._id;
+                    room.location.rooms_url = req.protocol+"://"+req.get('host')+"/api/rooms/location/"+room.location._id;
+                    room.location.showings_url = req.protocol+"://"+req.get('host')+"/api/showings/location/"+room.location._id;
+                    return room;
+                });
+            }
+            catch (e){
+
+            }
             res.status(200).json(rooms);
         }).catch(err => next(err));
     },

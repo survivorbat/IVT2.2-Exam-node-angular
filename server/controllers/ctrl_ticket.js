@@ -8,18 +8,23 @@ module.exports = {
                 res.status(200).json([]);
                 return;
             }
-            tickets = tickets.map(ticket => {
-                ticket = ticket.toObject();
-                ticket.url = req.protocol+"://"+req.get('host')+"/api/tickets/"+ticket._id;
-                ticket.showing.url = req.protocol+"://"+req.get('host')+"/api/showings/"+ticket.showing._id;
-                ticket.showing.tickets_url = req.protocol+"://"+req.get('host')+"/api/tickets/showing/"+ticket.showing._id;
-                ticket.showing.film.url = req.protocol+"://"+req.get('host')+"/api/films/"+ticket.showing.film._id;
-                ticket.showing.room.url = req.protocol+"://"+req.get('host')+"/api/rooms/"+ticket.showing.room._id;
-                ticket.showing.room.location.url = req.protocol+"://"+req.get('host')+"/api/locations/"+ticket.showing.room.location._id;
-                ticket.showing.room.location.rooms_url = req.protocol+"://"+req.get('host')+"/api/rooms/location/"+ticket.showing.room.location._id;
-                ticket.showing.room.location.showings_url = req.protocol+"://"+req.get('host')+"/api/showings/location/"+ticket.showing.room.location._id;
-                return ticket; 
-            });
+            try {
+                tickets = tickets.map(ticket => {
+                    ticket = ticket.toObject();
+                    ticket.url = req.protocol+"://"+req.get('host')+"/api/tickets/"+ticket._id;
+                    ticket.showing.url = req.protocol+"://"+req.get('host')+"/api/showings/"+ticket.showing._id;
+                    ticket.showing.tickets_url = req.protocol+"://"+req.get('host')+"/api/tickets/showing/"+ticket.showing._id;
+                    ticket.showing.film.url = req.protocol+"://"+req.get('host')+"/api/films/"+ticket.showing.film._id;
+                    ticket.showing.room.url = req.protocol+"://"+req.get('host')+"/api/rooms/"+ticket.showing.room._id;
+                    ticket.showing.room.location.url = req.protocol+"://"+req.get('host')+"/api/locations/"+ticket.showing.room.location._id;
+                    ticket.showing.room.location.rooms_url = req.protocol+"://"+req.get('host')+"/api/rooms/location/"+ticket.showing.room.location._id;
+                    ticket.showing.room.location.showings_url = req.protocol+"://"+req.get('host')+"/api/showings/location/"+ticket.showing.room.location._id;
+                    return ticket; 
+                });
+            }
+            catch (e){
+                
+            }
             res.status(200).json(tickets);
         }).catch(err => next(err));
     },
@@ -30,18 +35,23 @@ module.exports = {
                 return;
             }
             tickets = tickets.filter((ticket) => ticket.showing._id==req.params._id );
-            tickets = tickets.map(ticket => {
-                ticket = ticket.toObject();
-                ticket.url = req.protocol+"://"+req.get('host')+"/api/tickets/"+ticket._id;
-                ticket.showing.url = req.protocol+"://"+req.get('host')+"/api/showings/"+ticket.showing._id;
-                ticket.showing.tickets_url = req.protocol+"://"+req.get('host')+"/api/tickets/showing/"+ticket.showing._id;
-                ticket.showing.film.url = req.protocol+"://"+req.get('host')+"/api/films/"+ticket.showing.film._id;
-                ticket.showing.room.url = req.protocol+"://"+req.get('host')+"/api/rooms/"+ticket.showing.room._id;
-                ticket.showing.room.location.url = req.protocol+"://"+req.get('host')+"/api/locations/"+ticket.showing.room.location._id;
-                ticket.showing.room.location.rooms_url = req.protocol+"://"+req.get('host')+"/api/rooms/location/"+ticket.showing.room.location._id;
-                ticket.showing.room.location.showings_url = req.protocol+"://"+req.get('host')+"/api/showings/location/"+ticket.showing.room.location._id;
-                return ticket;
-            });
+            try {
+                tickets = tickets.map(ticket => {
+                    ticket = ticket.toObject();
+                    ticket.url = req.protocol+"://"+req.get('host')+"/api/tickets/"+ticket._id;
+                    ticket.showing.url = req.protocol+"://"+req.get('host')+"/api/showings/"+ticket.showing._id;
+                    ticket.showing.tickets_url = req.protocol+"://"+req.get('host')+"/api/tickets/showing/"+ticket.showing._id;
+                    ticket.showing.film.url = req.protocol+"://"+req.get('host')+"/api/films/"+ticket.showing.film._id;
+                    ticket.showing.room.url = req.protocol+"://"+req.get('host')+"/api/rooms/"+ticket.showing.room._id;
+                    ticket.showing.room.location.url = req.protocol+"://"+req.get('host')+"/api/locations/"+ticket.showing.room.location._id;
+                    ticket.showing.room.location.rooms_url = req.protocol+"://"+req.get('host')+"/api/rooms/location/"+ticket.showing.room.location._id;
+                    ticket.showing.room.location.showings_url = req.protocol+"://"+req.get('host')+"/api/showings/location/"+ticket.showing.room.location._id;
+                    return ticket;
+                });
+            }
+            catch (e){
+
+            }
             res.status(200).json(tickets);
         }).catch(err => next(err));
     },
@@ -51,18 +61,23 @@ module.exports = {
                 res.status(200).json([]);
                 return;
             }
-            tickets = tickets.map(ticket => {
-                ticket = ticket.toObject();
-                ticket.url = req.protocol+"://"+req.get('host')+"/api/tickets/"+ticket._id;
-                ticket.showing.url = req.protocol+"://"+req.get('host')+"/api/showings/"+ticket.showing._id;
-                ticket.showing.tickets_url = req.protocol+"://"+req.get('host')+"/api/tickets/showing/"+ticket.showing._id;
-                ticket.showing.film.url = req.protocol+"://"+req.get('host')+"/api/films/"+ticket.showing.film._id;
-                ticket.showing.room.url = req.protocol+"://"+req.get('host')+"/api/rooms/"+ticket.showing.room._id;
-                ticket.showing.room.location.url = req.protocol+"://"+req.get('host')+"/api/locations/"+ticket.showing.room.location._id;
-                ticket.showing.room.location.rooms_url = req.protocol+"://"+req.get('host')+"/api/rooms/location/"+ticket.showing.room.location._id;
-                ticket.showing.room.location.showings_url = req.protocol+"://"+req.get('host')+"/api/showings/location/"+ticket.showing.room.location._id;
-                return ticket;
-            });
+            try {
+                tickets = tickets.map(ticket => {
+                    ticket = ticket.toObject();
+                    ticket.url = req.protocol+"://"+req.get('host')+"/api/tickets/"+ticket._id;
+                    ticket.showing.url = req.protocol+"://"+req.get('host')+"/api/showings/"+ticket.showing._id;
+                    ticket.showing.tickets_url = req.protocol+"://"+req.get('host')+"/api/tickets/showing/"+ticket.showing._id;
+                    ticket.showing.film.url = req.protocol+"://"+req.get('host')+"/api/films/"+ticket.showing.film._id;
+                    ticket.showing.room.url = req.protocol+"://"+req.get('host')+"/api/rooms/"+ticket.showing.room._id;
+                    ticket.showing.room.location.url = req.protocol+"://"+req.get('host')+"/api/locations/"+ticket.showing.room.location._id;
+                    ticket.showing.room.location.rooms_url = req.protocol+"://"+req.get('host')+"/api/rooms/location/"+ticket.showing.room.location._id;
+                    ticket.showing.room.location.showings_url = req.protocol+"://"+req.get('host')+"/api/showings/location/"+ticket.showing.room.location._id;
+                    return ticket;
+                });
+            }
+            catch (e){
+                
+            }
             res.status(200).json(tickets);
         }).catch(err => next(err));
     },
