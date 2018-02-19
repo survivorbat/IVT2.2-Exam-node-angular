@@ -43,17 +43,14 @@ module.exports = {
         }).catch(err => next(err));
     },
     delete(req,res,next){
-        Ticket.find({"showing.room.location._id": req.params._id}).remove();
-        Showing.find({"room.location._id": req.params._id}).remove();
-        Room.find({"location._id": req.params._id}).remove();
+        Ticket.find({"showing.room.location": req.params._id}).remove().exec();
+        Showing.find({"room.location": req.params._id}).remove().exec();
+        Room.find({"location": req.params._id}).remove().exec();
         Location.findByIdAndRemove(req.params._id).then(result => {
             if(!result){
                 res.status(404).json({});
                 return;
             }
-            Room.find({"location._id": result._id}).remove((err, result) => {
-                console.log(result);
-            })
             res.status(200).json({message:"success",deletedObject: result});
         }).catch(err => next(err));
     }

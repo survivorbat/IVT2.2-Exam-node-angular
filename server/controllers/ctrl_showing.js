@@ -78,16 +78,9 @@ module.exports = {
         }).catch(err => next(err));
     },
     post(req,res,next){
+        if(req.body.specialties) req.body.specialties = req.body.specialties.split(',');
         const newShowing = new Showing(req.body, {});
         newShowing.save().then(newshowing => {
-            if(err){
-                if(err.name="ValidationError"){
-                    res.status(400).json({message: err.message});
-                } else {
-                    res.status(500).json({"errors":"An error occured"});
-                }
-                return;
-            }
             res.status(201).json({"message":"succces!","createdObject":newshowing});
         }).catch(err => next(err));
     },
@@ -97,15 +90,12 @@ module.exports = {
         }).catch(err => next(err));
     },
     delete(req,res,next){
-        Ticket.find({"showing._id": req.params._id}).remove();
+        Ticket.find({"showing": req.params._id}).remove();
         Showing.findByIdAndRemove(req.params._id).then(result => {
             if(!result){
                 res.status(404).json({});
                 return;
             }
-            Ticket.find({"showing._id": result._id}).remove((err, result) => {
-                console.log(result);
-            })
             res.status(200).json({message:"success",deletedObject: result});
         }).catch(err => next(err));
     }

@@ -64,14 +64,6 @@ module.exports = {
     post(req,res,next){
         const newRoom = new Room(req.body, {});
         newRoom.save().then(result => {
-            if(err){
-                if(err.name="ValidationError"){
-                    res.status(400).json({message: err.message});
-                } else {
-                    res.status(500).json({"errors":"An error occured"});
-                }
-                return;
-            }
             res.status(201).json({"message":"succces!","createdObject":result});
         }).catch(err => next(err));
     },
@@ -81,8 +73,8 @@ module.exports = {
         }).catch(err => next(err));
     },
     delete(req,res,next){
-        Ticket.find({"showing.room._id": req.params._id}).remove();
-        Showing.find({"room._id": req.params._id}).remove();
+        Ticket.find({"showing.room": req.params._id}).remove();
+        Showing.find({"room": req.params._id}).remove();
         Room.findByIdAndRemove(req.params._id).then(result => {
             if(!result){
                 res.status(404).json({});

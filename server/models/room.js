@@ -4,15 +4,21 @@ const Schema = mongoose.Schema;
 const roomSchema = new Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        minlength:1,
+        maxlength: 5
     },
     rows: {
         type: Number,
-        required: true
+        required: true,
+        min: 1,
+        max:200
     },
     columns: {
         type: Number,
-        required:true
+        required:true,
+        min:0,
+        max:200
     },
     location: {
         type: Schema.Types.ObjectId,

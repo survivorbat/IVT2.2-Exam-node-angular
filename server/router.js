@@ -15,28 +15,13 @@ router.use(expressJWT({
         { url: /\/showings*/, methods: ['GET']  },
         { url: /\/films*/, methods: ['GET']  },
         { url: /\/users*/, methods: ['POST']  },
+        { url: '/favicon.ico'}
     ]
 }));
 
-const authenticationrouter = require('./routes/authentication');
-const userrouter = require('./routes/user');
-const filmrouter = require('./routes/film');
-const showingrouter = require('./routes/showing');
-const locationrouter = require('./routes/location');
-const roomrouter = require('./routes/room');
-const ticketrouter = require('./routes/ticket');
-
 router.options(/\/api*/, (req,res) => {
-    res.status(204).send();
+    res.status(204).send().end();
 });
-
-router.use("/api/",authenticationrouter);
-router.use("/api/users",userrouter);
-router.use("/api/films",filmrouter);
-router.use("/api/showings",showingrouter);
-router.use("/api/locations",locationrouter);
-router.use("/api/rooms",roomrouter);
-router.use("/api/tickets",ticketrouter);
 
 router.get("/api", (req,res,next) => {
     res.status(200).json({
@@ -74,6 +59,13 @@ router.get("/api", (req,res,next) => {
         ]
     });
 })
+
+const openroutes = require('./routes/open.routes');
+router.use("/api/",openroutes);
+
+const adminroutes = require('./routes/admin.routes');
+router.use("/api/",adminroutes);
+
 router.use((error,req,res,next) => {
     console.log(error);
 	res.status(error.status || 500).send({

@@ -17,11 +17,14 @@ const showingSchema = new Schema({
         required: true,
     },
     specialties: {
-        type: [String]
+        type: [String],
+        default: []
     },
     price: {
+        required: true,
         type: Number,
-        default: 5.00
+        min: 1.00,
+        max: 50.00
     }
 });
 

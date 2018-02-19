@@ -9,11 +9,15 @@ const ticketSchema = new Schema({
     },
     row: {
         type: Number,
-        required: true
+        required: true,
+        min: 1,
+        max: 200
     },
     column: {
         type: Number,
-        required:true
+        required:true,
+        min: 1,
+        max: 200
     },
     userid: {
         type: Number,

@@ -14,6 +14,7 @@ app.use(cors());
 
 
 app.use(validator())
+app.disable('etag');
 
 app.use(router);
 
