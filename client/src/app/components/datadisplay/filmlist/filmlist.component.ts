@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FilmsService } from '../../../services/films.service';
 import Film from '../../../domain/Film';
+import AdminCheck from '../../../domain/interfaces/AdminCheck';
 
 @Component({
   selector: 'app-filmlist',
   templateUrl: './filmlist.component.html',
   styleUrls: ['./filmlist.component.scss']
 })
-export class FilmlistComponent implements OnInit {
+export class FilmlistComponent implements OnInit, AdminCheck {
   films: Film[];
   error: boolean;
   loading: boolean;
@@ -21,6 +22,18 @@ export class FilmlistComponent implements OnInit {
 
   getFilms(): void {
     this.filmservice.getAll().subscribe(films => {this.films=films; this.loading=false;}, error => {this.error=error;this.loading=false});
+  }
+
+  deleteFilm(e): void {
+    if(prompt('Weet u zeker dat u dit item wil verwijderen?')){this.filmservice.delete(e).subscribe(res => {
+      this.getFilms();
+    }, err => {
+      alert('Er ging iets mis bij het verrwijderen van deze film, probeert u het nog een keer');
+    })}
+  }
+
+  isAdmin(): boolean{
+    return parseInt(window.localStorage.getItem('authlevel'))>0;
   }
 
   getArrayFromNumber(num: Number): Number[]{

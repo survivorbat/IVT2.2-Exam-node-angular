@@ -17,4 +17,11 @@ export class UserService {
   checkUser(user: User): any {
     return this.http.post("https://avancinema.herokuapp.com/api/token", user);
   }
+  delete(id: String) {
+    return this.http.delete(this.URL+'/'+id, {
+      headers: {
+        'Authorization': 'Bearer '+window.localStorage.getItem('API_TOKEN'),
+      }
+    });
+  }
 }

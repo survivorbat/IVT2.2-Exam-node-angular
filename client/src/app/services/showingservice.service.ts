@@ -17,4 +17,11 @@ export class ShowingsService {
   getById(id: String): Observable<Showing>{
     return this.http.get<Showing>(this.URL+"/"+id);
   }
+  delete(id: String) {
+    return this.http.delete(this.URL+'/'+id, {
+      headers: {
+        'Authorization': 'Bearer '+window.localStorage.getItem('API_TOKEN'),
+      }
+    });
+  }
 }

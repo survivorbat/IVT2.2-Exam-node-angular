@@ -14,4 +14,11 @@ export class FilmsService {
   getById(id: String): Observable<Film>{
     return this.http.get<Film>(this.URL+"/"+id);
   }
+  delete(id: String) {
+    return this.http.delete(this.URL+'/'+id, {
+      headers: {
+        'Authorization': 'Bearer '+window.localStorage.getItem('API_TOKEN'),
+      }
+    });
+  }
 }

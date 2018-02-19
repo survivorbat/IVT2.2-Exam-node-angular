@@ -14,4 +14,11 @@ export class LocationsService {
   getById(id: String): Observable<Location>{
     return this.http.get<Location>(this.URL+"/"+id);
   }
+  delete(id: String) {
+    return this.http.delete(this.URL+'/'+id, {
+      headers: {
+        'Authorization': 'Bearer '+window.localStorage.getItem('API_TOKEN'),
+      }
+    });
+  }
 }

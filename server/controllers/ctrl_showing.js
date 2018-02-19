@@ -88,15 +88,6 @@ module.exports = {
     },
     delete(req,res,next){
         Showing.findByIdAndRemove(req.params._id).then(result => {
-            if(err){
-                if(err.name="CastError"){
-                    res.status(400).json({"errors":"Invalid ID value"});
-                    return;
-                }
-                console.log(err);
-                res.status(500).json({"errors":"An error occured"});
-                return;
-            }
             if(!result){
                 res.status(404).json({});
                 return;

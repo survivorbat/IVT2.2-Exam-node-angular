@@ -15,6 +15,7 @@
         <button class="btn btn-primary"><a routerLink="/locations/{{ticket.showing.room.location._id}}">Bekijk locatie details</a></button>
         <button class="btn btn-danger" (click)="deleteTicket(ticket._id)">Verwijderen</button>
       </div>
+      <div class="card-body"><button *ngIf="isAdmin()" class="btn btn-danger btn-sm" (click)="deleteTicket(ticket._id)">Verwijder</button></div>
     </div>
   </main>
 </section>

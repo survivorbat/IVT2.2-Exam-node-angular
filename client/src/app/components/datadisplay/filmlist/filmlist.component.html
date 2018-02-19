@@ -17,6 +17,7 @@
               <p class="card-text text-small"><span *ngFor="let writer of film.writers">{{writer}}, </span></p>
           </div>
         </a>
+        <div class="card-body"><button *ngIf="isAdmin()" class="btn btn-danger btn-sm" (click)="deleteFilm(film._id)">Verwijder</button></div>
       </div>
     </div>
   </main>

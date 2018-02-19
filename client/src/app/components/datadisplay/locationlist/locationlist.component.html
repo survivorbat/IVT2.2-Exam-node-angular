@@ -8,6 +8,7 @@
             <p class="card-text">{{location.street}}, {{location.number}} ({{location.zip}})</p>
         </div>
       </a>
+      <div class="card-body"><button *ngIf="isAdmin()" class="btn btn-danger btn-sm" (click)="deleteLocation(location._id)">Verwijder</button></div>
     </div>
   </main>
 </section>

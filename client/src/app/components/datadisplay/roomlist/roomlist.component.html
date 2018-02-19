@@ -6,6 +6,7 @@
             <h4 class="card-title font-weight-bold">{{room.name}}</h4>
         </div>
       </a>
+      <div class="card-body"><button *ngIf="isAdmin()" class="btn btn-danger btn-sm" (click)="deleteRoom(room._id)">Verwijder</button></div>
     </div>
   </main>
 </section>

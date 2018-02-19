@@ -17,4 +17,11 @@ export class RoomsService {
   getById(id: String): Observable<Room>{
     return this.http.get<Room>(this.URL+"/"+id);
   }
+  delete(id: String) {
+    return this.http.delete(this.URL+'/'+id, {
+      headers: {
+        'Authorization': 'Bearer '+window.localStorage.getItem('API_TOKEN'),
+      }
+    });
+  }
 }
