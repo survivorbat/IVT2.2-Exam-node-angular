@@ -1,5 +1,6 @@
 const {Room} = require('../models/room');
 const {Showing} = require('../models/showing');
+const {Ticket} = require('../models/ticket');
 
 module.exports = {
     getAll(req, res, next){
