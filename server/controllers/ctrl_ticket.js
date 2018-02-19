@@ -3,12 +3,7 @@ const {Showing} = require('../models/showing');
 
 module.exports = {
     getAll(req, res, next){
-        Ticket.find().populate({path:'showing', populate: {path:'room', populate:{path: 'location'}}}).populate({path:'showing', populate: {path:'film'}}).exec((err, tickets) => {
-            if(err){
-                console.log(err);
-                res.status(500).json({"errors":"An error occured"});
-                return;
-            }
+        Ticket.find().populate({path:'showing', populate: {path:'room', populate:{path: 'location'}}}).populate({path:'showing', populate: {path:'film'}}).exec().then(tickets => {
             if(!tickets){
                 res.status(200).json([]);
                 return;
@@ -26,15 +21,10 @@ module.exports = {
                 return ticket; 
             });
             res.status(200).json(tickets);
-        });
+        }).catch(err => next(err));
     },
     getByShowing(req, res, next){
-        Ticket.find().populate({path:'showing', populate: {path:'room', populate:{path: 'location'}}}).populate({path:'showing', populate: {path:'film'}}).exec((err, tickets) => {
-            if(err){
-                console.log(err);
-                res.status(500).json({"errors":"An error occured"});
-                return;
-            }
+        Ticket.find().populate({path:'showing', populate: {path:'room', populate:{path: 'location'}}}).populate({path:'showing', populate: {path:'film'}}).exec().then(tickets => {
             if(!tickets){
                 res.status(200).json([]);
                 return;
@@ -53,15 +43,10 @@ module.exports = {
                 return ticket;
             });
             res.status(200).json(tickets);
-        });
+        }).catch(err => next(err));
     },
     getByUser(req, res, next){
-        Ticket.find({userid: req.user.sub.userid}).populate({path:'showing', populate: {path:'room', populate:{path: 'location'}}}).populate({path:'showing', populate: {path:'film'}}).exec((err, tickets) => {
-            if(err){
-                console.log(err);
-                res.status(500).json({"errors":"An error occured"});
-                return;
-            }
+        Ticket.find({userid: req.user.sub.userid}).populate({path:'showing', populate: {path:'room', populate:{path: 'location'}}}).populate({path:'showing', populate: {path:'film'}}).exec().then(tickets => {
             if(!tickets){
                 res.status(200).json([]);
                 return;
@@ -79,19 +64,10 @@ module.exports = {
                 return ticket;
             });
             res.status(200).json(tickets);
-        });
+        }).catch(err => next(err));
     },
     getById(req, res, next){
-        Ticket.findById(req.params._id).populate({path:'showing', populate: {path:'room', populate:{path: 'location'}}}).populate({path:'showing', populate: {path:'film'}}).exec((err, ticket) => {
-            if(err){
-                if(err.name="CastError"){
-                    res.status(400).json({"errors":"Invalid ID value"});
-                    return;
-                }
-                console.log(err);
-                res.status(500).json({"errors":"An error occured"});
-                return;
-            }
+        Ticket.findById(req.params._id).populate({path:'showing', populate: {path:'room', populate:{path: 'location'}}}).populate({path:'showing', populate: {path:'film'}}).exec().then(ticket => {
             if(!ticket){
                 res.status(404).json({});
                 return;
@@ -113,55 +89,27 @@ module.exports = {
                 return;
             }
             res.status(200).json(ticket);
-        });
+        }).catch(err => next(err));
     },
     post(req,res,next){
         req.body.userid=req.user.sub.userid;
         const newTicket = new Ticket(req.body, {});
-        newTicket.save((err, result) => {
-            if(err){
-                if(err.name="ValidationError"){
-                    res.status(400).json({message: err.message});
-                } else {
-                    res.status(500).json({"errors":"An error occured"});
-                }
-                return;
-            }
+        newTicket.save().then(result => {
             res.status(201).json({"message":"succces!","createdObject":result});
-        });
+        }).catch(err => next(err));
     },
     update(req, res, next){
-        Ticket.findByIdAndUpdate(req.params._id,req.body,(err) => {
-            if(err){
-                if(err.name="CastError"){
-                    res.status(400).json({"errors":"Invalid ID value"});
-                    return;
-                } else if(err.name="ValidationError"){
-                    res.status(400).json({message: err.message});
-                }
-                console.log(err);
-                res.status(500).json({"errors":"An error occured"});
-                return;
-            }
+        Ticket.findByIdAndUpdate(req.params._id,req.body).then(result => {
             res.status(204).json({});
-        });
+        }).catch(err => next(err));
     },
     delete(req,res,next){
-        Ticket.findByIdAndRemove(req.params._id, (err, result) => {
-            if(err){
-                if(err.name="CastError"){
-                    res.status(400).json({"errors":"Invalid ID value"});
-                    return;
-                }
-                console.log(err);
-                res.status(500).json({"errors":"An error occured"});
-                return;
-            }
+        Ticket.findByIdAndRemove(req.params._id).then(result => {
             if(!result){
                 res.status(404).json({});
                 return;
             }
             res.status(200).json({message:"success",deletedObject: result});
-        });
+        }).catch(err => next(err));
     }
 }

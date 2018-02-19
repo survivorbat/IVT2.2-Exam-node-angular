@@ -3,12 +3,7 @@ const {Showing} = require('../models/showing');
 
 module.exports = {
     getAll(req, res, next){
-        Film.find((err, films) => {
-            if(err){
-                console.log(err);
-                res.status(500).json({"errors":"An error occured"});
-                return;
-            }
+        Film.find().then((films) => {
             if(!films){
                 res.status(200).json([]);
                 return;
@@ -19,77 +14,48 @@ module.exports = {
                 return film;
             });
             res.status(200).json(films);
+        }).catch(err => {
+            next(err);
         });
     },
     getById(req, res, next){
-        Film.findOne({_id: req.params._id},(err, film) => {
-            if(err){
-                if(err.name="CastError"){
-                    res.status(400).json({"errors":"Invalid ID value"});
-                    return;
-                }
-                console.log(err);
-                res.status(500).json({"errors":"An error occured"});
-                return;
-            }
+        Film.findOne({_id: req.params._id}).then(film => {
             try {
-            film = film.toObject();
-            film.url = req.protocol+"://"+req.get('host')+"/api/films/"+film._id;
+                film = film.toObject();
+                film.url = req.protocol+"://"+req.get('host')+"/api/films/"+film._id;
             }
             catch(e){
                 res.status(404).json({});
                 return;
             }
             res.status(200).json(film);
+        }).catch(err => {
+            next(err);
         });
     },
     post(req,res,next){
-        req.body.stars = req.body.stars.split(',');
-        req.body.writers = req.body.writers.split(',');
-        req.body.directors = req.body.directors.split(',');
+        if(req.body.stars) req.body.stars = req.body.stars.split(',');
+        if(req.body.writers) req.body.writers = req.body.writers.split(',');
+        if(req.body.directors) req.body.directors = req.body.directors.split(',');
         const newFilm = new Film(req.body, {});
-        newFilm.save((err) => {
-            if(err){
-                if(err.name="ValidationError"){
-                    res.status(400).json({message: err.message});
-                } else {
-                    res.status(500).json({"errors":"An error occured"});
-                }
-                return;
-            }
-            res.status(201).json({"message":"succes"});
+        newFilm.save().then(result => {
+            res.status(201).json({"message":"succes","createdObject":result});
+        }).catch(err => {
+            next(err);
         });
     },
     update(req, res, next){
         if(req.body.stars!==undefined) req.body.stars = req.body.stars.split(',');
         if(req.body.writers!==undefined) req.body.writers = req.body.writers.split(',');
         if(req.body.directors!==undefined) req.body.directors = req.body.directors.split(',');
-        Film.findByIdAndUpdate(req.params._id,req.body,(err) => {
-            if(err){
-                if(err.name="CastError"){
-                    res.status(400).json({"errors":"Invalid ID value"});
-                    return;
-                } else if(err.name="ValidationError"){
-                    res.status(400).json({message: err.message});
-                }
-                console.log(err);
-                res.status(500).json({"errors":"An error occured"});
-                return;
-            }
-            res.status(204).json({});
+        Film.findByIdAndUpdate(req.params._id,req.body).then(result => {
+            res.status(200).json({"message":"succes","createdObject":result});
+        }).catch(err => {
+            next(err);
         });
     },
     delete(req,res,next){
-        Film.findByIdAndRemove(req.params._id, (err, result) => {
-            if(err){
-                if(err.name="CastError"){
-                    res.status(400).json({"errors":"Invalid ID value"});
-                    return;
-                }
-                console.log(err);
-                res.status(500).json({"errors":"An error occured"});
-                return;
-            }
+        Film.findByIdAndRemove(req.params._id).then(result => {
             if(!result){
                 res.status(404).json({});
                 return;
@@ -98,6 +64,6 @@ module.exports = {
                 console.log(result);
             })
             res.status(200).json({message:"succes",deletedObject: result});
-        });
+        }).catch(err => next(err));
     }
 }

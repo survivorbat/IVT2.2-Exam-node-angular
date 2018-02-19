@@ -8,12 +8,7 @@ function sortByDate(a,b){
 }
 module.exports = {
     getAll(req, res, next){
-        Showing.find().populate('film').populate({path:'room', populate:{path: 'location'}}).exec((err, showings) => {
-            if(err){
-                console.log(err);
-                res.status(500).json({"errors":"An error occured"});
-                return;
-            }
+        Showing.find().populate('film').populate({path:'room', populate:{path: 'location'}}).exec().then(showings => {
             if(!showings){
                 res.status(200).json([]);
                 return;
@@ -30,19 +25,10 @@ module.exports = {
                 return showing;
             });
             res.status(200).json(showings.sort((a,b) => sortByDate(a,b)));
-        });
+        }).catch(err => next(err));
     },
     getById(req, res, next){
-        Showing.findOne({_id: req.params._id}).populate('film').populate({path:'room', populate:{path: 'location'}}).exec((err, showing) => {
-            if(err){
-                if(err.name="CastError"){
-                    res.status(400).json({"errors":"Invalid ID value"});
-                    return;
-                }
-                console.log(err);
-                res.status(500).json({"errors":"An error occured"});
-                return;
-            }
+        Showing.findOne({_id: req.params._id}).populate('film').populate({path:'room', populate:{path: 'location'}}).exec().then(showing => {
             try {
                 showing = showing.toObject();
                 showing.url = req.protocol+"://"+req.get('host')+"/api/showings/"+showing._id;
@@ -58,15 +44,10 @@ module.exports = {
                 return;
             }
             res.status(200).json(showing);
-        });
+        }).catch(err => next(err));
     },
     getByLocation(req, res, next){
-        Showing.find().populate('film').populate({path:'room', populate:{path: 'location'}}).exec((err, showings) => {
-            if(err){
-                console.log(err);
-                res.status(500).json({"errors":"An error occured"});
-                return;
-            }
+        Showing.find().populate('film').populate({path:'room', populate:{path: 'location'}}).exec().then(showings => {
             if(!showings){
                 res.status(200).json([]);
                 return;
@@ -84,11 +65,11 @@ module.exports = {
                 return showing;
             });
             res.status(200).json(showings.sort((a,b) => sortByDate(a,b)));
-        });
+        }).catch(err => next(err));
     },
     post(req,res,next){
         const newShowing = new Showing(req.body, {});
-        newShowing.save((err, newshowing) => {
+        newShowing.save().then(newshowing => {
             if(err){
                 if(err.name="ValidationError"){
                     res.status(400).json({message: err.message});
@@ -98,26 +79,15 @@ module.exports = {
                 return;
             }
             res.status(201).json({"message":"succces!","createdObject":newshowing});
-        });
+        }).catch(err => next(err));
     },
     update(req, res, next){
-        Showing.findByIdAndUpdate(req.params._id,req.body,(err) => {
-            if(err){
-                if(err.name="CastError"){
-                    res.status(400).json({"errors":"Invalid ID value"});
-                    return;
-                } else if(err.name="ValidationError"){
-                    res.status(400).json({message: err.message});
-                }
-                console.log(err);
-                res.status(500).json({"errors":"An error occured"});
-                return;
-            }
+        Showing.findByIdAndUpdate(req.params._id,req.body).then(result => {
             res.status(204).json({});
-        });
+        }).catch(err => next(err));
     },
     delete(req,res,next){
-        Showing.findByIdAndRemove(req.params._id, (err, result) => {
+        Showing.findByIdAndRemove(req.params._id).then(result => {
             if(err){
                 if(err.name="CastError"){
                     res.status(400).json({"errors":"Invalid ID value"});
@@ -135,6 +105,6 @@ module.exports = {
                 console.log(result);
             })
             res.status(200).json({message:"success",deletedObject: result});
-        });
+        }).catch(err => next(err));
     }
 }
