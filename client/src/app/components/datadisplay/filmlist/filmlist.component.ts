@@ -25,7 +25,7 @@ export class FilmlistComponent implements OnInit, AdminCheck {
   }
 
   deleteFilm(e): void {
-    if(prompt('Weet u zeker dat u dit item wil verwijderen?')){this.filmservice.delete(e).subscribe(res => {
+    if(confirm('Weet u zeker dat u dit item wil verwijderen?')){this.filmservice.delete(e).subscribe(res => {
       this.getFilms();
     }, err => {
       alert('Er ging iets mis bij het verrwijderen van deze film, probeert u het nog een keer');
