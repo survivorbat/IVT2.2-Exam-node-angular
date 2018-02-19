@@ -1,0 +1,14 @@
+nav {
+    font-size:1.1em;
+    font-family: 'Alfa Slab One', cursive;
+    text-transform: uppercase;
+    .nav-link {
+        color:whitesmoke;
+        &:hover {
+            color: red;
+        }
+    }
+    .navbar-toggler {
+        border: none;
+    }
+}

@@ -1,0 +1,31 @@
+<section *ngIf="tickets" class="row">
+  <main class="col-md-12">
+    <div class="card bg-dark clickable-item" *ngFor="let ticket of tickets">
+      <div class="card-body">
+        <h3 class="card-title">{{ticket.showing.film.title}}</h3>
+        <p class="card-text text-warning font-weight-bold" style="margin-bottom:0">Wanneer?</p>
+        <p class="card-text">{{ticket.showing.date.replace('T',' ').substring(0,16)}}</p>
+        <p class="card-text text-warning font-weight-bold" style="margin-bottom:0">Waar?</p>
+        <p class="card-text">{{ticket.showing.room.location.name}}, {{ticket.showing.room.name}}</p>
+        <p class="card-text text-warning font-weight-bold" style="margin-bottom:0">Welke plaats?</p>
+        <p class="card-text">Rij {{ticket.row+1}}, stoel {{ticket.column+1}}</p>
+        <button class="btn btn-primary"><a routerLink="/showings/{{ticket.showing._id}}">Bekijk voorstelling details</a></button>
+        <button class="btn btn-primary"><a routerLink="/films/{{ticket.showing.film._id}}">Bekijk film details</a></button>
+        <button class="btn btn-primary"><a routerLink="/rooms/{{ticket.showing.room._id}}">Bekijk zaal details</a></button>
+        <button class="btn btn-primary"><a routerLink="/locations/{{ticket.showing.room.location._id}}">Bekijk locatie details</a></button>
+        <button class="btn btn-danger" (click)="deleteTicket(ticket._id)">Verwijderen</button>
+      </div>
+    </div>
+  </main>
+</section>
+<section *ngIf="error" class="row">
+  <main class="col-md-12">
+      <h3 class="font-weight-bold">Er is een fout opgetreden bij het ophalen van informatie.</h3>
+      <p>Mogelijk heeft de server het te druk. Als dit probleem vaker optreedt raden wij u aan de online helpdesk te contacteren.</p>
+  </main>
+</section>
+<section *ngIf="loading" class="row">
+    <main class="col-md-12">
+      Laden...
+    </main>
+  </section>

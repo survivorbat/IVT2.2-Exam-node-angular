@@ -1,0 +1,55 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    background-image: url('assets/background.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: 'Open Sans', sans-serif;
+}
+
+a:link, a, a:visited {
+    text-decoration: inherit;
+    color: inherit;
+}
+
+.text-small {
+    font-size:smaller;
+}
+
+.row {
+    margin-bottom:1em;
+}
+
+.clickable-item {
+    opacity:0.95;
+    cursor: pointer;
+    margin-bottom:1em;
+    &:hover {
+        opacity:1;
+        border-color:white;
+        color:white;
+        border-width: 1px;
+    }
+}
+
+.link {
+    color: rgb(255, 138, 138) !important;
+    &:hover {
+        color: rgb(255,200,200) !important;
+        text-decoration: underline;
+    }
+}
+
+.btn {
+    color: white;
+    font-weight:bold;
+}
+
+main {
+    margin-bottom:1em;
+}
+
+.form-control {
+    margin-bottom:0.5em;
+}

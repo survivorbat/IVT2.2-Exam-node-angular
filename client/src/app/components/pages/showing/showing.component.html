@@ -1,0 +1,31 @@
+<section *ngIf="error" class="row">
+  <main class="col-md-12">
+    <h3 class="font-weight-bold">Er is een fout opgetreden bij het ophalen van informatie over deze locatie.</h3>
+    <p>Mogelijk bestaat deze locatie niet of heeft de server het te druk. Als dit probleem vaker optreedt raden wij u aan de online helpdesk te contacteren.</p>
+    <a routerLink="/locations">Terug</a>
+  </main>
+</section>
+<section *ngIf="showing && showing.film" class="row">
+  <main class="col-md-9">
+    <h1 class="font-weight-bold">{{showing.film.title}} ({{showing.film.year}})</h1>
+    <h4>{{showing.film.subtitle}}</h4>
+    <p class="card-text text-warning font-weight-bold" style="margin-bottom:0">Beschrijving:</p>
+    <p>{{showing.film.description}}</p>
+    <p class="card-text text-warning font-weight-bold" style="margin-bottom:0">Jaar van uitgave:</p>
+    <p>{{showing.film.year}}</p>
+    <p class="card-text text-warning font-weight-bold" style="margin-bottom:0">Speeltijd:</p>
+    <p>{{showing.film.duration}} minuten</p>
+    <p class="card-text text-warning font-weight-bold" style="margin-bottom:0">Locatie:</p>
+    <p>{{showing.room.name}}, {{showing.room.location.name}}</p>
+    <app-newticket [showing]=showing></app-newticket>
+  </main>
+  <aside class="col-md-3" *ngIf="showing.film.coverPicture">
+      <img *ngIf="showing.film.coverPicture!==''" src="{{showing.film.coverPicture}}" alt="Coverpicture of the movie {{showing.film.title}}" class="card-img-top">
+      <span class="text-small" *ngFor="let point of getArrayFromNumber(showing.film.popularity)">⭐</span>
+  </aside>
+</section>
+<section *ngIf="loading" class="row">
+  <main class="col-md-12">
+    Aan het laden...
+  </main>
+</section>
