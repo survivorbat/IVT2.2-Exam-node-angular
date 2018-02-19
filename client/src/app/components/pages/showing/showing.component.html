@@ -17,6 +17,10 @@
     <p>{{showing.film.duration}} minuten</p>
     <p class="card-text text-warning font-weight-bold" style="margin-bottom:0">Locatie:</p>
     <p>{{showing.room.name}}, {{showing.room.location.name}}</p>
+    <p class="card-text text-warning font-weight-bold" style="margin-bottom:0">Uitvoering specialiteiten:</p>
+    <p><span *ngFor="let specialty of showing.specialties">{{specialty}}, </span></p>
+    <p class="card-text text-warning font-weight-bold" style="margin-bottom:0">Prijs:</p>
+    <p>€{{showing.price}} per persoon</p>
     <app-newticket [showing]=showing></app-newticket>
   </main>
   <aside class="col-md-3" *ngIf="showing.film.coverPicture">
