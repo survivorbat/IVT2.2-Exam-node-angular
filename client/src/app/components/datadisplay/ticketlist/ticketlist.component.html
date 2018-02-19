@@ -1,21 +1,23 @@
 <section *ngIf="tickets" class="row">
   <main class="col-md-12">
-    <div class="card bg-dark clickable-item" *ngFor="let ticket of tickets">
-      <div class="card-body">
-        <h3 class="card-title">{{ticket.showing.film.title}}</h3>
-        <p class="card-text text-warning font-weight-bold" style="margin-bottom:0">Wanneer?</p>
-        <p class="card-text">{{ticket.showing.date.replace('T',' ').substring(0,16)}}</p>
-        <p class="card-text text-warning font-weight-bold" style="margin-bottom:0">Waar?</p>
-        <p class="card-text">{{ticket.showing.room.location.name}}, {{ticket.showing.room.name}}</p>
-        <p class="card-text text-warning font-weight-bold" style="margin-bottom:0">Welke plaats?</p>
-        <p class="card-text">Rij {{ticket.row+1}}, stoel {{ticket.column+1}}</p>
-        <button class="btn btn-primary"><a routerLink="/showings/{{ticket.showing._id}}">Bekijk voorstelling details</a></button>
-        <button class="btn btn-primary"><a routerLink="/films/{{ticket.showing.film._id}}">Bekijk film details</a></button>
-        <button class="btn btn-primary"><a routerLink="/rooms/{{ticket.showing.room._id}}">Bekijk zaal details</a></button>
-        <button class="btn btn-primary"><a routerLink="/locations/{{ticket.showing.room.location._id}}">Bekijk locatie details</a></button>
-        <button class="btn btn-danger" (click)="deleteTicket(ticket._id)">Verwijderen</button>
+    <div class="card-columns">
+      <div class="card bg-dark clickable-item" *ngFor="let ticket of tickets">
+        <div class="card-body" style="padding:10px">
+          <h3 class="card-title">{{ticket.showing.film.title}}</h3>
+          <p class="card-text text-warning font-weight-bold" style="margin-bottom:0">Wanneer?</p>
+          <p class="card-text">{{ticket.showing.date.replace('T',' ').substring(0,16)}}</p>
+          <p class="card-text text-warning font-weight-bold" style="margin-bottom:0">Waar?</p>
+          <p class="card-text">{{ticket.showing.room.location.name}}, {{ticket.showing.room.name}}</p>
+          <p class="card-text text-warning font-weight-bold" style="margin-bottom:0">Welke plaats?</p>
+          <p class="card-text">Rij {{ticket.row+1}}, stoel {{ticket.column+1}}</p>
+          <button class="btn btn-primary btn-sm" style="margin-bottom:5px"><a routerLink="/showings/{{ticket.showing._id}}">Voorstelling</a></button>
+          <button class="btn btn-primary btn-sm" style="margin-bottom:5px"><a routerLink="/films/{{ticket.showing.film._id}}">Film</a></button>
+          <button class="btn btn-primary btn-sm" style="margin-bottom:5px"><a routerLink="/rooms/{{ticket.showing.room._id}}">Zaal</a></button>
+          <button class="btn btn-primary btn-sm" style="margin-bottom:5px"><a routerLink="/locations/{{ticket.showing.room.location._id}}">Locatie</a></button><br>
+          <button class="btn btn-danger btn-sm" style="margin-bottom:5px" (click)="deleteTicket(ticket._id)">Verwijderen</button>
+        </div>
+        <div class="card-body"><button *ngIf="isAdmin()" class="btn btn-danger btn-sm" (click)="deleteTicket(ticket._id)">Verwijder</button></div>
       </div>
-      <div class="card-body"><button *ngIf="isAdmin()" class="btn btn-danger btn-sm" (click)="deleteTicket(ticket._id)">Verwijder</button></div>
     </div>
   </main>
 </section>
