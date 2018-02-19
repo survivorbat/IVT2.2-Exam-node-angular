@@ -80,14 +80,13 @@ module.exports = {
         }).catch(err => next(err));
     },
     delete(req,res,next){
+        Ticket.find({"showing.room._id": req.params._id}).remove();
+        Showing.find({"room._id": req.params._id}).remove();
         Room.findByIdAndRemove(req.params._id).then(result => {
             if(!result){
                 res.status(404).json({});
                 return;
             }
-            Showing.find({"room._id": result._id}).remove((err, result) => {
-                console.log(result);
-            })
             res.status(200).json({message:"success",deletedObject: result});
         }).catch(err => next(err));
     }

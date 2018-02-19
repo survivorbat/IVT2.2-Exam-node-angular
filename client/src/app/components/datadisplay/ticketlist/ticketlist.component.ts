@@ -33,6 +33,7 @@ export class TicketlistComponent implements OnInit, AdminCheck {
   isAdmin(): boolean {
     return parseInt(window.localStorage.getItem('authlevel'))>0;
   }
+  
   deleteTicket(id){
     if(confirm('Weet u zeker dat u dit ticket wil verwijderen?')) this.ticketsservice.delete(id).subscribe(res => {
       this.getTickets();

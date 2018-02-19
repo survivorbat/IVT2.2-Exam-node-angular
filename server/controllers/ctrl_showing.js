@@ -97,6 +97,7 @@ module.exports = {
         }).catch(err => next(err));
     },
     delete(req,res,next){
+        Ticket.find({"showing._id": req.params._id}).remove();
         Showing.findByIdAndRemove(req.params._id).then(result => {
             if(!result){
                 res.status(404).json({});
