@@ -15,4 +15,10 @@ export class NavComponent implements OnInit, AdminCheck {
   isAdmin(): boolean{
     return parseInt(window.localStorage.getItem('authlevel'))>0;
   }
+  isLoggedIn(): boolean{
+    return window.localStorage.getItem('loggedin')==="true";
+  }
+  logout(){
+    window.localStorage.clear();
+  }
 }

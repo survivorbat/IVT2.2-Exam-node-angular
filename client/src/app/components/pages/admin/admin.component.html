@@ -1,22 +1,79 @@
-<div class="row" *ngIf="isAdmin()">
-    <div class="col-md-4">
-        <app-newfilm></app-newfilm>
+<div class="row">
+    <ul class="nav nav-pills">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#film" role="tab">Films</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#location" role="tab">Locaties</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#room" role="tab">Zalen</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#showing" role="tab">Voorstellingen</a>
+        </li>
+    </ul>
+</div>
+
+<div *ngIf="isAdmin()" class="tab-content">
+    <div class="tab-pane active" id="film" role="tabpanel">
+        <div class="row">
+            <div class="col-md-4">
+                <h2>Films</h2>
+                <p>Loremipsum</p>
+            </div>
+            <div class="col-md-4">
+                <h2>Film aanpassen</h2>
+                <p>Loremipsum</p>
+            </div>
+            <div class="col-md-4">
+                <app-newfilm></app-newfilm>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <app-newlocation></app-newlocation>
+    <div class="tab-pane" id="room" role="tabpanel">
+        <div class="row">
+            <div class="col-md-4">
+                <h2>Zalen</h2>
+                <p>Loremipsum</p>
+            </div>
+            <div class="col-md-4">
+                <h2>Zaal aanpassen</h2>
+                <p>Loremipsum</p>
+            </div>
+            <div class="col-md-4">
+                <app-newroom></app-newroom>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <app-newroom></app-newroom>
+    <div class="tab-pane" id="showing" role="tabpanel">
+        <div class="row">
+            <div class="col-md-4">
+                <h2>Voorstellingen</h2>
+                <p>Loremipsum</p>
+            </div>
+            <div class="col-md-4">
+                <h2>Voorstelling aanpassen</h2>
+                <p>Loremipsum</p>
+            </div>
+            <div class="col-md-4">
+                <app-newshowing></app-newshowing>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane" id="location" role="tabpanel">
+        <div class="row">
+            <div class="col-md-4">
+                <h2>Locaties</h2>
+                <p>Loremipsum</p>
+            </div>
+            <div class="col-md-4">
+                <h2>Locatie aanpassen</h2>
+                <p>Loremipsum</p>
+            </div>
+            <div class="col-md-4">
+                <app-newlocation></app-newlocation>
+            </div>
+        </div>
     </div>
 </div>
-<div class="row" *ngIf="isAdmin()">
-    <div class="col-md-4">
-        <app-newshowing></app-newshowing>
-    </div>
-    <div class="col-md-4">
-
-    </div>
-    <div class="col-md-4">
-
-    </div>
-    </div>

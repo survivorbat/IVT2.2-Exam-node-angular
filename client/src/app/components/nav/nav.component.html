@@ -7,13 +7,13 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" routerLink="showings">Voorstellingen <span class="sr-only">(current)</span></a>
+        <a class="nav-link" routerLink="showings">Voorstellingen</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="films">Filmcatalogus</a>
+        <a class="nav-link" routerLink="films">Films</a>
       </li>
       <li class="nav-item">
-          <a class="nav-link" routerLink="locations">Locaties en zalen</a>
+          <a class="nav-link" routerLink="locations">Locaties</a>
       </li>
       <li class="nav-item">
           <a class="nav-link" routerLink="info">Informatie</a>
@@ -22,7 +22,10 @@
           <a class="nav-link" routerLink="users">Account</a>
       </li>
       <li class="nav-item" *ngIf="isAdmin()">
-          <a class="nav-link" routerLink="admin">Adminitratie</a>
+          <a class="nav-link" routerLink="admin">Biosbeheer</a>
+      </li>
+      <li class="nav-item" *ngIf="isLoggedIn()">
+        <span class="nav-link text-danger" (click)="logout()">Uitloggen</span>
       </li>
     </ul>
   </div>

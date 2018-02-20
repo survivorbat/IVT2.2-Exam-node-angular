@@ -4,6 +4,7 @@ nav {
     text-transform: uppercase;
     .nav-link {
         color:whitesmoke;
+        cursor: pointer;
         &:hover {
             color: red;
         }
