@@ -6,4 +6,5 @@ export default class Location {
     number: Number;
     state: String;
     city: String;
+    country: String;
 }
