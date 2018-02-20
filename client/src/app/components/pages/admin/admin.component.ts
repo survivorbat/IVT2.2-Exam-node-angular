@@ -11,5 +11,7 @@ export class AdminComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  isAdmin(): boolean{
+    return parseInt(window.localStorage.getItem('authlevel'))>0;
+  }
 }

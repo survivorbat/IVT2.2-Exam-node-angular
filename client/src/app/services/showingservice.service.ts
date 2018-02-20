@@ -17,6 +17,13 @@ export class ShowingsService {
   getById(id: String): Observable<Showing>{
     return this.http.get<Showing>(this.URL+"/"+id);
   }
+  addOne(showing: Showing){
+    return this.http.post(this.URL,showing, {
+      headers: {
+        'Authorization': 'Bearer '+window.localStorage.getItem('API_TOKEN'),
+      }
+    });
+  }
   delete(id: String) {
     return this.http.delete(this.URL+'/'+id, {
       headers: {

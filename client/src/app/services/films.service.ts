@@ -14,6 +14,13 @@ export class FilmsService {
   getById(id: String): Observable<Film>{
     return this.http.get<Film>(this.URL+"/"+id);
   }
+  addOne(film: Film){
+    return this.http.post(this.URL,film, {
+      headers: {
+        'Authorization': 'Bearer '+window.localStorage.getItem('API_TOKEN'),
+      }
+    });
+  }
   delete(id: String) {
     return this.http.delete(this.URL+'/'+id, {
       headers: {

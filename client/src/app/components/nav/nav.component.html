@@ -16,10 +16,13 @@
           <a class="nav-link" routerLink="locations">Locaties en zalen</a>
       </li>
       <li class="nav-item">
-          <a class="nav-link" routerLink="info">Contact & info</a>
+          <a class="nav-link" routerLink="info">Informatie</a>
       </li>
       <li class="nav-item">
           <a class="nav-link" routerLink="users">Account</a>
+      </li>
+      <li class="nav-item" *ngIf="isAdmin()">
+          <a class="nav-link" routerLink="admin">Adminitratie</a>
       </li>
     </ul>
   </div>

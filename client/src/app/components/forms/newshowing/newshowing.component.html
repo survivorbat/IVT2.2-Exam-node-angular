@@ -1,0 +1,31 @@
+<h2>Voorstellingen toevoegen</h2>
+<div class="form-group">
+  <label>Film</label>
+  <select type="number" class="form-control" placeholder="Locatie" [(ngModel)]="showing.film">
+    <option *ngFor="let film of films" value="{{film._id}}">{{film.title}}</option>
+  </select>
+</div>
+<div class="form-group">
+    <label>Prijs in €</label>
+    <input type="number" class="form-control" step="0.1" min="5" max="100" placeholder="Prijs" [(ngModel)]="showing.price">
+</div>
+<div class="form-group">
+    <label>Datum en tijd</label>
+    <input type="datetime-local" class="form-control" placeholder="Datum en tijd" [(ngModel)]="showing.date">
+</div>
+<div class="form-group">
+    <label>Specialiteiten (3D, gratis popcorn) gescheiden door een komma</label>
+    <input type="number" class="form-control" placeholder="Specialiteiten" [(ngModel)]="showing.specialities">
+</div>
+<div class="form-group">
+    <label>Zaal</label>
+    <select type="number" class="form-control" placeholder="Locatie" [(ngModel)]="showing.room">
+      <option *ngFor="let room of rooms" value="{{room._id}}">{{room.location.name}},{{room.name}}</option>
+    </select>
+</div>
+<div class="form-group">
+  <p>{{errorfield}}</p>
+</div>
+<div class="form-group">
+  <button class="btn btn-primary" (click)="submit()">Toevoegen</button>
+</div>

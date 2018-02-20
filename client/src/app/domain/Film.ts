@@ -10,4 +10,5 @@ export default class Film {
     stars: String[];
     writers: String[];
     directors: String[];
+    genre: String;
 }

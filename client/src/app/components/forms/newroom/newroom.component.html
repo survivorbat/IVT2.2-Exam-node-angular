@@ -1,0 +1,25 @@
+<h2>Zaal toevoegen</h2>
+<div class="form-group">
+  <label>Zaal Naam</label>
+  <input type="text" class="form-control" placeholder="Zaal naam" [(ngModel)]="room.name">
+</div>
+<div class="form-group">
+    <label>Rijen stoelen</label>
+    <input type="number" class="form-control" placeholder="Rijen" [(ngModel)]="room.rows">
+</div>
+<div class="form-group">
+    <label>Kolommen aan stoelen</label>
+    <input type="number" class="form-control" placeholder="Kolommen" [(ngModel)]="room.columns">
+</div>
+<div class="form-group">
+    <label>Locatie</label>
+    <select type="number" class="form-control" placeholder="Locatie" [(ngModel)]="room.location">
+      <option *ngFor="let location of locations" value="{{location._id}}">{{location.name}}</option>
+    </select>
+</div>
+<div class="form-group">
+  <p>{{errorfield}}</p>
+</div>
+<div class="form-group">
+  <button class="btn btn-primary" (click)="submit()">Toevoegen</button>
+</div>

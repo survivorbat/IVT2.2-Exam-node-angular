@@ -34,6 +34,10 @@ import { LoginComponent } from './components/forms/login/login.component';
 import { UserService } from './services/user.service';
 import { TicketService } from './services/ticket.service';
 import { TicketlistComponent } from './components/datadisplay/ticketlist/ticketlist.component';
+import { NewfilmComponent } from './components/forms/newfilm/newfilm.component';
+import { NewshowingComponent } from './components/forms/newshowing/newshowing.component';
+import { NewlocationComponent } from './components/forms/newlocation/newlocation.component';
+import { NewroomComponent } from './components/forms/newroom/newroom.component';
 
 
 @NgModule({
@@ -61,7 +65,11 @@ import { TicketlistComponent } from './components/datadisplay/ticketlist/ticketl
     UserComponent,
     NewuserComponent,
     LoginComponent,
-    TicketlistComponent
+    TicketlistComponent,
+    NewfilmComponent,
+    NewshowingComponent,
+    NewlocationComponent,
+    NewroomComponent
   ],
   imports: [
     BrowserModule,

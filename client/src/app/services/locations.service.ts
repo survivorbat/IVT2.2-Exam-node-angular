@@ -14,6 +14,13 @@ export class LocationsService {
   getById(id: String): Observable<Location>{
     return this.http.get<Location>(this.URL+"/"+id);
   }
+  addOne(location: Location){
+    return this.http.post(this.URL,location, {
+      headers: {
+        'Authorization': 'Bearer '+window.localStorage.getItem('API_TOKEN'),
+      }
+    });
+  }
   delete(id: String) {
     return this.http.delete(this.URL+'/'+id, {
       headers: {
