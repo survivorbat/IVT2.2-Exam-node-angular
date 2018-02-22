@@ -38,6 +38,10 @@ import { NewfilmComponent } from './components/forms/newfilm/newfilm.component';
 import { NewshowingComponent } from './components/forms/newshowing/newshowing.component';
 import { NewlocationComponent } from './components/forms/newlocation/newlocation.component';
 import { NewroomComponent } from './components/forms/newroom/newroom.component';
+import { EditfilmComponent } from './components/forms/editfilm/editfilm.component';
+import { EditshowingComponent } from './components/forms/editshowing/editshowing.component';
+import { EditlocationComponent } from './components/forms/editlocation/editlocation.component';
+import { EditroomComponent } from './components/forms/editroom/editroom.component';
 
 
 @NgModule({
@@ -69,7 +73,11 @@ import { NewroomComponent } from './components/forms/newroom/newroom.component';
     NewfilmComponent,
     NewshowingComponent,
     NewlocationComponent,
-    NewroomComponent
+    NewroomComponent,
+    EditfilmComponent,
+    EditshowingComponent,
+    EditlocationComponent,
+    EditroomComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,5 @@
 export default class Film {
-    id: String;
+    _id: String;
     title: String;
     subtitle: String;
     year: Number;

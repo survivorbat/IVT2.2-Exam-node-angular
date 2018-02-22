@@ -21,6 +21,13 @@ export class FilmsService {
       }
     });
   }
+  patch(film: Film){
+    return this.http.patch(this.URL+'/'+film._id,film, {
+      headers: {
+        'Authorization': 'Bearer '+window.localStorage.getItem('API_TOKEN'),
+      }
+    });
+  }
   delete(id: String) {
     return this.http.delete(this.URL+'/'+id, {
       headers: {

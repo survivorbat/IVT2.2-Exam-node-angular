@@ -21,12 +21,12 @@ export class FilmComponent implements OnInit {
 
   ngOnInit() {
     this.params = this.route.params.subscribe(params => {
-      this.film.id=params.id;
+      this.film._id=params.id;
       this.getFilm();
     })
   }
   getFilm(): void {
-    this.filmservice.getById(this.film.id).subscribe(res => {this.film=res;this.loading=false}, err => {this.error=true;this.loading=false});
+    this.filmservice.getById(this.film._id).subscribe(res => {this.film=res;this.loading=false}, err => {this.error=true;this.loading=false});
   }
   getArrayFromNumber(num: Number): Number[]{
     let rs: Number[] = [];
