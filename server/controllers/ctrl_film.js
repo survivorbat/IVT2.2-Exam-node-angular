@@ -35,9 +35,9 @@ module.exports = {
         });
     },
     post(req,res,next){
-        if(req.body.stars && !req.body.stars.isArray()) req.body.stars = req.body.stars.split(',');
-        if(req.body.writers && !req.body.writers.isArray()) req.body.writers = req.body.writers.split(',');
-        if(req.body.directors && !req.body.directors.isArray()) req.body.directors = req.body.directors.split(',');
+        if(req.body.stars && !Array.isArray(req.body.stars)) req.body.stars = req.body.stars.split(',');
+        if(req.body.writers && !Array.isArray(req.body.writers)) req.body.writers = req.body.writers.split(',');
+        if(req.body.directors && !Array.isArray(req.body.directors)) req.body.directors = req.body.directors.split(',');
         const newFilm = new Film(req.body, {});
         newFilm.save().then(result => {
             res.status(201).json({"message":"succes","createdObject":result});
