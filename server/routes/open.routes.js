@@ -35,10 +35,7 @@ routes.delete('/tickets/:_id', ticketcontroller.delete);
 
 routes.post('/users/', [
     check('email').isEmail().withMessage('Provide a valid email').trim().normalizeEmail(),
-    check('firstname').isLength({min: 1}).withMessage('Provide a valid firstname').trim(),
-    check('lastname').isLength({min: 1}).withMessage('Provide a valid lastname').trim(),
-    check('age').isNumeric().withMessage('Provide a valid age').trim(),
-    check('password').isLength({min: 3}).withMessage('Please provide a password that is at least 3 charactes long').trim()
+    check('password').isLength({min: 2}).withMessage('Please provide a password that is at least 2 charactes long').trim()
     ] ,usercontroller.post);
 
 routes.get('/films/', filmcontroller.getAll);
