@@ -30,9 +30,8 @@ export class UserlistComponent implements OnInit, AdminCheck {
         user.email=users[i]._fields[0].properties.email;
         userList.push(user);
       }
-      console.log(userList)
       this.users=userList;
-    
+      console.log(this.users);
     }, error => {this.loading=false;this.error=true});
   }
   isAdmin(): boolean {

@@ -1,11 +1,10 @@
-<section *ngIf="showings" class="row">
+<section *ngIf="users" class="row">
   <main class="col-md-12">
     <div class="card-columns">
       <div class="card bg-dark clickable-item" *ngFor="let user of users">
         <div class="card-body">
-            <h5 class="card-title">{{user.email}}</h5>
+            <p class="card-title">{{user.email}}</p>
         </div>
-        <div class="card-body"><button *ngIf="isAdmin()" class="btn btn-danger btn-sm" (click)="deleteShowing(showing._id)">Verwijder</button></div>
       </div>
     </div>
   </main>

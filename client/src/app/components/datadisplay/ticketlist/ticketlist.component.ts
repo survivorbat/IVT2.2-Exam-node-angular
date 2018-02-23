@@ -1,18 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { TicketService } from '../../../services/ticket.service';
 import Ticket from '../../../domain/Ticket';
-import AdminCheck from '../../../domain/interfaces/AdminCheck';
 
 @Component({
   selector: 'app-ticketlist',
   templateUrl: './ticketlist.component.html',
   styleUrls: ['./ticketlist.component.scss']
 })
-export class TicketlistComponent implements OnInit, AdminCheck {
+export class TicketlistComponent implements OnInit {
   error: boolean;
   loading: boolean;
   tickets: Ticket[];
 
+  _admin: boolean;
+  @Input() set admin(e: boolean){
+    if(e){
+      this._admin=true;
+      this.getTickets()
+    }
+  }
   constructor(private ticketsservice: TicketService) { 
     this.loading=true;
   }
@@ -21,17 +27,11 @@ export class TicketlistComponent implements OnInit, AdminCheck {
     this.getTickets();
   }
   private getTickets(): void {
-    this.ticketsservice.getByUser().subscribe(tickets => {this.tickets=tickets;this.loading=false;console.log(this.tickets)}, error => {this.loading=false;this.error=true});
-  }
-  getArrayFromNumber(num: Number): Number[]{
-    let rs: Number[] = [];
-    for(let i=0;i<num;i++){
-      rs.push(0);
+    if(!this._admin){
+      this.ticketsservice.getByUser().subscribe(tickets => {this.tickets=tickets;this.loading=false;console.log(this.tickets)}, error => {this.loading=false;this.error=true});
+    } else {
+      this.ticketsservice.getAll().subscribe(tickets => {this.tickets=tickets;this.loading=false;console.log(this.tickets)}, error => {this.loading=false;this.error=true});
     }
-    return rs;
-  }
-  isAdmin(): boolean {
-    return parseInt(window.localStorage.getItem('authlevel'))>0;
   }
   
   deleteTicket(id){
