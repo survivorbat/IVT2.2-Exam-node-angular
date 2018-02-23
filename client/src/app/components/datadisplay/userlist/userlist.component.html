@@ -3,9 +3,8 @@
     <div class="card-columns">
       <div class="card bg-dark clickable-item" *ngFor="let user of users">
         <div class="card-body">
-            <h3 class="card-title font-weight-bold">{{user._fields[0]}} {{user._fields[1]}}</h3>
-            <p class="card-text">{{user._fields[3]}} jaar oud</p>
-            <p class="text-muted">{{user._fields[4]}}</p>
+            <h3 class="card-title font-weight-bold">{{user.firstname}} {{user.lastname}}</h3>
+            <p class="text-muted">{{user.email}}</p>
         </div>
         <div class="card-body"><button *ngIf="isAdmin()" class="btn btn-danger btn-sm" (click)="deleteShowing(showing._id)">Verwijder</button></div>
       </div>

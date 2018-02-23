@@ -1,7 +1,5 @@
 export default class User {
+    _id: number;
     email: String;
-    firstname: String;
-    lastname: String;
-	age: number;
     password: String;  
 }

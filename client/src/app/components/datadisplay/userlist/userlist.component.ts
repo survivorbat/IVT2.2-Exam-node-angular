@@ -22,7 +22,18 @@ export class UserlistComponent implements OnInit, AdminCheck {
     this.getUsers();
   }
   getUsers(): void {
-    this.usersservice.getAll().subscribe(users => {this.users=users;this.loading=false;console.log(this.users)}, error => {this.loading=false;this.error=true});
+    this.usersservice.getAll().subscribe((users: any) => {
+      let userList = new Array<User>();
+      this.loading=false;
+      for(let i=0;i<users.length;i++){
+        let user = new User();
+        user.email=users[i]._fields[0].properties.email;
+        userList.push(user);
+      }
+      console.log(userList)
+      this.users=userList;
+    
+    }, error => {this.loading=false;this.error=true});
   }
   isAdmin(): boolean {
     return parseInt(window.localStorage.getItem('authlevel'))>0;

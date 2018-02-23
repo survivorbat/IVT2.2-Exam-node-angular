@@ -21,7 +21,7 @@ module.exports = {
         if (!errors.isEmpty()) {
             return res.status(422).json({ errors: errors.mapped() });
         }
-        const params = {email: req.body.email, password: req.body.password, firstname: req.body.firstname, lastname: req.body.lastname, age: req.body.age};
+        const params = {email: req.body.email, password: req.body.password};
         const search_query = "MATCH (n:User) WHERE n.email=$email RETURN n";
         session.run(search_query,params).then((result) => {
             if(result.records[0]===undefined){
