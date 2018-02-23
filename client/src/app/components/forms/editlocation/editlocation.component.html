@@ -1,3 +1,45 @@
-<p>
-  editlocation works!
-</p>
+<h2>Locatie aanpassen</h2>
+<div class="form-group">
+  <label>Locatie</label>
+  <select type="text" class="form-control" placeholder="Locatie titel" (change)="selectLocation($event)">
+    <option value="">Kies locatie...</option>
+    <option *ngFor="let item of locations" value="{{item._id}}">{{item.name}}</option>
+  </select>
+</div>
+<div class="form-group" *ngIf="location.name">
+  <label>Locatie Naam</label>
+  <input type="text" class="form-control" placeholder="Locatie naam" [(ngModel)]="location.name">
+</div>
+<div class="form-group" *ngIf="location.street">
+  <label>Straat</label>
+  <input type="text" class="form-control" placeholder="Straat" [(ngModel)]="location.street">
+</div>
+<div class="form-group" *ngIf="location.city">
+    <label>Stad</label>
+    <input type="text" class="form-control" placeholder="Stad" [(ngModel)]="location.city">
+</div>
+<div class="form-group" *ngIf="location.number">
+    <label>Huisnummer</label>
+    <input type="number" class="form-control" placeholder="Huisnummer" [(ngModel)]="location.number">
+</div>
+<div class="form-group" *ngIf="location.zip">
+    <label>Postcode</label>
+    <input type="text" class="form-control" placeholder="Postcode" [(ngModel)]="location.zip">
+</div>
+<div class="form-group" *ngIf="location.state">
+    <label>Provincie</label>
+    <input type="text" class="form-control" placeholder="Provincie" [(ngModel)]="location.state">
+</div>
+<div class="form-group" *ngIf="location.country">
+    <label>Land</label>
+    <select type="text" class="form-control" placeholder="Land" [(ngModel)]="location.country">
+      <option value="Nederland">Nederland</option>
+      <option value="België">België</option>
+    </select>
+</div>
+<div class="form-group">
+    <p>{{errorfield}}</p>
+</div>
+<div class="form-group">
+    <button class="btn btn-primary" (click)="submit()">Aanpassen</button>
+</div>

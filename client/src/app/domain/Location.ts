@@ -1,5 +1,5 @@
 export default class Location {
-    id: String;
+    _id: String;
     name: String;
     street: String;
     zip: String;

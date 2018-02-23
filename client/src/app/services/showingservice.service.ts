@@ -24,6 +24,13 @@ export class ShowingsService {
       }
     });
   }
+  patch(showing: Showing){
+    return this.http.patch(this.URL+'/'+showing._id,showing, {
+      headers: {
+        'Authorization': 'Bearer '+window.localStorage.getItem('API_TOKEN'),
+      }
+    });
+  }
   delete(id: String) {
     return this.http.delete(this.URL+'/'+id, {
       headers: {

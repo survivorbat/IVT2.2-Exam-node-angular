@@ -1,7 +1,7 @@
 import Location from "./Location";
 
 export default class Room {
-    id: String;
+    _id: String;
     location: Location;
     rows: number;
     columns: number;

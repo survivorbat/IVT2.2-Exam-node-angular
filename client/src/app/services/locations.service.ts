@@ -21,6 +21,13 @@ export class LocationsService {
       }
     });
   }
+  patch(location: Location){
+    return this.http.patch(this.URL+'/'+location._id,location, {
+      headers: {
+        'Authorization': 'Bearer '+window.localStorage.getItem('API_TOKEN'),
+      }
+    });
+  }
   delete(id: String) {
     return this.http.delete(this.URL+'/'+id, {
       headers: {

@@ -45,6 +45,13 @@ export class TicketService {
       }
     });
   }
+  patch(ticket: Ticket){
+    return this.http.patch(this.URL+'/'+ticket._id,ticket, {
+      headers: {
+        'Authorization': 'Bearer '+window.localStorage.getItem('API_TOKEN'),
+      }
+    });
+  }
   delete(ticket: String){
     return this.http.delete(this.URL+'/'+ticket, {
       headers: {

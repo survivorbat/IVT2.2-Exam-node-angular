@@ -85,7 +85,7 @@ module.exports = {
         }).catch(err => next(err));
     },
     update(req, res, next){
-        if(req.body.specialties) req.body.specialties = req.body.specialties.split(',');
+        if(req.body.specialties && !req.body.specialties.isArray()) req.body.specialties = req.body.specialties.split(',');
         Showing.findByIdAndUpdate(req.params._id,req.body).then(result => {
             res.status(204).json({});
         }).catch(err => next(err));

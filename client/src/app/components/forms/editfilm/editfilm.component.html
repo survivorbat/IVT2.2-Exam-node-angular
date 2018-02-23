@@ -2,47 +2,51 @@
 <div class="form-group">
   <label>Film</label>
   <select type="text" class="form-control" placeholder="Film titel" (change)="selectFilm($event)">
-    <option value=""></option>
+    <option value="">Kies film...</option>
     <option *ngFor="let item of films" value="{{item._id}}">{{item.title}}</option>
   </select>
 </div>
-<div class="form-group">
+<div class="form-group" *ngIf="film.title">
+    <label>Film titel</label>
+    <input type="text" class="form-control" placeholder="Film titel" [(ngModel)]="film.title">
+</div>
+<div class="form-group" *ngIf="film.subtitle">
     <label>Film subtitel</label>
     <input type="text" class="form-control" placeholder="Film subtitel" [(ngModel)]="film.subtitle">
 </div>
-<div class="form-group">
+<div class="form-group" *ngIf="film.description">
     <label>Film beschrijving</label>
     <textarea type="text" class="form-control" placeholder="Film beschrijving" [(ngModel)]="film.description"></textarea>
 </div>
-<div class="form-group">
+<div class="form-group"  *ngIf="film.popularity">
     <label>Film populariteit (1-10)</label>
     <input type="number" class="form-control" min="1" value="5" max="10" placeholder="Film sterren" [(ngModel)]="film.popularity">
 </div>
-<div class="form-group">
+<div class="form-group"  *ngIf="film.duration">
     <label>Tijdsduur in minuten</label>
     <input type="number" class="form-control" min="10" value="10" max="300" placeholder="Film tijd in minuten" [(ngModel)]="film.duration">
 </div>
-<div class="form-group">
+<div class="form-group"  *ngIf="film.year">
     <label>Jaar van publicatie</label>
     <input type="number" class="form-control" min="1800" value="2010" max="3000" placeholder="Jaar van uitgave" [(ngModel)]="film.year">
 </div>
-<div class="form-group">
+<div class="form-group"  *ngIf="film.coverPicture">
     <label>Link naar voorpagina foto</label>
     <input type="url" class="form-control" placeholder="Link" [(ngModel)]="film.coverPicture">
 </div>
-<div class="form-group">
+<div class="form-group" *ngIf="film.stars">
     <label>Sterren, gescheiden door een komma</label>
     <input type="text" class="form-control" placeholder="Voorbeeld, Voorbeeld, Voorbeeld" [(ngModel)]="film.stars">
 </div>
-<div class="form-group">
+<div class="form-group"  *ngIf="film.directors">
     <label>Regisseurs, gescheiden door een komma</label>
     <input type="text" class="form-control" placeholder="Voorbeeld, Voorbeeld, Voorbeeld" [(ngModel)]="film.directors">
 </div>
-<div class="form-group">
+<div class="form-group" *ngIf="film.writers">
     <label>Schrijvers, gescheiden door een komma</label>
     <input type="text" class="form-control" placeholder="Voorbeeld, Voorbeeld, Voorbeeld" [(ngModel)]="film.writers">
 </div>
-<div class="form-group">
+<div class="form-group"  *ngIf="film.genre">
     <label>Genre</label>
     <select type="text" class="form-control" placeholder="Genre" [(ngModel)]="film.genre">
         <option value="Horror">Horror</option>

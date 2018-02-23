@@ -21,12 +21,12 @@ export class RoomComponent implements OnInit {
 
   ngOnInit() {
     this.params = this.route.params.subscribe(params => {
-      this.room.id = params.id;
+      this.room._id = params.id;
       this.getRoom();
     })
   }
   getRoom(): void {
-    this.roomservice.getById(this.room.id).subscribe(res => {this.room=res;this.loading=false}, err => {this.error=true;this.loading=false});
+    this.roomservice.getById(this.room._id).subscribe(res => {this.room=res;this.loading=false}, err => {this.error=true;this.loading=false});
   }
   ngOnDestroy(){
     this.params.unsubscribe();

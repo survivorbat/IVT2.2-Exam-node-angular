@@ -27,8 +27,8 @@ export class ShowinglistComponent implements OnInit, AdminCheck {
     this.getShowings();
   }
   getShowings(): void {
-    if(this._location!==undefined && this._location.id!==undefined){
-      this.showingsservice.getByLocation(this._location.id).subscribe(showings => {this.showings=showings;this.loading=false}, error => {this.loading=false;this.error=true});
+    if(this._location!==undefined && this._location._id!==undefined){
+      this.showingsservice.getByLocation(this._location._id).subscribe(showings => {this.showings=showings;this.loading=false}, error => {this.loading=false;this.error=true});
     } else {
       this.showingsservice.getAll().subscribe(showings => {this.showings=showings;this.loading=false;console.log(this.showings)}, error => {this.loading=false;this.error=true});
     }

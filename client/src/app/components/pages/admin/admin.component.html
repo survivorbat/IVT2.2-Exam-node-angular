@@ -18,9 +18,9 @@
 <div *ngIf="isAdmin()" class="tab-content">
     <div class="tab-pane active" id="film" role="tabpanel">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4 adminlist">
                 <h2>Films</h2>
-                <p>Loremipsum</p>
+                <app-filmlist></app-filmlist>
             </div>
             <div class="col-md-4">
                 <app-editfilm></app-editfilm>
@@ -34,11 +34,10 @@
         <div class="row">
             <div class="col-md-4">
                 <h2>Zalen</h2>
-                <p>Loremipsum</p>
+                <app-roomlist></app-roomlist>
             </div>
             <div class="col-md-4">
-                <h2>Zaal aanpassen</h2>
-                <p>Loremipsum</p>
+                <app-editroom></app-editroom>
             </div>
             <div class="col-md-4">
                 <app-newroom></app-newroom>
@@ -47,13 +46,12 @@
     </div>
     <div class="tab-pane" id="showing" role="tabpanel">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4 adminlist">
                 <h2>Voorstellingen</h2>
-                <p>Loremipsum</p>
+                <app-showinglist></app-showinglist>
             </div>
             <div class="col-md-4">
-                <h2>Voorstelling aanpassen</h2>
-                <p>Loremipsum</p>
+                <app-editshowing></app-editshowing>
             </div>
             <div class="col-md-4">
                 <app-newshowing></app-newshowing>
@@ -64,11 +62,10 @@
         <div class="row">
             <div class="col-md-4">
                 <h2>Locaties</h2>
-                <p>Loremipsum</p>
+                <app-locationlist></app-locationlist>
             </div>
             <div class="col-md-4">
-                <h2>Locatie aanpassen</h2>
-                <p>Loremipsum</p>
+                <app-editlocation></app-editlocation>
             </div>
             <div class="col-md-4">
                 <app-newlocation></app-newlocation>

@@ -23,12 +23,12 @@ export class LocationComponent implements OnInit {
 
   ngOnInit() {
     this.params = this.route.params.subscribe(params => {
-      this.location.id = params.id;
+      this.location._id = params.id;
       this.getLocation();
     })
   }
   getLocation(): void {
-    this.locationservice.getById(this.location.id).subscribe(res => {this.location=res;this.loading=false}, err => {this.error=true;this.loading=false});
+    this.locationservice.getById(this.location._id).subscribe(res => {this.location=res;this.loading=false}, err => {this.error=true;this.loading=false});
   }
   ngOnDestroy(){
     this.params.unsubscribe();

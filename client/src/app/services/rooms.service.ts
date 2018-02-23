@@ -24,6 +24,13 @@ export class RoomsService {
       }
     });
   }
+  patch(room: Room){
+    return this.http.patch(this.URL+'/'+room._id,room, {
+      headers: {
+        'Authorization': 'Bearer '+window.localStorage.getItem('API_TOKEN'),
+      }
+    });
+  }
   delete(id: String) {
     return this.http.delete(this.URL+'/'+id, {
       headers: {

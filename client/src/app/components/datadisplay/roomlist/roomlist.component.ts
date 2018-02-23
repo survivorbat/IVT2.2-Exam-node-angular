@@ -31,8 +31,8 @@ export class RoomlistComponent implements OnInit, AdminCheck {
     this.getRooms();
   }
   getRooms(): void {
-    if(this._location!==undefined  && this._location.id!==undefined){
-      this.roomsservice.getByLocation(this._location.id).subscribe(rooms => {this.rooms=rooms;this.loading=false}, error => {this.loading=false});
+    if(this._location!==undefined  && this._location._id!==undefined){
+      this.roomsservice.getByLocation(this._location._id).subscribe(rooms => {this.rooms=rooms;this.loading=false}, error => {this.loading=false});
     } else {
       this.roomsservice.getAll().subscribe(rooms => {this.rooms=rooms;this.loading=false;}, error => {this.loading=false;this.error=true});
     }
