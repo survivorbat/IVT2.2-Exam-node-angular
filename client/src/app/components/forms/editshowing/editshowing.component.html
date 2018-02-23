@@ -16,7 +16,7 @@
 </div>
 <div class="form-group" *ngIf="showing.date">
     <label>Datum en tijd</label>
-    <input type="datetime-local" class="form-control" placeholder="Datum en tijd" [(ngModel)]="showing.date">
+    <p><em>{{showing.date}}</em></p>
 </div>
 <div class="form-group" *ngIf="showing.specialties">
     <label>Specialiteiten (3D, gratis popcorn), gescheiden door een komma</label>

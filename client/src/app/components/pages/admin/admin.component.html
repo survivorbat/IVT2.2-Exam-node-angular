@@ -1,75 +1,24 @@
 <div class="row">
     <ul class="nav nav-pills">
         <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#film" role="tab">Films</a>
+            <a class="nav-link active" data-toggle="tab" routerLink="films" role="tab">Films</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#location" role="tab">Locaties</a>
+            <a class="nav-link" data-toggle="tab" routerLink="locations" role="tab">Locaties</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#room" role="tab">Zalen</a>
+            <a class="nav-link" data-toggle="tab" routerLink="rooms" role="tab">Zalen</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#showing" role="tab">Voorstellingen</a>
+            <a class="nav-link" data-toggle="tab" routerLink="showings" role="tab">Voorstellingen</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" routerLink="tickets" role="tab">Tickets</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" routerLink="users" role="tab">Gebruikers</a>
         </li>
     </ul>
 </div>
 
-<div *ngIf="isAdmin()" class="tab-content">
-    <div class="tab-pane active" id="film" role="tabpanel">
-        <div class="row">
-            <div class="col-md-4 adminlist">
-                <h2>Films</h2>
-                <app-filmlist></app-filmlist>
-            </div>
-            <div class="col-md-4">
-                <app-editfilm></app-editfilm>
-            </div>
-            <div class="col-md-4">
-                <app-newfilm></app-newfilm>
-            </div>
-        </div>
-    </div>
-    <div class="tab-pane" id="room" role="tabpanel">
-        <div class="row">
-            <div class="col-md-4">
-                <h2>Zalen</h2>
-                <app-roomlist></app-roomlist>
-            </div>
-            <div class="col-md-4">
-                <app-editroom></app-editroom>
-            </div>
-            <div class="col-md-4">
-                <app-newroom></app-newroom>
-            </div>
-        </div>
-    </div>
-    <div class="tab-pane" id="showing" role="tabpanel">
-        <div class="row">
-            <div class="col-md-4 adminlist">
-                <h2>Voorstellingen</h2>
-                <app-showinglist></app-showinglist>
-            </div>
-            <div class="col-md-4">
-                <app-editshowing></app-editshowing>
-            </div>
-            <div class="col-md-4">
-                <app-newshowing></app-newshowing>
-            </div>
-        </div>
-    </div>
-    <div class="tab-pane" id="location" role="tabpanel">
-        <div class="row">
-            <div class="col-md-4">
-                <h2>Locaties</h2>
-                <app-locationlist></app-locationlist>
-            </div>
-            <div class="col-md-4">
-                <app-editlocation></app-editlocation>
-            </div>
-            <div class="col-md-4">
-                <app-newlocation></app-newlocation>
-            </div>
-        </div>
-    </div>
-</div>
+<router-outlet></router-outlet>

@@ -42,7 +42,15 @@ import { EditfilmComponent } from './components/forms/editfilm/editfilm.componen
 import { EditshowingComponent } from './components/forms/editshowing/editshowing.component';
 import { EditlocationComponent } from './components/forms/editlocation/editlocation.component';
 import { EditroomComponent } from './components/forms/editroom/editroom.component';
+import { RoomsComponent } from './components/pages/admin/rooms/rooms.component';
 
+import { FilmsComponent as AdminFilms }  from './components/pages/admin/films/films.component';
+import { ShowingsComponent as AdminShowings }  from './components/pages/admin/showings/showings.component';
+import { RoomsComponent as AdminRooms }  from './components/pages/admin/rooms/rooms.component';
+import { LocationsComponent as AdminLocations }  from './components/pages/admin/locations/locations.component';
+import { UsersComponent } from './components/pages/admin/users/users.component';
+import { UserlistComponent } from './components/datadisplay/userlist/userlist.component';
+import { TicketsComponent } from './components/pages/admin/tickets/tickets.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +85,15 @@ import { EditroomComponent } from './components/forms/editroom/editroom.componen
     EditfilmComponent,
     EditshowingComponent,
     EditlocationComponent,
-    EditroomComponent
+    EditroomComponent,
+    RoomsComponent,
+    AdminFilms,
+    AdminLocations,
+    AdminRooms,
+    AdminShowings,
+    UsersComponent,
+    UserlistComponent,
+    TicketsComponent
   ],
   imports: [
     BrowserModule,

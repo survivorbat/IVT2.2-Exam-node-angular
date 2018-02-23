@@ -10,6 +10,14 @@ export class UserService {
 
   private URL: string = "https://avancinema.herokuapp.com/api/users";
 
+  getAll(): Observable<User[]>{
+    return this.http.get<User[]>(this.URL, {
+      headers: {
+        'Authorization': 'Bearer '+window.localStorage.getItem('API_TOKEN'),
+      }
+    });
+  }
+
   addUser(user: User): any {
     return this.http.post(this.URL, user);
   }

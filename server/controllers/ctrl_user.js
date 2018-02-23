@@ -3,12 +3,12 @@ const { validationResult } = require('express-validator/check');
 
 module.exports = {
     getAll(req, res, next){
-        const query = "MATCH (u:User) RETURN u.firstname as firstname,u.lastname as lastname,u.age as age,u.email as email";
+        const query = "MATCH (u:User) RETURN u";
         session.run(query)
-            .then(function(result) {
+            .then((result) => {
                 res.status(200).json(result.records);
             })
-            .catch(function(error) {
+            .catch((error) => {
                 console.log(error);
                 res.status(500).json({message:"An error occured"});
             });
@@ -35,10 +35,10 @@ module.exports = {
         function createNewUser(){
             const new_query = "CREATE (u:User {email:$email,password:$password, authlevel:0}) RETURN u";
             session.run(new_query,params)
-                .then(function(result) {
+                .then((result) => {
                     res.status(201).json({result:"succes!"});
                 })
-                .catch(function(error) {
+                .catch((error) => {
                     console.log(error);
                     res.status(500).json({message:"An error occured"});
                 });
