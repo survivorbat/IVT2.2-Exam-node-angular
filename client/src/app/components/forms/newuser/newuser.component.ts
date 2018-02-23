@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import User from '../../../domain/User';
 import { UserService } from '../../../services/user.service';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-newuser',
@@ -10,10 +11,19 @@ import { UserService } from '../../../services/user.service';
 export class NewuserComponent implements OnInit {
   newUser: User;
   formresult: String;
+  registerForm: FormGroup;
   constructor(private userservice: UserService) { }
 
   ngOnInit() {
     this.newUser=new User();
+    this.registerForm = new FormGroup({
+      'email': new FormControl(this.newUser.email, [
+        Validators.required
+      ]),
+      'password': new FormControl(this.newUser.password, [
+        Validators.required
+      ])
+    });
   }
   reset(){
     this.newUser=new User();
