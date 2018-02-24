@@ -27,7 +27,7 @@ describe('Meal API interface', () => {
         chai.request(server)
             .get('/api/rooms/wololo')
             .end((err, res) => {
-                res.should.have.status(400);
+                res.should.have.status(422);
                 res.body.should.be.a('object');
                 done();
             });
