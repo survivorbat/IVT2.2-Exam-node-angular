@@ -68,6 +68,9 @@ router.use("/api/",adminroutes);
 
 router.use((error,req,res,next) => {
     console.log(error);
+    if(error.name==="CastError"){
+        error.status = 400;
+    }
 	res.status(error.status || 500).send({
         message: error.message,
         code: error.code,
