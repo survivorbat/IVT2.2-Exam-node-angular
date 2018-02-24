@@ -1,45 +1,71 @@
 <h2>Locatie aanpassen</h2>
-<div class="form-group">
-  <label>Locatie</label>
-  <select type="text" class="form-control" placeholder="Locatie titel" (change)="selectLocation($event)">
-    <option value="">Kies locatie...</option>
-    <option *ngFor="let item of locations" value="{{item._id}}">{{item.name}}</option>
-  </select>
-</div>
-<div class="form-group" *ngIf="location.name">
-  <label>Locatie Naam</label>
-  <input type="text" class="form-control" placeholder="Locatie naam" [(ngModel)]="location.name">
-</div>
-<div class="form-group" *ngIf="location.street">
-  <label>Straat</label>
-  <input type="text" class="form-control" placeholder="Straat" [(ngModel)]="location.street">
-</div>
-<div class="form-group" *ngIf="location.city">
-    <label>Stad</label>
-    <input type="text" class="form-control" placeholder="Stad" [(ngModel)]="location.city">
-</div>
-<div class="form-group" *ngIf="location.number">
-    <label>Huisnummer</label>
-    <input type="number" class="form-control" placeholder="Huisnummer" [(ngModel)]="location.number">
-</div>
-<div class="form-group" *ngIf="location.zip">
-    <label>Postcode</label>
-    <input type="text" class="form-control" placeholder="Postcode" [(ngModel)]="location.zip">
-</div>
-<div class="form-group" *ngIf="location.state">
-    <label>Provincie</label>
-    <input type="text" class="form-control" placeholder="Provincie" [(ngModel)]="location.state">
-</div>
-<div class="form-group" *ngIf="location.country">
-    <label>Land</label>
-    <select type="text" class="form-control" placeholder="Land" [(ngModel)]="location.country">
-      <option value="Nederland">Nederland</option>
-      <option value="België">België</option>
-    </select>
-</div>
-<div class="form-group">
-    <p>{{errorfield}}</p>
-</div>
-<div class="form-group">
-    <button class="btn btn-primary" (click)="submit()">Aanpassen</button>
-</div>
+<form #editlocationForm="ngForm" (ngSubmit)="submit()" [ngFormOptions]="{updateOn: 'blur'}">
+    <div class="form-group">
+        <label>Locatie</label>
+        <select type="text" class="form-control" placeholder="Locatie titel" (change)="selectLocation($event)">
+            <option value="">Kies locatie...</option>
+            <option *ngFor="let item of locations" value="{{item._id}}">{{item.name}}</option>
+        </select>
+    </div>
+    <div class="form-group" *ngIf="location.name">
+        <label>Locatie Naam</label>
+        <input type="text" class="form-control" placeholder="Locatie naam" required [(ngModel)]="location.name" name="name" #name="ngModel">
+        <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+            <span>Een naam is vereist</span>
+        </div>
+    </div>
+    <div class="form-group" *ngIf="location.name">
+        <label>Straat</label>
+        <input type="text" class="form-control" placeholder="Straat" required [(ngModel)]="location.street" name="street" #street="ngModel">
+        <div [hidden]="street.valid || street.pristine" class="alert alert-danger">
+            <span>Een straat is vereist</span>
+        </div>
+    </div>
+    <div class="form-group" *ngIf="location.name">
+        <label>Stad</label>
+        <input type="text" class="form-control" placeholder="Stad" required [(ngModel)]="location.city" name="city" #city="ngModel">
+        <div [hidden]="city.valid || city.pristine" class="alert alert-danger">
+            <span>Een stad is vereist</span>
+        </div>
+    </div>
+    <div class="form-group" *ngIf="location.name">
+        <label>Huisnummer</label>
+        <input type="number" class="form-control" min="1" max="5000" minval="1" maxval="5000" placeholder="Huisnummer" name="number" required [(ngModel)]="location.number"
+            name="number" #number="ngModel">
+        <div [hidden]="number.valid || number.pristine" class="alert alert-danger">
+            <span>Een huisnummer is vereist</span>
+        </div>
+    </div>
+    <div class="form-group" *ngIf="location.name">
+        <label>Postcode</label>
+        <input type="text" class="form-control" placeholder="Postcode" required [(ngModel)]="location.zip" name="zip" #zip="ngModel">
+        <div [hidden]="zip.valid || zip.pristine" class="alert alert-danger">
+            <span>Een postcode is vereist</span>
+        </div>
+    </div>
+    <div class="form-group" *ngIf="location.name">
+        <label>Provincie</label>
+        <input type="text" class="form-control" placeholder="Provincie / staat" required [(ngModel)]="location.state" name="state"
+            #state="ngModel">
+        <div [hidden]="state.valid || state.pristine" class="alert alert-danger">
+            <span>Een provincie of staat is vereist</span>
+        </div>
+    </div>
+    <div class="form-group" *ngIf="location.name">
+        <label>Land</label>
+        <select type="text" class="form-control" placeholder="Land" required [(ngModel)]="location.country" name="country" #country="ngModel">
+            <option value="Nederland">Nederland</option>
+            <option value="België">België</option>
+        </select>
+        <div [hidden]="country.valid || country.pristine" class="alert alert-danger">
+            <span>Een land is vereist</span>
+        </div>
+    </div>
+    <div class="form-group" *ngIf="location.name">
+        <p>{{errorfield}}</p>
+    </div>
+    <div class="form-group" *ngIf="location.name">
+        <button type="submit" class="btn btn-primary" [disabled]="!editlocationForm.form.valid">Aanpassen</button>
+        <button type="reset" class="btn btn-warning">Reset</button>
+    </div>
+</form>

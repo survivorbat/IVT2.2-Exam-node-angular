@@ -1,31 +1,46 @@
 <h2>Voorstelling toevoegen</h2>
-<div class="form-group">
-  <label>Film</label>
-  <select type="number" class="form-control" placeholder="Locatie" [(ngModel)]="showing.film">
-    <option *ngFor="let film of films" value="{{film._id}}">{{film.title}}</option>
-  </select>
-</div>
-<div class="form-group">
-    <label>Prijs in €</label>
-    <input type="number" class="form-control" step="0.1" min="5" max="100" placeholder="Prijs" [(ngModel)]="showing.price">
-</div>
-<div class="form-group">
-    <label>Datum en tijd</label>
-    <input type="datetime-local" class="form-control" placeholder="Datum en tijd" [(ngModel)]="showing.date">
-</div>
-<div class="form-group">
-    <label>Specialiteiten (3D, gratis popcorn), gescheiden door een komma</label>
-    <input type="text" class="form-control" placeholder="Specialiteiten" [(ngModel)]="showing.specialties">
-</div>
-<div class="form-group">
-    <label>Zaal</label>
-    <select type="number" class="form-control" placeholder="Locatie" [(ngModel)]="showing.room">
-      <option *ngFor="let room of rooms" value="{{room._id}}">{{room.location.name}}, {{room.name}}</option>
+<form #showingForm="ngForm" (ngSubmit)="submit()" [ngFormOptions]="{updateOn: 'blur'}">
+  <div class="form-group">
+    <label>Film</label>
+    <select class="form-control" placeholder="Locatie" [(ngModel)]="showing.film" required name="film" #film="ngModel">
+      <option *ngFor="let film of films" value="{{film._id}}">{{film.title}}</option>
     </select>
-</div>
-<div class="form-group">
-  <p>{{errorfield}}</p>
-</div>
-<div class="form-group">
-  <button class="btn btn-primary" (click)="submit()">Toevoegen</button>
-</div>
+    <div [hidden] = "film.valid || film.pristine" class="alert alert-danger">
+      <span>Een film is vereist</span>
+    </div>
+  </div>
+  <div class="form-group">
+      <label>Prijs in €</label>
+      <input type="number" class="form-control" step="0.1" minval="5" maxval="100" min="5" max="100" placeholder="Prijs" [(ngModel)]="showing.price" required  name="price" #price="ngModel">
+      <div [hidden] = "price.valid || price.pristine" class="alert alert-danger">
+        <span>Een prijs tussen de 5 en 100 euro is vereist</span>
+      </div>
+  </div>
+  <div class="form-group">
+      <label>Datum en tijd</label>
+      <input type="datetime-local" class="form-control" placeholder="Datum en tijd" [(ngModel)]="showing.date" required  name="date" #date="ngModel">
+      <div [hidden] = "date.valid || date.pristine" class="alert alert-danger">
+        <span>Een datum en tijd is vereist</span>
+      </div>
+  </div>
+  <div class="form-group">
+      <label>Specialiteiten (3D, gratis popcorn), gescheiden door een komma</label>
+      <input type="text" class="form-control" placeholder="Specialiteiten" [(ngModel)]="showing.specialties" name="specialties">
+  </div>
+  <div class="form-group">
+      <label>Zaal</label>
+      <select type="number" class="form-control" placeholder="Locatie" [(ngModel)]="showing.room" required  name="room" #room="ngModel">
+        <option *ngFor="let room of rooms" value="{{room._id}}">{{room.location.name}}, {{room.name}}</option>
+      </select>
+      <div [hidden] = "room.valid || room.pristine" class="alert alert-danger">
+        <span>Een zaal is vereist</span>
+      </div>
+  </div>
+  <div class="form-group">
+    <p>{{errorfield}}</p>
+  </div>
+  <div class="form-group">
+      <button type="submit" class="btn btn-primary" [disabled]="!showingForm.form.valid">Toevoegen</button>
+      <button type="reset" class="btn btn-warning">Reset</button>
+  </div>
+</form>

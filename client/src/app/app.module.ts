@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, TemplateRef } from '@angular/core';
-import { FormsModule }  from '@angular/forms';
+import { FormsModule, ReactiveFormsModule }  from '@angular/forms';
 import { HttpClientModule, HttpClient }    from '@angular/common/http';
 import { AppRoutingModule }     from './app-routing.module';
 
@@ -26,7 +26,6 @@ import { ShowinglistComponent } from './components/datadisplay/showinglist/showi
 import { ShowingsService } from './services/showingservice.service';
 import { ShowingComponent } from './components/pages/showing/showing.component';
 import { NewticketComponent } from './components/forms/newticket/newticket.component';
-import { RepeatDirective } from './directives/repeat.directive';
 import { RoomComponent } from './components/pages/room/room.component';
 import { UserComponent } from './components/pages/user/user.component';
 import { NewuserComponent } from './components/forms/newuser/newuser.component';
@@ -51,6 +50,8 @@ import { LocationsComponent as AdminLocations }  from './components/pages/admin/
 import { UsersComponent } from './components/pages/admin/users/users.component';
 import { UserlistComponent } from './components/datadisplay/userlist/userlist.component';
 import { TicketsComponent } from './components/pages/admin/tickets/tickets.component';
+import { MinvalidatorDirective } from './directives/minvalidator.directive';
+import { MaxvalidatorDirective } from './directives/maxvalidator.directive';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,6 @@ import { TicketsComponent } from './components/pages/admin/tickets/tickets.compo
     ShowinglistComponent,
     ShowingComponent,
     NewticketComponent,
-    RepeatDirective,
     RoomComponent,
     UserComponent,
     NewuserComponent,
@@ -93,13 +93,16 @@ import { TicketsComponent } from './components/pages/admin/tickets/tickets.compo
     AdminShowings,
     UsersComponent,
     UserlistComponent,
-    TicketsComponent
+    TicketsComponent,
+    MinvalidatorDirective,
+    MaxvalidatorDirective
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [FilmsService, LocationsService, RoomsService, ShowingsService, UserService, TicketService],
   bootstrap: [AppComponent]

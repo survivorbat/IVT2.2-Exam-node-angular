@@ -68,7 +68,7 @@ export class NewticketComponent implements OnInit {
     if(this.newTickets.length>this.amountOfTickets){
       this.errorField="U heeft meer stoelen aangekruisd dan de hoeveelheid tickets die u wilt bestellen.";
     } else if(this.newTickets.length<this.amountOfTickets){
-      this.errorField="U kunt nog "+(this.newTickets.length-this.amountOfTickets)+" stoelen selecteren.";
+      this.errorField="U kunt nog "+(this.amountOfTickets-this.newTickets.length)+" stoel(en) selecteren.";
     } else if(this.newTickets.length===this.amountOfTickets){
       let counter = 0;
       for(let loc of this.newTickets){

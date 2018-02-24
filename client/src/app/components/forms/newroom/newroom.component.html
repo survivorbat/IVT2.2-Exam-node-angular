@@ -1,25 +1,40 @@
 <h2>Zaal toevoegen</h2>
-<div class="form-group">
-  <label>Zaal Naam</label>
-  <input type="text" class="form-control" placeholder="Zaal naam" [(ngModel)]="room.name">
-</div>
-<div class="form-group">
-    <label>Rijen stoelen</label>
-    <input type="number" class="form-control" placeholder="Rijen" [(ngModel)]="room.rows">
-</div>
-<div class="form-group">
-    <label>Kolommen aan stoelen</label>
-    <input type="number" class="form-control" placeholder="Kolommen" [(ngModel)]="room.columns">
-</div>
-<div class="form-group">
-    <label>Locatie</label>
-    <select type="number" class="form-control" placeholder="Locatie" [(ngModel)]="room.location">
-      <option *ngFor="let location of locations" value="{{location._id}}">{{location.name}}</option>
-    </select>
-</div>
-<div class="form-group">
-  <p>{{errorfield}}</p>
-</div>
-<div class="form-group">
-  <button class="btn btn-primary" (click)="submit()">Toevoegen</button>
-</div>
+<form #newroomForm="ngForm" (ngSubmit)="submit()" [ngFormOptions]="{updateOn: 'blur'}">
+  <div class="form-group">
+    <label>Zaal Naam</label>
+    <input type="text" class="form-control" placeholder="Zaal naam" [(ngModel)]="room.name" name="name" #name="ngModel" required>
+    <div [hidden] = "name.valid || name.pristine" class="alert alert-danger">
+      <span>Een zaalnaam is vereist</span>
+    </div>
+  </div>
+  <div class="form-group">
+      <label>Rijen stoelen</label>
+      <input type="number" class="form-control" min="1" max="60" step="1" minval="1" maxval="60" placeholder="Rijen" [(ngModel)]="room.rows" name="rows" #rows="ngModel" required>
+      <div [hidden] = "rows.valid || rows.pristine" class="alert alert-danger">
+        <span>Een rijnummer tussen de 1 en 60 is vereist</span>
+      </div>
+    </div>
+  <div class="form-group">
+      <label>Kolommen aan stoelen</label>
+      <input type="number" class="form-control" min="1" max="25" step="1" minval="1" maxval="25" placeholder="Kolommen" [(ngModel)]="room.columns" name="columns" #columns="ngModel" required>
+      <div [hidden] = "columns.valid || columns.pristine" class="alert alert-danger">
+        <span>Een kolomnummer tussen de 1 en 25 is vereist</span>
+      </div>
+    </div>
+  <div class="form-group">
+      <label>Locatie</label>
+      <select type="number" class="form-control" placeholder="Locatie" [(ngModel)]="room.location" name="location" #location="ngModel" required>
+        <option *ngFor="let location of locations" value="{{location._id}}">{{location.name}}</option>
+      </select>
+      <div [hidden] = "location.valid || location.pristine" class="alert alert-danger">
+        <span>Een locatie is vereist</span>
+      </div>
+  </div>
+  <div class="form-group">
+    <p>{{errorfield}}</p>
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary" [disabled]="!loginForm.form.valid">Toevoegen</button>
+    <button type="reset" class="btn btn-warning">Reset</button>
+  </div>
+</form>

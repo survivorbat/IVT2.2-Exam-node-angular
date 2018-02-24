@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import User from '../../../domain/User';
 import { UserService } from '../../../services/user.service';
-import { FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-newuser',
@@ -11,28 +10,15 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 export class NewuserComponent implements OnInit {
   newUser: User;
   formresult: String;
-  registerForm: FormGroup;
   constructor(private userservice: UserService) { }
 
   ngOnInit() {
-    this.newUser=new User();
-    this.registerForm = new FormGroup({
-      'email': new FormControl(this.newUser.email, [
-        Validators.required
-      ]),
-      'password': new FormControl(this.newUser.password, [
-        Validators.required
-      ])
-    });
-  }
-  reset(){
     this.newUser=new User();
   }
   submit(){
     this.userservice.addUser(this.newUser).subscribe(res => {
       this.formresult="Gelukt! Welkom bij Avancinema. U kunt nu gelijk inloggen.";
     }, error => {
-      console.log(error);
       if(error.status===422){
         this.formresult="Er ging iets mis bij het versturen van dit formulier, heeft u alles goed ingevuld?";
       } else if(error.status===500){

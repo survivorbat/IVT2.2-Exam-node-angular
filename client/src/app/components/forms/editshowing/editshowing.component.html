@@ -1,34 +1,40 @@
 <h2>Voorstelling aanpassen</h2>
-<div class="form-group">
-  <label>Voorstelling</label>
-  <select type="text" class="form-control" placeholder="Voorstelling" (change)="selectShowing($event)">
-    <option value="">Kies voorstelling...</option>
-    <option *ngFor="let item of showings" value="{{item._id}}">{{item.film.title}} ({{item.date.substring(0,16).replace('T',' ')}})</option>
-  </select>
-</div>
-<div class="form-group" *ngIf="showing.film">
-  <label>Film</label>
-  <p><em>{{showing.film.title}}</em></p>
-</div>
-<div class="form-group" *ngIf="showing.price">
-    <label>Prijs in €</label>
-    <input type="number" class="form-control" step="0.1" min="5" max="100" placeholder="Prijs" [(ngModel)]="showing.price">
-</div>
-<div class="form-group" *ngIf="showing.date">
-    <label>Datum en tijd</label>
-    <p><em>{{showing.date}}</em></p>
-</div>
-<div class="form-group" *ngIf="showing.specialties">
-    <label>Specialiteiten (3D, gratis popcorn), gescheiden door een komma</label>
-    <input type="text" class="form-control" placeholder="Specialiteiten" [(ngModel)]="showing.specialties">
-</div>
-<div class="form-group" *ngIf="showing.room">
-    <label>Zaal</label>
-    <p><em>{{showing.room.location.name}}, {{showing.room.name}}</em></p>
-</div>
-<div class="form-group">
-  <p>{{errorfield}}</p> 
-</div>
-<div class="form-group">
-  <button class="btn btn-primary" (click)="submit()">Aanpassen</button>
-</div>
+<form #editshowingForm="ngForm" (ngSubmit)="submit()" [ngFormOptions]="{updateOn: 'blur'}">
+  <div class="form-group">
+    <label>Voorstelling</label>
+    <select type="text" class="form-control" placeholder="Voorstelling" (change)="selectShowing($event)">
+      <option value="">Kies voorstelling...</option>
+      <option *ngFor="let item of showings" value="{{item._id}}">{{item.film.title}} ({{item.date.substring(0,16).replace('T',' ')}})</option>
+    </select>
+  </div>
+  <div class="form-group" *ngIf="showing.film">
+    <label>Film</label>
+    <p><em>{{showing.film.title}}</em></p>
+  </div>
+  <div class="form-group" *ngIf="showing.date">
+      <label>Prijs in €</label>
+      <input type="number" class="form-control" step="0.1" minval="5" maxval="100" min="5" max="100" placeholder="Prijs" [(ngModel)]="showing.price" required  name="price" #price="ngModel">
+      <div [hidden] = "price.valid || price.pristine" class="alert alert-danger">
+        <span>Een prijs tussen de 5 en 100 euro is vereist</span>
+      </div>
+  </div>
+  <div class="form-group" *ngIf="showing.date">
+      <label>Datum en tijd</label>
+      <p><em>{{showing.date}}</em></p>
+  </div>
+  <div class="form-group" *ngIf="showing.date">
+      <label>Specialiteiten (3D, gratis popcorn), gescheiden door een komma</label>
+      <input type="text" class="form-control" placeholder="Specialiteiten" [(ngModel)]="showing.specialties" name="specialties">
+  </div>
+  <div class="form-group" *ngIf="showing.room">
+      <label>Zaal</label>
+      <p><em>{{showing.room.location.name}}, {{showing.room.name}}</em></p>
+  </div>
+  <div class="form-group" *ngIf="showing.date">
+    <p>{{errorfield}}</p>
+  </div>
+  <div class="form-group" *ngIf="showing.date">
+      <button type="submit" class="btn btn-primary" [disabled]="!editshowingForm.form.valid">Aanpassen</button>
+      <button type="reset" class="btn btn-warning">Reset</button>
+  </div>
+</form>
