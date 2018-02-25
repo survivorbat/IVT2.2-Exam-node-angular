@@ -24,7 +24,7 @@ const showingSchema = new Schema({
         required: true,
         type: Number,
         min: 1.00,
-        max: 50.00
+        max: 100.00
     }
 });
 
