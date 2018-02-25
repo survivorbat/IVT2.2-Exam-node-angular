@@ -4,7 +4,7 @@ const server = require('../server');
 const should = chai.should();
 
 chai.use(chaiHttp);
-describe('Meal API interface', () => {
+describe('Showing API interface', () => {
 	it('should GET /api/showings/ correctly', done => {
         chai.request(server)
             .get('/api/showings')

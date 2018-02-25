@@ -67,8 +67,7 @@ const adminroutes = require('./routes/admin.routes');
 router.use("/api/",adminroutes);
 
 router.use((error,req,res,next) => {
-    console.log(error);
-    if(error.name==="CastError"){
+    if(error.name==="CastError" || error.name==="ValidationError"){
         error.status = 422;
     }
 	res.status(error.status || 500).send({

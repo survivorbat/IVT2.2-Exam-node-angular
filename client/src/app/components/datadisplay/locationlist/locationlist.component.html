@@ -6,9 +6,9 @@
             <h1 class="card-title font-weight-bold">{{location.name}}</h1>
             <p class="card-text" style="margin-bottom:0">{{location.city}} ({{location.state}})</p>
             <p class="card-text">{{location.street}}, {{location.number}} ({{location.zip}})</p>
-            <button *ngIf="isAdmin()" class="btn btn-danger btn-sm" (click)="deleteLocation(location._id)">Verwijder</button>
         </div>
       </a>
+      <button *ngIf="isAdmin()" class="btn btn-danger btn-block" (click)="deleteLocation(location._id)">Verwijder</button>
     </div>
   </main>
 </section>

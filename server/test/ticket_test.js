@@ -4,6 +4,6 @@ const server = require('../server');
 const should = chai.should();
 
 chai.use(chaiHttp);
-describe('Meal API interface', () => {
+describe('Ticket API interface', () => {
 	
 });
