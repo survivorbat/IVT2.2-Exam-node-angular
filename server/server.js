@@ -8,7 +8,7 @@ const validator = require('express-validator');
 const cors = require('cors');
 /* Middleware */
 app.use(compression());
-app.use(logger('production'));
+app.use(logger('tiny'));
 app.use(bodyParser.json());
 app.use(bodyParser.json({type:'application/vnd.api+json'}));
 app.use(bodyParser.urlencoded({extended:true}));
