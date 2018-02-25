@@ -5,10 +5,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build": "ng build --prod --base-href \"https://survivorbat.github.io/IVT2.2-Exam-node-angular/\"",
+    "deploy": "angular-cli-ghpages"
   },
   "private": true,
   "dependencies": {
