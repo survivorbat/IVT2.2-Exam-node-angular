@@ -1,5 +1,5 @@
 <h2>Zaal aanpassen</h2>
-<form #editroomForm="ngForm" (ngSubmit)="submit()" [ngFormOptions]="{updateOn: 'blur'}">
+<form #editroomForm="ngForm" (ngSubmit)="submit()" [ngFormOptions]="{updateOn: 'change'}">
   <div class="form-group">
     <label>Zaal</label>
     <select type="text" class="form-control" placeholder="Zaal titel" (change)="selectRoom($event)">

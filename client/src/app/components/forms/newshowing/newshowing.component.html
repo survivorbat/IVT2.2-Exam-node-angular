@@ -1,5 +1,5 @@
 <h2>Voorstelling toevoegen</h2>
-<form #showingForm="ngForm" (ngSubmit)="submit()" [ngFormOptions]="{updateOn: 'blur'}">
+<form #showingForm="ngForm" (ngSubmit)="submit()" [ngFormOptions]="{updateOn: 'change'}">
   <div class="form-group">
     <label>Film</label>
     <select class="form-control" placeholder="Locatie" [(ngModel)]="showing.film" required name="film" #film="ngModel">

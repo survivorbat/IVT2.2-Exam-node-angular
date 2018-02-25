@@ -1,5 +1,5 @@
 <h2>Film toevoegen</h2>
-<form #newfilmForm="ngForm" (ngSubmit)="submit()" [ngFormOptions]="{updateOn: 'blur'}">
+<form #newfilmForm="ngForm" (ngSubmit)="submit()" [ngFormOptions]="{updateOn: 'change'}">
     <div class="form-group">
         <label>Film titel</label>
         <input required type="text" class="form-control" placeholder="Film titel" [(ngModel)]="film.title" #title="ngModel" name="title">

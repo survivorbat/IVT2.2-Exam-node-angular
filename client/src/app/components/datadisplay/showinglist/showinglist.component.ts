@@ -44,7 +44,7 @@ export class ShowinglistComponent implements OnInit, AdminCheck {
 	}
   
   @Input() set location(location: Location){
-    this.location = location;
+    this._location = location;
     this.getShowings();
   }
 
@@ -59,7 +59,7 @@ export class ShowinglistComponent implements OnInit, AdminCheck {
     if(this.location!==undefined && this.location._id!==undefined){
       this.showingsservice.getByLocation(this.location._id).subscribe(showings => {this.showings=showings;this.loading=false}, error => {this.loading=false;this.error=true});
     } else {
-      this.showingsservice.getAll().subscribe(showings => {this.showings=showings;this.loading=false;console.log(this.showings)}, error => {this.loading=false;this.error=true});
+      this.showingsservice.getAll().subscribe(showings => {this.showings=showings;this.loading=false}, error => {this.loading=false;this.error=true});
     }
   }
   isAdmin(): boolean {

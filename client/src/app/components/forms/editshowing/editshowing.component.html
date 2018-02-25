@@ -1,5 +1,5 @@
 <h2>Voorstelling aanpassen</h2>
-<form #editshowingForm="ngForm" (ngSubmit)="submit()" [ngFormOptions]="{updateOn: 'blur'}">
+<form #editshowingForm="ngForm" (ngSubmit)="submit()" [ngFormOptions]="{updateOn: 'change'}">
   <div class="form-group">
     <label>Voorstelling</label>
     <select type="text" class="form-control" placeholder="Voorstelling" (change)="selectShowing($event)">

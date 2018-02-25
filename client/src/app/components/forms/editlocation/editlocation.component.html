@@ -1,5 +1,5 @@
 <h2>Locatie aanpassen</h2>
-<form #editlocationForm="ngForm" (ngSubmit)="submit()" [ngFormOptions]="{updateOn: 'blur'}">
+<form #editlocationForm="ngForm" (ngSubmit)="submit()" [ngFormOptions]="{updateOn: 'change'}">
     <div class="form-group">
         <label>Locatie</label>
         <select type="text" class="form-control" placeholder="Locatie titel" (change)="selectLocation($event)">

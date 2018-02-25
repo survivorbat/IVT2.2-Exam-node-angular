@@ -1,5 +1,5 @@
 <h2>Locatie toevoegen</h2>
-<form #newlocationForm="ngForm" (ngSubmit)="submit()" [ngFormOptions]="{updateOn: 'blur'}">
+<form #newlocationForm="ngForm" (ngSubmit)="submit()" [ngFormOptions]="{updateOn: 'change'}">
   <div class="form-group">
     <label>Locatie Naam</label>
     <input type="text" class="form-control" placeholder="Locatie naam" required [(ngModel)]="location.name" name="name" #name="ngModel">

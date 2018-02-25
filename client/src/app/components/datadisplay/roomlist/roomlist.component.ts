@@ -44,7 +44,7 @@ export class RoomlistComponent implements OnInit, AdminCheck {
 	}
   
   @Input() set location(location: Location){
-    this.location = location;
+    this._location = location;
     this.getRooms();
   }
 

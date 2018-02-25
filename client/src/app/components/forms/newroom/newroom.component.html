@@ -1,5 +1,5 @@
 <h2>Zaal toevoegen</h2>
-<form #newroomForm="ngForm" (ngSubmit)="submit()" [ngFormOptions]="{updateOn: 'blur'}">
+<form #newroomForm="ngForm" (ngSubmit)="submit()" [ngFormOptions]="{updateOn: 'change'}">
   <div class="form-group">
     <label>Zaal Naam</label>
     <input type="text" class="form-control" placeholder="Zaal naam" [(ngModel)]="room.name" name="name" #name="ngModel" required>

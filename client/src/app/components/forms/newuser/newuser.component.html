@@ -5,7 +5,7 @@
           <h2>Registreren</h2>
       </div>
     </div>
-    <form (ngSubmit)="submit()" #registerForm="ngForm" [ngFormOptions]="{updateOn: 'blur'}">
+    <form (ngSubmit)="submit()" #registerForm="ngForm" [ngFormOptions]="{updateOn: 'change'}">
         <div class="form-group row">
           <div class="col-md-4"><label for="email">Email</label></div>
           <div class="col-md-8">

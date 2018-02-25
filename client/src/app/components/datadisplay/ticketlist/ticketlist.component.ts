@@ -59,9 +59,9 @@ export class TicketlistComponent implements OnInit {
 
   private getTickets(): void {
     if(!this.admin){
-      this.ticketsservice.getByUser().subscribe(tickets => {this.tickets=tickets;this.loading=false;console.log(this.tickets)}, error => {this.loading=false;this.error=true});
+      this.ticketsservice.getByUser().subscribe(tickets => {this.tickets=tickets;this.loading=false}, error => {this.loading=false;this.error=true});
     } else {
-      this.ticketsservice.getAll().subscribe(tickets => {this.tickets=tickets;this.loading=false;console.log(this.tickets)}, error => {this.loading=false;this.error=true});
+      this.ticketsservice.getAll().subscribe(tickets => {this.tickets=tickets;this.loading=false}, error => {this.loading=false;this.error=true});
     }
   }
   

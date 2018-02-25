@@ -5,7 +5,7 @@
             <h2>Inloggen</h2>
         </div>
       </div>
-      <form #loginForm="ngForm" (ngSubmit)="submit()" [ngFormOptions]="{updateOn: 'blur'}">
+      <form #loginForm="ngForm" (ngSubmit)="submit()" [ngFormOptions]="{updateOn: 'change'}">
         <div class="form-group row">
           <div class="col-md-4"><label for="email">Email</label></div>
           <div class="col-md-8">

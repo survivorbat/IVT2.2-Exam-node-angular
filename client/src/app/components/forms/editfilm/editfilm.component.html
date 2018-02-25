@@ -1,5 +1,5 @@
 <h2>Film aanpassen</h2>
-<form #filmeditForm="ngForm" (ngSubmit)="submit()" [ngFormOptions]="{updateOn: 'blur'}">
+<form #filmeditForm="ngForm" (ngSubmit)="submit()" [ngFormOptions]="{updateOn: 'change'}">
     <div class="form-group">
         <label>Film</label>
         <select type="text" class="form-control" placeholder="Film titel" (change)="selectFilm($event)">
@@ -55,15 +55,15 @@
     </div>
     <div class="form-group" *ngIf="film.title">
         <label>Sterren, gescheiden door een komma</label>
-        <input type="text" class="form-control" placeholder="Voorbeeld, Voorbeeld, Voorbeeld" [(ngModel)]="film.stars" #stars="ngModel">
+        <input type="text" class="form-control" placeholder="Voorbeeld, Voorbeeld, Voorbeeld" [(ngModel)]="film.stars" #stars="ngModel" name="stars">
     </div>
     <div class="form-group" *ngIf="film.title">
         <label>Regisseurs, gescheiden door een komma</label>
-        <input type="text" class="form-control" placeholder="Voorbeeld, Voorbeeld, Voorbeeld" [(ngModel)]="film.directors" #directors="ngModel">
+        <input type="text" class="form-control" placeholder="Voorbeeld, Voorbeeld, Voorbeeld" [(ngModel)]="film.directors" #directors="ngModel" name="directors">
     </div>
     <div class="form-group" *ngIf="film.title">
         <label>Schrijvers, gescheiden door een komma</label>
-        <input type="text" class="form-control" placeholder="Voorbeeld, Voorbeeld, Voorbeeld" [(ngModel)]="film.writers" #writers="ngModel">
+        <input type="text" class="form-control" placeholder="Voorbeeld, Voorbeeld, Voorbeeld" [(ngModel)]="film.writers" #writers="ngModel" name="writers">
     </div>
     <div class="form-group" *ngIf="film.title">
         <label>Genre</label>
