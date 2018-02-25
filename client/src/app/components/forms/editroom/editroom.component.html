@@ -16,9 +16,9 @@
   </div>
   <div class="form-group" *ngIf="room.name">
       <label>Rijen stoelen</label>
-      <input type="number" class="form-control" min="1" max="60" step="1" minval="1" maxval="60" placeholder="Rijen" [(ngModel)]="room.rows" name="rows" #rows="ngModel" required>
+      <input type="number" class="form-control" min="1" max="25" step="1" minval="1" maxval="25" placeholder="Rijen" [(ngModel)]="room.rows" name="rows" #rows="ngModel" required>
       <div [hidden] = "rows.valid || rows.pristine" class="alert alert-danger">
-        <span>Een rijnummer tussen de 1 en 60 is vereist</span>
+        <span>Een rijnummer tussen de 1 en 25 is vereist</span>
       </div>
     </div>
   <div class="form-group" *ngIf="room.name">

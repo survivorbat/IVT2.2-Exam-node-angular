@@ -11,10 +11,10 @@
               <h6 *ngIf="showing.film.subtitle" class="card-text">{{showing.film.subtitle}}</h6>
               <p class="card-text"><em>{{showing.film.genre}}</em></p>
               <p class="card-text text-muted">€{{showing.price}} p.p.</p>
-              <p class="card-text text-warning font-weight-bold" style="margin-bottom:0">{{showing.room.name}}, {{showing.room.location.name}}</p>
+              <p class="card-text text-warning font-weight-bold">{{showing.room.name}}, {{showing.room.location.name}}</p>
+              <button *ngIf="isAdmin()" class="btn btn-danger btn-sm" (click)="deleteShowing(showing._id)">Verwijder</button>
           </div>
         </a>
-        <div class="card-body"><button *ngIf="isAdmin()" class="btn btn-danger btn-sm" (click)="deleteShowing(showing._id)">Verwijder</button></div>
       </div>
     </div>
   </main>

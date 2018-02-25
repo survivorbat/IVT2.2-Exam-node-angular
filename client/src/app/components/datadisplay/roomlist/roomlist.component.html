@@ -4,9 +4,10 @@
       <a routerLink="/rooms/{{room._id}}">
         <div class="card-body">
             <h4 class="card-title font-weight-bold">{{room.name}}</h4>
+            <p>{{room.location.name}}</p>
+            <button *ngIf="isAdmin()" class="btn btn-danger btn-sm" (click)="deleteRoom(room._id)">Verwijder</button>
         </div>
       </a>
-      <div class="card-body"><button *ngIf="isAdmin()" class="btn btn-danger btn-sm" (click)="deleteRoom(room._id)">Verwijder</button></div>
     </div>
   </main>
 </section>
