@@ -10,12 +10,41 @@ import AdminCheck from '../../../domain/interfaces/AdminCheck';
   styleUrls: ['./roomlist.component.scss']
 })
 export class RoomlistComponent implements OnInit, AdminCheck {
-  error: boolean;
-  loading: boolean;
-  rooms: Room[];
-  _location: Location;
+  private _error: boolean;
+  private _loading: boolean;
+  private _rooms: Room[];
+  private _location: Location;
+
+	public get error(): boolean {
+		return this._error;
+	}
+
+	public set error(value: boolean) {
+		this._error = value;
+	}
+
+	public get loading(): boolean {
+		return this._loading;
+	}
+
+	public set loading(value: boolean) {
+		this._loading = value;
+	}
+
+	public get rooms(): Room[] {
+		return this._rooms;
+	}
+
+	public set rooms(value: Room[]) {
+		this._rooms = value;
+	}
+
+	get location(): Location {
+		return this._location;
+	}
+  
   @Input() set location(location: Location){
-    this._location = location;
+    this.location = location;
     this.getRooms();
   }
 
@@ -23,16 +52,17 @@ export class RoomlistComponent implements OnInit, AdminCheck {
     this.loading=true;
   }
 
-  isAdmin(): boolean {
-    return parseInt(window.localStorage.getItem('authlevel'))>0;
-  }
-
   ngOnInit() {
     this.getRooms();
   }
-  getRooms(): void {
-    if(this._location!==undefined  && this._location._id!==undefined){
-      this.roomsservice.getByLocation(this._location._id).subscribe(rooms => {this.rooms=rooms;this.loading=false}, error => {this.loading=false});
+
+  isAdmin(): boolean {
+    return parseInt(window.localStorage.getItem('authlevel'))>0;
+  }
+  
+  private getRooms(): void {
+    if(this.location!==undefined  && this.location._id!==undefined){
+      this.roomsservice.getByLocation(this.location._id).subscribe(rooms => {this.rooms=rooms;this.loading=false}, error => {this.loading=false});
     } else {
       this.roomsservice.getAll().subscribe(rooms => {this.rooms=rooms;this.loading=false;}, error => {this.loading=false;this.error=true});
     }

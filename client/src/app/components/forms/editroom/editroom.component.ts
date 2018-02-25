@@ -10,10 +10,10 @@ import { LocationsService } from '../../../services/locations.service';
   styleUrls: ['./editroom.component.scss']
 })
 export class EditroomComponent implements OnInit {
-  rooms: Room[];
-  room: Room;
-  locations: Location[];
-  errorfield: String;
+  private _rooms: Room[];
+  private _room: Room;
+  private _locations: Location[];
+  private _errorfield: String;
 
   constructor(private roomservice: RoomsService, private locationservice: LocationsService) {
     this.rooms=[];
@@ -24,14 +24,49 @@ export class EditroomComponent implements OnInit {
     this.getLocations();
     this.getRooms();
   }
-  getRooms(){
+
+
+	public get rooms(): Room[] {
+		return this._rooms;
+	}
+
+	public set rooms(value: Room[]) {
+		this._rooms = value;
+	}
+
+	public get locations(): Location[] {
+		return this._locations;
+	}
+
+	public set locations(value: Location[]) {
+		this._locations = value;
+	}
+
+	public get errorfield(): String {
+		return this._errorfield;
+	}
+
+	public set errorfield(value: String) {
+		this._errorfield = value;
+	}
+
+	public get room(): Room {
+		return this._room;
+	}
+
+	public set room(value: Room) {
+		this._room = value;
+	}
+  
+
+  private getRooms(){
     this.roomservice.getAll().subscribe(res => {
       this.rooms=res;
     }, error => {
 
     })
   }
-  getLocations(){
+  private getLocations(){
     this.locationservice.getAll().subscribe(res => {
       this.locations=res;
     }, error => {

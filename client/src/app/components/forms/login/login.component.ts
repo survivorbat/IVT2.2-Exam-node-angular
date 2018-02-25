@@ -8,13 +8,31 @@ import { UserService } from '../../../services/user.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  user: User;
-  formresult: String;
+  private _user: User;
+  private _formresult: String;
   constructor(private userservice: UserService) { }
 
   ngOnInit() {
     this.user=new User();
   }
+
+
+	public get user(): User {
+		return this._user;
+	}
+
+	public set user(value: User) {
+		this._user = value;
+	}
+
+	public get formresult(): String {
+		return this._formresult;
+	}
+
+	public set formresult(value: String) {
+		this._formresult = value;
+	}
+  
 
   submit(){
     this.userservice.checkUser(this.user).subscribe(res => {

@@ -9,12 +9,30 @@ import { FilmsService } from '../../../services/films.service';
   styleUrls: ['./newfilm.component.scss']
 })
 export class NewfilmComponent implements OnInit {
-  film: Film;
-  errorfield: String;
+  private _film: Film;
+  private _errorfield: String;
   constructor(private filmservice: FilmsService) {this.film=new Film()}
 
   ngOnInit() {
   }
+
+
+	public get film(): Film {
+		return this._film;
+	}
+
+	public set film(value: Film) {
+		this._film = value;
+	}
+
+	public get errorfield(): String {
+		return this._errorfield;
+	}
+
+	public set errorfield(value: String) {
+		this._errorfield = value;
+	}
+  
 
   submit(){
     this.filmservice.addOne(this.film).subscribe(res => {

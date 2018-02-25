@@ -2,8 +2,8 @@ import Film from "./Film";
 import Room from "./Room";
 
 export default class Showing {
-    _id: String;
-    specialties: Array<String>;
+    _id: string;
+    specialties: Array<string>;
     price: Number;
     ticketSold: Number;
     film: Film;

@@ -9,17 +9,39 @@ import AdminCheck from '../../../domain/interfaces/AdminCheck';
   styleUrls: ['./locationlist.component.scss']
 })
 export class LocationlistComponent implements OnInit, AdminCheck {
-  locations: Location[];
-  error: boolean;
-  loading: boolean;
+  private _locations: Location[];
+  private _error: boolean;
+  private _loading: boolean;
 
-  constructor(private locationservice: LocationsService) {
-    this.loading=true;
-  }
+  constructor(private locationservice: LocationsService) {this.loading=true;}
 
   ngOnInit() {
     this.getLocations();
   }
+
+	public get locations(): Location[] {
+		return this._locations;
+	}
+
+	public set locations(value: Location[]) {
+		this._locations = value;
+	}
+
+	public get error(): boolean {
+		return this._error;
+	}
+
+	public set error(value: boolean) {
+		this._error = value;
+	}
+
+	public get loading(): boolean {
+		return this._loading;
+	}
+
+	public set loading(value: boolean) {
+		this._loading = value;
+	}
 
   deleteFilm(e): void {
     if(prompt('Weet u zeker dat u dit item wil verwijderen?')){this.locationservice.delete(e).subscribe(res => {
@@ -33,7 +55,7 @@ export class LocationlistComponent implements OnInit, AdminCheck {
     return parseInt(window.localStorage.getItem('authlevel'))>0;
   }
 
-  getLocations(): void {
+  private getLocations(): void {
     this.locationservice.getAll().subscribe(locations => {this.locations=locations; this.loading=false;}, error => {this.error=error;this.loading=false});
   }
 

@@ -1,15 +1,15 @@
 export default class Film {
-    _id: String;
-    title: String;
-    subtitle: String;
+    _id: string;
+    title: string;
+    subtitle: string;
     year: Number;
     duration: Number;
-    coverPicture: String;
-    media: String[];
+    coverPicture: string;
+    media: string[];
     popularity: Number;
-    stars: String[];
-    writers: String[];
-    directors: String[];
-    genre: String;
-    description: String;
+    stars: string[];
+    writers: string[];
+    directors: string[];
+    genre: string;
+    description: string;
 }

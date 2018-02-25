@@ -10,9 +10,9 @@ import { Subscription } from 'rxjs/Subscription';
   styleUrls: ['./film.component.scss']
 })
 export class FilmComponent implements OnInit {
-  film: Film;
-  error: boolean;
-  loading: boolean;
+  private _film: Film;
+  private _error: boolean;
+  private _loading: boolean;
   private params: Subscription;
   constructor(private route: ActivatedRoute, private filmservice : FilmsService) { 
     this.loading=true;
@@ -25,7 +25,42 @@ export class FilmComponent implements OnInit {
       this.getFilm();
     })
   }
-  getFilm(): void {
+
+
+	public get film(): Film {
+		return this._film;
+	}
+
+	public set film(value: Film) {
+		this._film = value;
+	}
+
+	public get error(): boolean {
+		return this._error;
+	}
+
+	public set error(value: boolean) {
+		this._error = value;
+	}
+
+	public get loading(): boolean {
+		return this._loading;
+	}
+
+	public set loading(value: boolean) {
+		this._loading = value;
+	}
+
+	public get $params(): Subscription {
+		return this.params;
+	}
+
+	public set $params(value: Subscription) {
+		this.params = value;
+	}
+  
+
+  private getFilm(): void {
     this.filmservice.getById(this.film._id).subscribe(res => {this.film=res;this.loading=false}, err => {this.error=true;this.loading=false});
   }
   getArrayFromNumber(num: Number): Number[]{

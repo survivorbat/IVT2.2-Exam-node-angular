@@ -10,9 +10,9 @@ import AdminCheck from '../../../domain/interfaces/AdminCheck';
   styleUrls: ['./userlist.component.scss']
 })
 export class UserlistComponent implements OnInit, AdminCheck {
-  error: boolean;
-  loading: boolean;
-  users: User[];
+  private _error: boolean;
+  private _loading: boolean;
+  private _users: User[];
 
   constructor(private usersservice: UserService) { 
     this.loading=true;
@@ -21,7 +21,33 @@ export class UserlistComponent implements OnInit, AdminCheck {
   ngOnInit() {
     this.getUsers();
   }
-  getUsers(): void {
+
+	public get error(): boolean {
+		return this._error;
+	}
+
+	public set error(value: boolean) {
+		this._error = value;
+	}
+
+	public get users(): User[] {
+		return this._users;
+	}
+
+	public set users(value: User[]) {
+		this._users = value;
+	}
+
+	public get loading(): boolean {
+		return this._loading;
+	}
+
+	public set loading(value: boolean) {
+		this._loading = value;
+	}
+  
+
+  private getUsers(): void {
     this.usersservice.getAll().subscribe((users: any) => {
       let userList = new Array<User>();
       this.loading=false;
@@ -31,18 +57,9 @@ export class UserlistComponent implements OnInit, AdminCheck {
         userList.push(user);
       }
       this.users=userList;
-      console.log(this.users);
     }, error => {this.loading=false;this.error=true});
   }
   isAdmin(): boolean {
     return parseInt(window.localStorage.getItem('authlevel'))>0;
-  }
-
-  deleteUser(id){
-    if(confirm('Weet u zeker dat u deze voorstelling wil verwijderen?')) this.usersservice.delete(id).subscribe(res => {
-      this.getUsers();
-    }, error => {
-      alert("Er ging iets mis bij het verwijderen, probeert u het alstublieft nog een keer");
-    });
   }
 }

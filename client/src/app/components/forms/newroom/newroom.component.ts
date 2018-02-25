@@ -10,16 +10,42 @@ import { LocationsService } from '../../../services/locations.service';
   styleUrls: ['./newroom.component.scss']
 })
 export class NewroomComponent implements OnInit {
-  room: Room;
-  locations: Location[];
-  errorfield: String;
+  private _room: Room;
+  private _locations: Location[];
+  private _errorfield: String;
   constructor(private roomservice: RoomsService, private locationservice: LocationsService) {this.room=new Room()}
 
   ngOnInit() {
     this.getLocations();
   }
 
-  getLocations(){
+
+	public get room(): Room {
+		return this._room;
+	}
+
+	public set room(value: Room) {
+		this._room = value;
+	}
+
+	public get locations(): Location[] {
+		return this._locations;
+	}
+
+	public set locations(value: Location[]) {
+		this._locations = value;
+	}
+
+	public get errorfield(): String {
+		return this._errorfield;
+	}
+
+	public set errorfield(value: String) {
+		this._errorfield = value;
+	}
+  
+
+  private getLocations(){
     this.locationservice.getAll().subscribe(res => {
       this.locations=res;
     }, error => {

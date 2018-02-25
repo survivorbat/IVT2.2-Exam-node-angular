@@ -61,3 +61,17 @@ main {
   .ng-invalid:not(form)  {
     border-left: 5px solid #a94442; /* red */
   }
+
+ .form-control {
+    border-color: white;
+    border-radius: 0px;
+    border-style: none none solid none;
+    background-color: transparent;
+    color:whitesmoke;
+    &:focus, &:hover {
+        color:inherit;
+        background: inherit;
+        outline: red;
+        -webkit-focus-ring-color: red;
+    }
+  }

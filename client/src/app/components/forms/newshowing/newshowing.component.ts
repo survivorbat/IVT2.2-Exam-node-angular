@@ -12,10 +12,10 @@ import Film from '../../../domain/Film';
   styleUrls: ['./newshowing.component.scss']
 })
 export class NewshowingComponent implements OnInit {
-  showing: Showing;
-  rooms: Room[];
-  films: Film[];
-  errorfield: String;
+  private _showing: Showing;
+  private _rooms: Room[];
+  private _films: Film[];
+  private _errorfield: String;
   constructor(private showingservice: ShowingsService, private roomservice: RoomsService, private filmservice: FilmsService) {this.showing=new Showing()}
 
   ngOnInit() {
@@ -23,14 +23,47 @@ export class NewshowingComponent implements OnInit {
     this.getFilms();
   }
 
-  getRooms(){
+
+	public get showing(): Showing {
+		return this._showing;
+	}
+
+	public set showing(value: Showing) {
+		this._showing = value;
+	}
+
+	public get rooms(): Room[] {
+		return this._rooms;
+	}
+
+	public set rooms(value: Room[]) {
+		this._rooms = value;
+	}
+
+	public get films(): Film[] {
+		return this._films;
+	}
+
+	public set films(value: Film[]) {
+		this._films = value;
+	}
+
+	public get errorfield(): String {
+		return this._errorfield;
+	}
+
+	public set errorfield(value: String) {
+		this._errorfield = value;
+	}
+
+  private getRooms(){
     this.roomservice.getAll().subscribe(res => {
       this.rooms=res;
     }, error => {
 
     })
   }
-  getFilms(){
+  private getFilms(){
     this.filmservice.getAll().subscribe(res => {
       this.films=res;
     }, error => {

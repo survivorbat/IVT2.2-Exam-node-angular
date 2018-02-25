@@ -10,13 +10,13 @@ import { TicketService } from '../../../services/ticket.service';
   styleUrls: ['./newticket.component.scss']
 })
 export class NewticketComponent implements OnInit {
-  newTickets: String[];
-  takenSeats: String[];
-  amountOfTickets: number;
-  errorField: string;
-  loading: boolean;
-  _showing: Showing;
-  shown=true;
+  private _newTickets: String[];
+  private _takenSeats: String[];
+  private _amountOfTickets: number;
+  private _errorField: string;
+  private _loading: boolean;
+  private _showing: Showing;
+  private _shown=true;
 
   @Input() set showing(showing: Showing){
     this._showing = showing;
@@ -27,6 +27,46 @@ export class NewticketComponent implements OnInit {
   ngOnInit() {
     
   }
+
+	public get newTickets(): String[] {
+		return this._newTickets;
+	}
+
+	public set newTickets(value: String[]) {
+		this._newTickets = value;
+	}
+
+	public get takenSeats(): String[] {
+		return this._takenSeats;
+	}
+
+	public set takenSeats(value: String[]) {
+		this._takenSeats = value;
+	}
+
+	public get amountOfTickets(): number {
+		return this._amountOfTickets;
+	}
+
+	public set amountOfTickets(value: number) {
+		this._amountOfTickets = value;
+	}
+
+	public get errorField(): string {
+		return this._errorField;
+	}
+
+	public set errorField(value: string) {
+		this._errorField = value;
+  }
+  public get shown(): boolean {
+		return this._shown;
+	}
+
+	public set shown(value: boolean) {
+		this._shown = value;
+  }
+  
 
   private getTickets(){
     this.ticketservice.getByShowing(this._showing._id).subscribe(res => {

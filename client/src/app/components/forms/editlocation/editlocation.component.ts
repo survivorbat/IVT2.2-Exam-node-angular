@@ -8,9 +8,9 @@ import { LocationsService } from '../../../services/locations.service';
   styleUrls: ['./editlocation.component.scss']
 })
 export class EditlocationComponent implements OnInit {
-  locations: Location[];
-  location: Location;
-  errorfield: String;
+  private _locations: Location[];
+  private _location: Location;
+  private _errorfield: String;
 
   constructor(private locationservice: LocationsService) {
     this.locations=[];
@@ -20,7 +20,34 @@ export class EditlocationComponent implements OnInit {
   ngOnInit() {
     this.getLocations();
   }
-  getLocations(){
+
+
+	public get locations(): Location[] {
+		return this._locations;
+	}
+
+	public set locations(value: Location[]) {
+		this._locations = value;
+	}
+
+	public get location(): Location {
+		return this._location;
+	}
+
+	public set location(value: Location) {
+		this._location = value;
+	}
+
+	public get errorfield(): String {
+		return this._errorfield;
+	}
+
+	public set errorfield(value: String) {
+		this._errorfield = value;
+	}
+  
+
+  private getLocations(){
     this.locationservice.getAll().subscribe(res => {
       this.locations=res;
     }, error => {

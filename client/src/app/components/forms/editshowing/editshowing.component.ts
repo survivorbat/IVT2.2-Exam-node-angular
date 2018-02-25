@@ -12,11 +12,11 @@ import { FilmsService } from '../../../services/films.service';
   styleUrls: ['./editshowing.component.scss']
 })
 export class EditshowingComponent implements OnInit {
-  showings: Showing[];
-  films: Film[];
-  showing: Showing;
-  rooms: Room[];
-  errorfield: String;
+  private _showings: Showing[];
+  private _films: Film[];
+  private _showing: Showing;
+  private _rooms: Room[];
+  private _errorfield: String;
 
   constructor(private showingservice: ShowingsService, private roomservice: RoomsService, private filmsservice: FilmsService) {
     this.showings=[];
@@ -28,21 +28,64 @@ export class EditshowingComponent implements OnInit {
     this.getShowings();
     this.getFilms();
   }
-  getShowings(){
+
+
+	public get showings(): Showing[] {
+		return this._showings;
+	}
+
+	public set showings(value: Showing[]) {
+		this._showings = value;
+	}
+
+	public get films(): Film[] {
+		return this._films;
+	}
+
+	public set films(value: Film[]) {
+		this._films = value;
+	}
+
+	public get showing(): Showing {
+		return this._showing;
+	}
+
+	public set showing(value: Showing) {
+		this._showing = value;
+	}
+
+	public get rooms(): Room[] {
+		return this._rooms;
+	}
+
+	public set rooms(value: Room[]) {
+		this._rooms = value;
+	}
+
+	public get errorfield(): String {
+		return this._errorfield;
+	}
+
+	public set errorfield(value: String) {
+		this._errorfield = value;
+	}
+  
+
+  private getShowings(){
     this.showingservice.getAll().subscribe(res => {
       this.showings=res;
     }, error => {
 
     })
   }
-  getFilms(){
+  private getFilms(){
     this.filmsservice.getAll().subscribe(res => {
       this.films=res;
     }, error => {
 
     })
   }
-  getRooms(){
+  private getRooms(){
     this.roomservice.getAll().subscribe(res => {
       this.rooms=res;
     }, error => {

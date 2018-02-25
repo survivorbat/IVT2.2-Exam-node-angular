@@ -1,5 +1,5 @@
 export default class User {
     _id: number;
-    email: String;
-    password: String;  
+    email: string;
+    password: string;  
 }

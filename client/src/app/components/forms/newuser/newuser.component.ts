@@ -8,9 +8,27 @@ import { UserService } from '../../../services/user.service';
   styleUrls: ['./newuser.component.scss']
 })
 export class NewuserComponent implements OnInit {
-  newUser: User;
-  formresult: String;
+  private _newUser: User;
+  private _formresult: String;
   constructor(private userservice: UserService) { }
+
+
+	public get newUser(): User {
+		return this._newUser;
+	}
+
+	public set newUser(value: User) {
+		this._newUser = value;
+	}
+
+	public get formresult(): String {
+		return this._formresult;
+	}
+
+	public set formresult(value: String) {
+		this._formresult = value;
+	}
+  
 
   ngOnInit() {
     this.newUser=new User();

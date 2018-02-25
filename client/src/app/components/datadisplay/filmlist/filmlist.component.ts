@@ -9,9 +9,9 @@ import AdminCheck from '../../../domain/interfaces/AdminCheck';
   styleUrls: ['./filmlist.component.scss']
 })
 export class FilmlistComponent implements OnInit, AdminCheck {
-  films: Film[];
-  error: boolean;
-  loading: boolean;
+  private _films: Film[];
+  private _error: boolean;
+  private _loading: boolean;
   constructor(private filmservice: FilmsService) {
     this.loading=true;
   }
@@ -20,7 +20,32 @@ export class FilmlistComponent implements OnInit, AdminCheck {
     this.getFilms();
   }
 
-  getFilms(): void {
+	public get films(): Film[] {
+		return this._films;
+	}
+
+	public set films(value: Film[]) {
+		this._films = value;
+	}
+
+	public get error(): boolean {
+		return this._error;
+	}
+
+	public set error(value: boolean) {
+		this._error = value;
+	}
+
+	public get loading(): boolean {
+		return this._loading;
+	}
+
+	public set loading(value: boolean) {
+		this._loading = value;
+	}
+  
+
+  private getFilms(): void {
     this.filmservice.getAll().subscribe(films => {this.films=films; this.loading=false;}, error => {this.error=error;this.loading=false});
   }
 

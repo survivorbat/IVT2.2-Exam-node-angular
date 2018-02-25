@@ -9,12 +9,30 @@ import { LocationsService } from '../../../services/locations.service';
   styleUrls: ['./newlocation.component.scss']
 })
 export class NewlocationComponent implements OnInit {
-  location: Location;
-  errorfield: String;
+  private location: Location;
+  private errorfield: String;
   constructor(private locationservice: LocationsService) {this.location=new Location()}
 
   ngOnInit() {
   }
+
+
+	public get $location(): Location {
+		return this.location;
+	}
+
+	public set $location(value: Location) {
+		this.location = value;
+	}
+
+	public get $errorfield(): String {
+		return this.errorfield;
+	}
+
+	public set $errorfield(value: String) {
+		this.errorfield = value;
+	}
+  
 
   submit(){
     this.locationservice.addOne(this.location).subscribe(res => {

@@ -8,9 +8,9 @@ import { FilmsService } from '../../../services/films.service';
   styleUrls: ['./editfilm.component.scss']
 })
 export class EditfilmComponent implements OnInit {
-  films: Film[];
-  film: Film;
-  errorfield: String;
+  private _films: Film[];
+  private _film: Film;
+  private _errorfield: String;
 
   constructor(private filmservice: FilmsService) {
     this.films=[];
@@ -20,7 +20,33 @@ export class EditfilmComponent implements OnInit {
   ngOnInit() {
     this.getFilms();
   }
-  getFilms(){
+
+
+	public get films(): Film[] {
+		return this._films;
+	}
+
+	public set films(value: Film[]) {
+		this._films = value;
+	}
+
+	public get film(): Film {
+		return this._film;
+	}
+
+	public set film(value: Film) {
+		this._film = value;
+	}
+
+	public get errorfield(): String {
+		return this._errorfield;
+	}
+
+	public set errorfield(value: String) {
+		this._errorfield = value;
+	}
+
+  private getFilms(){
     this.filmservice.getAll().subscribe(res => {
       this.films=res;
     }, error => {

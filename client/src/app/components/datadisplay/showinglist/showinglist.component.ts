@@ -10,12 +10,41 @@ import AdminCheck from '../../../domain/interfaces/AdminCheck';
   styleUrls: ['./showinglist.component.scss']
 })
 export class ShowinglistComponent implements OnInit, AdminCheck {
-  error: boolean;
-  loading: boolean;
-  showings: Showing[];
-  _location: Location;
+  private _error: boolean;
+  private _loading: boolean;
+  private _showings: Showing[];
+  private _location: Location;
+
+	public get error(): boolean {
+		return this._error;
+	}
+
+	public set error(value: boolean) {
+		this._error = value;
+	}
+
+	public get loading(): boolean {
+		return this._loading;
+	}
+
+	public set loading(value: boolean) {
+		this._loading = value;
+	}
+
+	public get showings(): Showing[] {
+		return this._showings;
+	}
+
+	public set showings(value: Showing[]) {
+		this._showings = value;
+	}
+
+	get location(): Location {
+		return this._location;
+	}
+  
   @Input() set location(location: Location){
-    this._location = location;
+    this.location = location;
     this.getShowings();
   }
 
@@ -26,9 +55,9 @@ export class ShowinglistComponent implements OnInit, AdminCheck {
   ngOnInit() {
     this.getShowings();
   }
-  getShowings(): void {
-    if(this._location!==undefined && this._location._id!==undefined){
-      this.showingsservice.getByLocation(this._location._id).subscribe(showings => {this.showings=showings;this.loading=false}, error => {this.loading=false;this.error=true});
+  private getShowings(): void {
+    if(this.location!==undefined && this.location._id!==undefined){
+      this.showingsservice.getByLocation(this.location._id).subscribe(showings => {this.showings=showings;this.loading=false}, error => {this.loading=false;this.error=true});
     } else {
       this.showingsservice.getAll().subscribe(showings => {this.showings=showings;this.loading=false;console.log(this.showings)}, error => {this.loading=false;this.error=true});
     }

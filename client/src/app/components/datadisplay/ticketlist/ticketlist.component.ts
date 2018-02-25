@@ -8,17 +8,22 @@ import Ticket from '../../../domain/Ticket';
   styleUrls: ['./ticketlist.component.scss']
 })
 export class TicketlistComponent implements OnInit {
-  error: boolean;
-  loading: boolean;
-  tickets: Ticket[];
+  private _error: boolean;
+  private _loading: boolean;
+  private _tickets: Ticket[];
 
-  _admin: boolean;
+  private _admin: boolean;
   @Input() set admin(e: boolean){
     if(e){
       this._admin=true;
       this.getTickets()
     }
   }
+
+	get admin(): boolean {
+		return this._admin;
+	}
+  
   constructor(private ticketsservice: TicketService) { 
     this.loading=true;
   }
@@ -26,8 +31,34 @@ export class TicketlistComponent implements OnInit {
   ngOnInit() {
     this.getTickets();
   }
+
+	public get error(): boolean {
+		return this._error;
+	}
+
+	public set error(value: boolean) {
+		this._error = value;
+	}
+
+	public get loading(): boolean {
+		return this._loading;
+	}
+
+	public set loading(value: boolean) {
+		this._loading = value;
+	}
+
+	public get tickets(): Ticket[] {
+		return this._tickets;
+	}
+
+	public set tickets(value: Ticket[]) {
+		this._tickets = value;
+	}
+
+
   private getTickets(): void {
-    if(!this._admin){
+    if(!this.admin){
       this.ticketsservice.getByUser().subscribe(tickets => {this.tickets=tickets;this.loading=false;console.log(this.tickets)}, error => {this.loading=false;this.error=true});
     } else {
       this.ticketsservice.getAll().subscribe(tickets => {this.tickets=tickets;this.loading=false;console.log(this.tickets)}, error => {this.loading=false;this.error=true});

@@ -1,10 +1,10 @@
 export default class Location {
-    _id: String;
-    name: String;
-    street: String;
-    zip: String;
+    _id: string;
+    name: string;
+    street: string;
+    zip: string;
     number: Number;
-    state: String;
-    city: String;
-    country: String;
+    state: string;
+    city: string;
+    country: string;
 }
