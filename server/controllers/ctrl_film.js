@@ -56,8 +56,8 @@ module.exports = {
         });
     },
     delete(req,res,next){
-        Ticket.find({"showing.film": req.params._id}).remove();
-        Showing.find({"film": req.params._id}).remove();
+        Ticket.find({"showing.film": req.params._id}).remove().catch();
+        Showing.find({"film": req.params._id}).remove().catch();
         Film.findByIdAndRemove(req.params._id).then(result => {
             if(!result){
                 res.status(404).json({});

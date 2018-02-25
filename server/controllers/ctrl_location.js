@@ -43,9 +43,9 @@ module.exports = {
         }).catch(err => next(err));
     },
     delete(req,res,next){
-        Ticket.find({"showing.room.location": req.params._id}).remove().exec();
-        Showing.find({"room.location": req.params._id}).remove().exec();
-        Room.find({"location": req.params._id}).remove().exec();
+        Ticket.find({"showing.room.location": req.params._id}).remove().exec().catch();
+        Showing.find({"room.location": req.params._id}).remove().exec().catch();
+        Room.find({"location": req.params._id}).remove().exec().catch();
         Location.findByIdAndRemove(req.params._id).then(result => {
             if(!result){
                 res.status(404).json({});

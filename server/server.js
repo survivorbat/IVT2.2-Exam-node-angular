@@ -1,4 +1,5 @@
 const express = require('express');
+const compression = require('compression')
 const app = express();
 const logger = require('morgan');
 const bodyParser = require('body-parser');
@@ -6,7 +7,8 @@ const router = require('./router');
 const validator = require('express-validator');
 const cors = require('cors');
 /* Middleware */
-app.use(logger('dev'));
+app.use(compression());
+app.use(logger('prod'));
 app.use(bodyParser.json());
 app.use(bodyParser.json({type:'application/vnd.api+json'}));
 app.use(bodyParser.urlencoded({extended:true}));
@@ -14,7 +16,6 @@ app.use(cors());
 
 
 app.use(validator())
-app.disable('etag');
 
 app.use(router);
 
