@@ -85,7 +85,7 @@ describe('Film API interface', () => {
 				done();
 			});
 	});
-	it('should delete /api/films incorrectly with missing value', done => {
+	it('should DELETE /api/films incorrectly with missing value', done => {
 		chai.request(server)
 			.delete('/api/films/ddd')
 			.set('content-type', 'application/x-www-form-urlencoded')

@@ -81,7 +81,7 @@ module.exports = {
         if(req.body.specialties) req.body.specialties = req.body.specialties.split(',');
         const newShowing = new Showing(req.body, {});
         newShowing.save().then(newshowing => {
-            res.status(201).json({"message":"succces!","createdObject":newshowing});
+            res.status(201).json({"message":"succes","createdObject":newshowing});
         }).catch(err => next(err));
     },
     update(req, res, next){
@@ -97,7 +97,7 @@ module.exports = {
                 res.status(404).json({});
                 return;
             }
-            res.status(200).json({message:"success",deletedObject: result});
+            res.status(200).json({message:"succes",deletedObject: result});
         }).catch(err => next(err));
     }
 }

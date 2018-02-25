@@ -64,7 +64,7 @@ module.exports = {
     post(req,res,next){
         const newRoom = new Room(req.body, {});
         newRoom.save().then(result => {
-            res.status(201).json({"message":"succces!","createdObject":result});
+            res.status(201).json({"message":"succes","createdObject":result});
         }).catch(err => next(err));
     },
     update(req, res, next){

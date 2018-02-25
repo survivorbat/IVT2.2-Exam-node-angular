@@ -99,7 +99,6 @@ module.exports = {
                 ticket.showing.room.location.showings_url = req.protocol+"://"+req.get('host')+"/api/showings/location/"+ticket.showing.room.location._id;
             }
             catch(e){
-                console.log(e);
                 res.status(404).json({});
                 return;
             }
@@ -110,7 +109,7 @@ module.exports = {
         req.body.userid=req.user.sub.userid;
         const newTicket = new Ticket(req.body, {});
         newTicket.save().then(result => {
-            res.status(201).json({"message":"succces!","createdObject":result});
+            res.status(201).json({"message":"succes","createdObject":result});
         }).catch(err => next(err));
     },
     update(req, res, next){
@@ -124,7 +123,7 @@ module.exports = {
                 res.status(404).json({});
                 return;
             }
-            res.status(200).json({message:"success",deletedObject: result});
+            res.status(200).json({message:"succes",deletedObject: result});
         }).catch(err => next(err));
     }
 }
