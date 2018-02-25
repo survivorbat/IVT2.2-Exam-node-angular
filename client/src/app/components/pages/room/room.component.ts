@@ -10,9 +10,9 @@ import { Subscription } from 'rxjs/Subscription';
   styleUrls: ['./room.component.scss']
 })
 export class RoomComponent implements OnInit {
-  room: Room;
-  error: boolean;
-  loading: boolean;
+  private _room: Room;
+  private _error: boolean;
+  private _loading: boolean;
   private params: Subscription;
   constructor(private route: ActivatedRoute, private roomservice : RoomsService) { 
     this.loading=true;
@@ -25,6 +25,40 @@ export class RoomComponent implements OnInit {
       this.getRoom();
     })
   }
+
+
+	public get room(): Room {
+		return this._room;
+	}
+
+	public set room(value: Room) {
+		this._room = value;
+	}
+
+	public get error(): boolean {
+		return this._error;
+	}
+
+	public set error(value: boolean) {
+		this._error = value;
+	}
+
+	public get $params(): Subscription {
+		return this.params;
+	}
+
+	public set $params(value: Subscription) {
+		this.params = value;
+	}
+
+	public get loading(): boolean {
+		return this._loading;
+	}
+
+	public set loading(value: boolean) {
+		this._loading = value;
+	}
+  
   getRoom(): void {
     this.roomservice.getById(this.room._id).subscribe(res => {this.room=res;this.loading=false}, err => {this.error=true;this.loading=false});
   }

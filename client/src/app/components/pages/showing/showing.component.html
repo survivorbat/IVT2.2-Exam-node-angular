@@ -25,7 +25,10 @@
   </main>
   <aside class="col-md-3" *ngIf="showing.film.coverPicture">
       <img *ngIf="showing.film.coverPicture!==''" src="{{showing.film.coverPicture}}" alt="Coverpicture of the movie {{showing.film.title}}" class="card-img-top">
-      <span class="text-small" *ngFor="let point of getArrayFromNumber(showing.film.popularity)">⭐</span>
+      <div>
+        <span class="text-small" *ngFor="let point of getArrayFromNumber(showing.film.popularity)">⭐</span>
+      </div>
+      <button class="btn btn-primary btn-block btn-sm" style="margin-top:5px"><a routerLink="/films/{{showing.film._id}}">Film informatie</a></button>
   </aside>
 </section>
 <section *ngIf="loading" class="row">

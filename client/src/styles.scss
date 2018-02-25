@@ -74,4 +74,10 @@ main {
         outline: red;
         -webkit-focus-ring-color: red;
     }
+    option {
+        appearance:none;
+        -moz-appearance:none;
+        -webkit-appearance:none;
+        background-color: black;
+    }
   }

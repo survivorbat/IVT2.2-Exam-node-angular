@@ -10,10 +10,10 @@ import { ShowingsService } from '../../../services/showingservice.service';
   styleUrls: ['./showing.component.scss']
 })
 export class ShowingComponent implements OnInit {
-  showing: Showing;
-  error: boolean;
-  loading: boolean;
-  private params: Subscription;
+  private _showing: Showing;
+  private _error: boolean;
+  private _loading: boolean;
+  private _params: Subscription;
   constructor(private route: ActivatedRoute, private showingservice : ShowingsService) { 
     this.loading=true;
     this.showing = new Showing();
@@ -25,7 +25,41 @@ export class ShowingComponent implements OnInit {
       this.getShowing();
     })
   }
-  getShowing(): void {
+
+
+	public get showing(): Showing {
+		return this._showing;
+	}
+
+	public set showing(value: Showing) {
+		this._showing = value;
+	}
+
+	public get error(): boolean {
+		return this._error;
+	}
+
+	public set error(value: boolean) {
+		this._error = value;
+	}
+
+	public get loading(): boolean {
+		return this._loading;
+	}
+
+	public set loading(value: boolean) {
+		this._loading = value;
+	}
+
+	public get params(): Subscription {
+		return this._params;
+	}
+
+	public set params(value: Subscription) {
+		this._params = value;
+	}
+  
+  private getShowing(): void {
     this.showingservice.getById(this.showing._id).subscribe(res => {this.showing=res;this.loading=false}, err => {this.error=true;this.loading=false});
   }
   ngOnDestroy(){
