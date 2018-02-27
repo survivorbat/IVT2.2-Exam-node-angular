@@ -54,8 +54,10 @@ export class UserlistComponent implements OnInit, AdminCheck {
       for(let i=0;i<users.length;i++){
         let user = new User();
         user.email=users[i]._fields[0].properties.email;
+        user._id=users[i]._fields[0].identity.low;
         userList.push(user);
       }
+      console.log(userList);
       this.users=userList;
     }, error => {this.loading=false;this.error=true});
   }

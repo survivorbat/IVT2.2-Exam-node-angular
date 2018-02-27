@@ -1,5 +1,6 @@
 const {session} = require('../config/neodb')
 const { validationResult } = require('express-validator/check')
+const Ticket = require('../models/ticket')
 
 module.exports = {
     getAll(req, res, next){
@@ -45,7 +46,8 @@ module.exports = {
         const params = {id: parseInt(req.params._id)}
         const delete_query = "MATCH (u:User) WHERE ID(u)=$id DELETE u"
         session.run(delete_query,params).then((result) => {
-            res.status(204).json();
+            Ticket.find({userid: req.params._id}).remove().exec().catch()
+            res.status(204).json()
         }).catch(next)
     }
 }
