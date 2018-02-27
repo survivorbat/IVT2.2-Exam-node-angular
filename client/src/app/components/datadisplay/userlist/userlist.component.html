@@ -4,7 +4,7 @@
       <div class="card bg-dark clickable-item" *ngFor="let user of users">
         <div class="card-body">
             <p class="card-title">{{user.email}}</p>
-            <button *ngIf="isAdmin()" class="btn btn-danger btn-block" (click)="deleteFilm(user._id)">Verwijder</button>
+            <button *ngIf="isAdmin()" class="btn btn-danger btn-block" (click)="deleteUser(user._id)">Verwijder</button>
         </div>
       </div>
     </div>
