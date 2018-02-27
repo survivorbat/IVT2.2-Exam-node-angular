@@ -1,6 +1,6 @@
 const {session} = require('../config/neodb')
 const { validationResult } = require('express-validator/check')
-const Ticket = require('../models/ticket')
+const {Ticket} = require('../models/ticket')
 
 module.exports = {
     getAll(req, res, next){
