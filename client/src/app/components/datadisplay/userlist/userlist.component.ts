@@ -59,6 +59,10 @@ export class UserlistComponent implements OnInit, AdminCheck {
       this.users=userList;
     }, error => {this.loading=false;this.error=true});
   }
+
+  deleteUser(id){
+    this.usersservice.delete(id).subscribe(res =>{this.getUsers()}, err =>{alert('Er ging iets mis bij het verwijderen, probeert u het nog een keer')})
+  }
   isAdmin(): boolean {
     return parseInt(window.localStorage.getItem('authlevel'))>0;
   }
