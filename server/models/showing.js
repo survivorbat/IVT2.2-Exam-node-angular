@@ -5,26 +5,26 @@ const showingSchema = new Schema({
     film: {
         type: Schema.Types.ObjectId,
         ref: 'Film',
-        required: true
+        required: [true, 'An existing film is required']
     },
     date: {
         type: Date,
-        required: true,
+        required: [true, 'A date is required'],
     },
     room: {
         type: Schema.Types.ObjectId,
         ref: 'Room',
-        required: true,
+        required: [true, 'An existing room is required'],
     },
     specialties: {
         type: [String],
         default: []
     },
     price: {
-        required: true,
+        required: [true, 'A price is required'],
         type: Number,
-        min: 1.00,
-        max: 100.00
+        min: [1.00, 'Price has to be higher than 1 euro'],
+        max: [100.00, 'Price can not be higher than 100 euros']
     }
 });
 

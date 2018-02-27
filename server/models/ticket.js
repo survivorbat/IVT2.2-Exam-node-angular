@@ -5,23 +5,21 @@ const ticketSchema = new Schema({
     showing: {
         type: Schema.Types.ObjectId,
         ref: 'Showing',
-        required: true
+        required: [true, 'An existing showing is required']
     },
     row: {
         type: Number,
-        required: true,
-        min: 0,
-        max: 200
+        required: [true, 'A row number is required'],
+        max: [200, 'Row number can not be higher than 200']
     },
     column: {
         type: Number,
         required:true,
-        min: 0,
-        max: 200
+        max: [200, 'Column number can not be higher than 200']
     },
     userid: {
         type: Number,
-        required: true
+        required: [true, 'Userid is required']
     }
 });
 const Ticket = mongoose.model('Ticket', ticketSchema);
