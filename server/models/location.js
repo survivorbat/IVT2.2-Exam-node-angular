@@ -1,6 +1,6 @@
-const mongoose = require('../config/db');
+const mongoose = require('../config/db')
 
-const Schema = mongoose.Schema;
+const Schema = mongoose.Schema
 const locationSchema = new Schema({
     name: {
         type: String,
@@ -44,9 +44,9 @@ const locationSchema = new Schema({
         required: [true, 'Country name is required'],
         maxlength:[100, 'Country name can not be longer than 100 characters']
     }
-});
-const Location = mongoose.model('Location', locationSchema);
+})
+const Location = mongoose.model('Location', locationSchema)
 
 module.exports = {
     Location
-};
+}

@@ -1,7 +1,7 @@
-const express = require('express');
-const router = express.Router();
-const expressJWT = require('express-jwt'); 
-require('dotenv').config();
+const express = require('express')
+const router = express.Router()
+const expressJWT = require('express-jwt') 
+require('dotenv').config()
 
 router.use(expressJWT({ 
     secret: process.env.SECRET_KEY 
@@ -17,11 +17,11 @@ router.use(expressJWT({
         { url: /\/users*/, methods: ['POST']  },
         { url: '/favicon.ico'}
     ]
-}));
+}))
 
 router.options(/\/api*/, (req,res) => {
-    res.status(204).send().end();
-});
+    res.status(204).send().end()
+})
 
 router.get("/api", (req,res,next) => {
     res.status(200).json({
@@ -57,18 +57,18 @@ router.get("/api", (req,res,next) => {
                 method: "POST"
             },
         ]
-    });
+    })
 })
 
-const openroutes = require('./routes/open.routes');
-router.use("/api/",openroutes);
+const openroutes = require('./routes/open.routes')
+router.use("/api/",openroutes)
 
-const adminroutes = require('./routes/admin.routes');
-router.use("/api/",adminroutes);
+const adminroutes = require('./routes/admin.routes')
+router.use("/api/",adminroutes)
 
 router.use((error,req,res,next) => {
     if(error.name==="ValidationError"){
-        error.status=422;
+        error.status=422
     } else if(error.name==="CastError"){
         error.status=422
     }
@@ -77,13 +77,13 @@ router.use((error,req,res,next) => {
         code: error.code,
         name: error.name,
         status: error.status
-	}).end();
-});
+	}).end()
+})
 
 router.get('*', (req, res) => {
 	res.status(404).send({
 		message: '404 not found' //To let the caller know his request doesn't have an endpoint
-	}).end();
+	}).end()
 })
 
-module.exports = router;
+module.exports = router

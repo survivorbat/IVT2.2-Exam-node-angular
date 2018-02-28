@@ -1,6 +1,6 @@
-const mongoose = require('../config/db');
+const mongoose = require('../config/db')
 
-const Schema = mongoose.Schema;
+const Schema = mongoose.Schema
 const filmSchema = new Schema({
     title: {
         type: String,
@@ -60,8 +60,8 @@ const filmSchema = new Schema({
         minlength: [1, 'Genre length has to be at least 1 character long'],
         maxlength: [15, 'Genre length can not be longer than 15 characters']
     }
-});
-const Film = mongoose.model('Film', filmSchema);
+})
+const Film = mongoose.model('Film', filmSchema)
 
 module.exports = {
     Film

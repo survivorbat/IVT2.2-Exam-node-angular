@@ -1,6 +1,6 @@
-const mongoose = require('../config/db');
+const mongoose = require('../config/db')
 
-const Schema = mongoose.Schema;
+const Schema = mongoose.Schema
 const roomSchema = new Schema({
     name: {
         type: String,
@@ -25,9 +25,9 @@ const roomSchema = new Schema({
         ref: 'Location',
         required: [true, 'A existing location is required']
     }
-});
-const Room = mongoose.model('Room', roomSchema);
+})
+const Room = mongoose.model('Room', roomSchema)
 
 module.exports = {
     Room
-};
+}

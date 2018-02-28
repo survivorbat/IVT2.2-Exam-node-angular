@@ -1,6 +1,6 @@
-const mongoose = require('../config/db');
+const mongoose = require('../config/db')
 
-const Schema = mongoose.Schema;
+const Schema = mongoose.Schema
 const ticketSchema = new Schema({
     showing: {
         type: Schema.Types.ObjectId,
@@ -21,9 +21,9 @@ const ticketSchema = new Schema({
         type: Number,
         required: [true, 'Userid is required']
     }
-});
-const Ticket = mongoose.model('Ticket', ticketSchema);
+})
+const Ticket = mongoose.model('Ticket', ticketSchema)
 
 module.exports = {
     Ticket
-};
+}

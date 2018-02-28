@@ -1,6 +1,6 @@
-const mongoose = require('../config/db');
+const mongoose = require('../config/db')
 
-const Schema = mongoose.Schema;
+const Schema = mongoose.Schema
 const showingSchema = new Schema({
     film: {
         type: Schema.Types.ObjectId,
@@ -26,10 +26,10 @@ const showingSchema = new Schema({
         min: [1.00, 'Price has to be higher than 1 euro'],
         max: [100.00, 'Price can not be higher than 100 euros']
     }
-});
+})
 
-const Showing = mongoose.model('Showing', showingSchema);
+const Showing = mongoose.model('Showing', showingSchema)
 
 module.exports = {
     Showing
-};
+}
