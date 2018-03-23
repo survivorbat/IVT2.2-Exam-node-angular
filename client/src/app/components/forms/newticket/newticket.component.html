@@ -1,7 +1,18 @@
-<section class="row bg-dark card-body" *ngIf="isLoggedIn() && shown">
+<section class="row bg-dark card-body" *ngIf="shown">
   <main class="col-md-12">
     <form (ngSubmit)="submit()" #ticketForm="ngForm">
       <h2>Kaarten bestellen</h2>
+      <div class="form-group row">
+        <div class="col-md-4">
+          <label for="username">Mijn gebruikersnaam</label>
+        </div>
+        <div class="col-md-8">
+          <input type="text" class="form-control" placeholder="Gebruikersnaam" name="usernameForm" required [(ngModel)]="username" value="1" #usernameForm="ngModel">
+          <div [hidden] = "usernameForm.valid || usernameForm.pristine" class="alert alert-danger">
+            <span>Vul alstublieft een gebruikersnaam in</span>
+          </div>
+        </div>
+      </div>
       <div class="form-group row">
         <div class="col-md-4">
           <label for="name">Aantal kaarten</label>
@@ -53,7 +64,7 @@
           <p>{{errorField}}</p>
         </div>
       </div>
-      <div class="form-group row" *ngIf="isLoggedIn()">
+      <div class="form-group row">
         <div class="col-md-12">
           <button class="btn btn-primary" [disabled]="!ticketForm.form.valid">Bestellen</button>
         </div>
@@ -61,4 +72,3 @@
     </form>
   </main>
 </section>
-<span *ngIf="!isLoggedIn()">U moet ingelogd zijn om kaarten te bestellen, dit kunt u doen via de <a class="link" routerLink="/users">account</a> pagina.</span>

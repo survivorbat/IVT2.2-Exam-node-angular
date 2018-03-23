@@ -5,4 +5,5 @@ export default class Ticket {
     column: Number;
     row: Number;
     showing: Showing;
+    username: string;
 }

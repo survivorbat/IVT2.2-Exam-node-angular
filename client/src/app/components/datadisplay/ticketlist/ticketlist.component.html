@@ -4,6 +4,8 @@
       <div class="card bg-dark clickable-item" *ngFor="let ticket of tickets">
         <div class="card-body" style="padding:10px">
           <h3 class="card-title">{{ticket.showing.film.title}}</h3>
+          <p class="card-text text-warning font-weight-bold" style="margin-bottom:0">Wie?</p>
+          <p class="card-text">{{ticket.username}}</p>
           <p class="card-text text-warning font-weight-bold" style="margin-bottom:0">Wanneer?</p>
           <p class="card-text">{{ticket.showing.date.replace('T',' ').substring(0,16)}}</p>
           <p class="card-text text-warning font-weight-bold" style="margin-bottom:0">Waar?</p>

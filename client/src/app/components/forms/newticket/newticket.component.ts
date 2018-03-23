@@ -13,6 +13,7 @@ export class NewticketComponent implements OnInit {
   private _newTickets: String[];
   private _takenSeats: String[];
   private _amountOfTickets: number;
+  private _username: string;
   private _errorField: string;
   private _loading: boolean;
   private _showing: Showing;
@@ -66,6 +67,14 @@ export class NewticketComponent implements OnInit {
 	public set shown(value: boolean) {
 		this._shown = value;
   }
+
+	public get username(): string {
+		return this._username;
+	}
+
+	public set username(value: string) {
+		this._username = value;
+	}
   
 
   private getTickets(){
@@ -83,12 +92,6 @@ export class NewticketComponent implements OnInit {
       return false;
     }
     return true;
-  }
-  isLoggedIn(){
-    if(window.localStorage.getItem('loggedin')==='true'){
-      return true;
-    }
-    return false;
   }
   getArrayFromNumber(num: Number): Number[]{
     let rs: Number[] = [];
@@ -117,6 +120,7 @@ export class NewticketComponent implements OnInit {
         newTicket.column=parseInt(location[1]);
         newTicket.row=parseInt(location[0]);
         newTicket.showing=this._showing;
+        newTicket.username=this._username;
         this.ticketservice.addOne(newTicket).subscribe(res => {
           if(++counter===this.amountOfTickets){
             alert('Succesvol '+this.amountOfTickets+' tickets besteld voor '+this._showing.film.title+'!');
