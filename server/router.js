@@ -1,23 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const expressJWT = require('express-jwt') 
 require('dotenv').config()
-
-router.use(expressJWT({ 
-    secret: process.env.SECRET_KEY 
-}).unless({ 
-    path: [
-        { url: /\/api*/, methods: ['OPTIONS']  },
-        { url: '/api', methods: ['GET']  },
-        { url: '/api/token', methods: ['POST']  },
-        { url: /\/locations*/, methods: ['GET']  } ,
-        { url: /\/rooms*/, methods: ['GET']  } ,
-        { url: /\/showings*/, methods: ['GET']  },
-        { url: /\/films*/, methods: ['GET']  },
-        { url: /\/users*/, methods: ['POST']  },
-        { url: '/favicon.ico'}
-    ]
-}))
 
 router.options(/\/api*/, (req,res) => {
     res.status(204).send().end()
@@ -50,21 +33,13 @@ router.get("/api", (req,res,next) => {
             {
                 resource_name: "Tickets",
                 url: req.protocol+"://"+req.get('host')+"/api/tickets",
-            },
-            {
-                resource_name: "Token",
-                url: req.protocol+"://"+req.get('host')+"/api/token",
-                method: "POST"
-            },
+            }
         ]
     })
 })
 
-const openroutes = require('./routes/open.routes')
+const openroutes = require('./routes/routes')
 router.use("/api/",openroutes)
-
-const adminroutes = require('./routes/admin.routes')
-router.use("/api/",adminroutes)
 
 router.use((error,req,res,next) => {
     if(error.name==="ValidationError"){

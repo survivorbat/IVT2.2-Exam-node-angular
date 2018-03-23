@@ -56,7 +56,7 @@ module.exports = {
         }).catch(err => next(err))
     },
     getByUser(req, res, next){
-        Ticket.find({userid: req.user.sub.userid}).populate({path:'showing', populate: {path:'room', populate:{path: 'location'}}}).populate({path:'showing', populate: {path:'film'}}).exec().then(tickets => {
+        Ticket.find({username: req.body.username}).populate({path:'showing', populate: {path:'room', populate:{path: 'location'}}}).populate({path:'showing', populate: {path:'film'}}).exec().then(tickets => {
             if(!tickets){
                 res.status(200).json([])
                 return
@@ -106,7 +106,6 @@ module.exports = {
         }).catch(err => next(err))
     },
     post(req,res,next){
-        req.body.userid=req.user.sub.userid
         const newTicket = new Ticket(req.body, {})
         newTicket.save().then(result => {
             res.status(201).json({"message":"succes","createdObject":result})

@@ -17,9 +17,9 @@ const ticketSchema = new Schema({
         required:true,
         max: [200, 'Column number can not be higher than 200']
     },
-    userid: {
-        type: Number,
-        required: [true, 'Userid is required']
+    username: {
+        type: String,
+        required: [true, 'Username is required']
     }
 })
 const Ticket = mongoose.model('Ticket', ticketSchema)
