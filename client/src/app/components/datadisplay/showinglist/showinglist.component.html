@@ -14,7 +14,7 @@
               <p class="card-text text-warning font-weight-bold">{{showing.room.name}}, {{showing.room.location.name}}</p>
           </div>
         </a>
-        <button *ngIf="isAdmin()" class="btn btn-danger btn-block" (click)="deleteShowing(showing._id)">Verwijder</button>
+        <button class="btn btn-danger btn-block" (click)="deleteShowing(showing._id)">Verwijder</button>
       </div>
     </div>
   </main>

@@ -5,7 +5,6 @@
   "main": "server.js",
   "scripts": {
     "start": "node .",
-    "test": "node node_modules/mocha/bin/_mocha ./test/*test.js --reporter spec --exit",
     "startmon": "nodemon ."
   },
   "author": "Maarten van der Heijden",

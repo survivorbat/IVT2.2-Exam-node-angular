@@ -2,14 +2,13 @@ import { Component, OnInit, Input } from '@angular/core';
 import Showing from '../../../domain/Showing';
 import {ShowingsService} from '../../../services/showingservice.service';
 import Location from '../../../domain/Location';
-import AdminCheck from '../../../domain/interfaces/AdminCheck';
 
 @Component({
   selector: 'app-showinglist',
   templateUrl: './showinglist.component.html',
   styleUrls: ['./showinglist.component.scss']
 })
-export class ShowinglistComponent implements OnInit, AdminCheck {
+export class ShowinglistComponent implements OnInit {
   private _error: boolean;
   private _loading: boolean;
   private _showings: Showing[];
@@ -61,9 +60,6 @@ export class ShowinglistComponent implements OnInit, AdminCheck {
     } else {
       this.showingsservice.getAll().subscribe(showings => {this.showings=showings;this.loading=false}, error => {this.loading=false;this.error=true});
     }
-  }
-  isAdmin(): boolean {
-    return parseInt(window.localStorage.getItem('authlevel'))>0;
   }
   getArrayFromNumber(num: Number): Number[]{
     let rs: Number[] = [];

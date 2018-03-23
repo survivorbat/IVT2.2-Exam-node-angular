@@ -2,14 +2,13 @@ import { Component, OnInit, Input } from '@angular/core';
 import Room from '../../../domain/Room';
 import { RoomsService } from '../../../services/rooms.service';
 import Location from '../../../domain/Location';
-import AdminCheck from '../../../domain/interfaces/AdminCheck';
 
 @Component({
   selector: 'app-roomlist',
   templateUrl: './roomlist.component.html',
   styleUrls: ['./roomlist.component.scss']
 })
-export class RoomlistComponent implements OnInit, AdminCheck {
+export class RoomlistComponent implements OnInit {
   private _error: boolean;
   private _loading: boolean;
   private _rooms: Room[];
@@ -54,10 +53,6 @@ export class RoomlistComponent implements OnInit, AdminCheck {
 
   ngOnInit() {
     this.getRooms();
-  }
-
-  isAdmin(): boolean {
-    return parseInt(window.localStorage.getItem('authlevel'))>0;
   }
   
   private getRooms(): void {

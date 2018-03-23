@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { LocationsService } from '../../../services/locations.service';
 import Location from '../../../domain/Location';
-import AdminCheck from '../../../domain/interfaces/AdminCheck';
 
 @Component({
   selector: 'app-locationlist',
   templateUrl: './locationlist.component.html',
   styleUrls: ['./locationlist.component.scss']
 })
-export class LocationlistComponent implements OnInit, AdminCheck {
+export class LocationlistComponent implements OnInit {
   private _locations: Location[];
   private _error: boolean;
   private _loading: boolean;
@@ -49,10 +48,6 @@ export class LocationlistComponent implements OnInit, AdminCheck {
     }, err => {
       alert('Er ging iets mis bij het verrwijderen van deze film');
     })}
-  }
-
-  isAdmin(): boolean {
-    return parseInt(window.localStorage.getItem('authlevel'))>0;
   }
 
   private getLocations(): void {

@@ -11,18 +11,6 @@ export class TicketlistComponent implements OnInit {
   private _error: boolean;
   private _loading: boolean;
   private _tickets: Ticket[];
-
-  private _admin: boolean;
-  @Input() set admin(e: boolean){
-    if(e){
-      this._admin=true;
-      this.getTickets()
-    }
-  }
-
-	get admin(): boolean {
-		return this._admin;
-	}
   
   constructor(private ticketsservice: TicketService) { 
     this.loading=true;
@@ -58,11 +46,7 @@ export class TicketlistComponent implements OnInit {
 
 
   private getTickets(): void {
-    if(!this.admin){
-      this.ticketsservice.getByUser().subscribe(tickets => {this.tickets=tickets;this.loading=false}, error => {this.loading=false;this.error=true});
-    } else {
-      this.ticketsservice.getAll().subscribe(tickets => {this.tickets=tickets;this.loading=false}, error => {this.loading=false;this.error=true});
-    }
+    this.ticketsservice.getAll().subscribe(tickets => {this.tickets=tickets;this.loading=false}, error => {this.loading=false;this.error=true});
   }
   
   deleteTicket(id){

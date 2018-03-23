@@ -16,16 +16,7 @@
           <a class="nav-link" routerLink="locations">Locaties</a>
       </li>
       <li class="nav-item">
-          <a class="nav-link" routerLink="info">Informatie</a>
-      </li>
-      <li class="nav-item">
-          <a class="nav-link" routerLink="users">Account</a>
-      </li>
-      <li class="nav-item" *ngIf="isAdmin()">
           <a class="nav-link" routerLink="admin">Biosbeheer</a>
-      </li>
-      <li class="nav-item" *ngIf="isLoggedIn()">
-        <span class="nav-link text-danger" (click)="logout()">Uitloggen</span>
       </li>
     </ul>
   </div>

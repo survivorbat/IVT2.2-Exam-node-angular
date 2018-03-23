@@ -5,7 +5,7 @@ import Showing from '../domain/Showing';
 
 @Injectable()
 export class ShowingsService {
-  private URL: string = "https://avancinema.herokuapp.com/api/showings";
+  private URL: string = "https://avancinemalite.herokuapp.com/api/showings";
   constructor(private http: HttpClient) {}
 
   getAll(): Observable<Showing[]>{
@@ -18,24 +18,12 @@ export class ShowingsService {
     return this.http.get<Showing>(this.URL+"/"+id);
   }
   addOne(showing: Showing){
-    return this.http.post(this.URL,showing, {
-      headers: {
-        'Authorization': 'Bearer '+window.localStorage.getItem('API_TOKEN'),
-      }
-    });
+    return this.http.post(this.URL,showing);
   }
   patch(showing: Showing){
-    return this.http.patch(this.URL+'/'+showing._id,showing, {
-      headers: {
-        'Authorization': 'Bearer '+window.localStorage.getItem('API_TOKEN'),
-      }
-    });
+    return this.http.patch(this.URL+'/'+showing._id,showing);
   }
   delete(id: String) {
-    return this.http.delete(this.URL+'/'+id, {
-      headers: {
-        'Authorization': 'Bearer '+window.localStorage.getItem('API_TOKEN'),
-      }
-    });
+    return this.http.delete(this.URL+'/'+id);
   }
 }

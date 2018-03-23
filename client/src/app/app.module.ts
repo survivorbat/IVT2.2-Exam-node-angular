@@ -27,10 +27,6 @@ import { ShowingsService } from './services/showingservice.service';
 import { ShowingComponent } from './components/pages/showing/showing.component';
 import { NewticketComponent } from './components/forms/newticket/newticket.component';
 import { RoomComponent } from './components/pages/room/room.component';
-import { UserComponent } from './components/pages/user/user.component';
-import { NewuserComponent } from './components/forms/newuser/newuser.component';
-import { LoginComponent } from './components/forms/login/login.component';
-import { UserService } from './services/user.service';
 import { TicketService } from './services/ticket.service';
 import { TicketlistComponent } from './components/datadisplay/ticketlist/ticketlist.component';
 import { NewfilmComponent } from './components/forms/newfilm/newfilm.component';
@@ -47,8 +43,6 @@ import { FilmsComponent as AdminFilms }  from './components/pages/admin/films/fi
 import { ShowingsComponent as AdminShowings }  from './components/pages/admin/showings/showings.component';
 import { RoomsComponent as AdminRooms }  from './components/pages/admin/rooms/rooms.component';
 import { LocationsComponent as AdminLocations }  from './components/pages/admin/locations/locations.component';
-import { UsersComponent } from './components/pages/admin/users/users.component';
-import { UserlistComponent } from './components/datadisplay/userlist/userlist.component';
 import { TicketsComponent } from './components/pages/admin/tickets/tickets.component';
 import { MinvalidatorDirective } from './directives/minvalidator.directive';
 import { MaxvalidatorDirective } from './directives/maxvalidator.directive';
@@ -74,9 +68,6 @@ import { MaxvalidatorDirective } from './directives/maxvalidator.directive';
     ShowingComponent,
     NewticketComponent,
     RoomComponent,
-    UserComponent,
-    NewuserComponent,
-    LoginComponent,
     TicketlistComponent,
     NewfilmComponent,
     NewshowingComponent,
@@ -91,8 +82,6 @@ import { MaxvalidatorDirective } from './directives/maxvalidator.directive';
     AdminLocations,
     AdminRooms,
     AdminShowings,
-    UsersComponent,
-    UserlistComponent,
     TicketsComponent,
     MinvalidatorDirective,
     MaxvalidatorDirective
@@ -104,7 +93,7 @@ import { MaxvalidatorDirective } from './directives/maxvalidator.directive';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [FilmsService, LocationsService, RoomsService, ShowingsService, UserService, TicketService],
+  providers: [FilmsService, LocationsService, RoomsService, ShowingsService,TicketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

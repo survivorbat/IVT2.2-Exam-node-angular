@@ -10,13 +10,11 @@ import { LocationComponent } from './components/pages/location/location.componen
 import { RoomlistComponent } from './components/datadisplay/roomlist/roomlist.component';
 import { ShowingComponent } from './components/pages/showing/showing.component';
 import { RoomComponent } from './components/pages/room/room.component';
-import { UserComponent } from './components/pages/user/user.component';
 
 import { FilmsComponent as AdminFilms }  from './components/pages/admin/films/films.component';
 import { ShowingsComponent as AdminShowings }  from './components/pages/admin/showings/showings.component';
 import { RoomsComponent as AdminRooms }  from './components/pages/admin/rooms/rooms.component';
 import { LocationsComponent as AdminLocations }  from './components/pages/admin/locations/locations.component';
-import { UsersComponent as AdminUsers }  from './components/pages/admin/users/users.component';
 import { TicketsComponent as AdminTickets }  from './components/pages/admin/tickets/tickets.component';
 
 const routes: Routes = [
@@ -36,12 +34,10 @@ const routes: Routes = [
       { path: 'showings', component: AdminShowings },
       { path: 'locations', component: AdminLocations },
       { path: 'rooms', component: AdminRooms },
-      { path: 'tickets', component: AdminTickets },
-      { path: 'users', component: AdminUsers },
+      { path: 'tickets', component: AdminTickets }
     ]
   },
-  { path: 'test', component: RoomlistComponent},
-  { path: 'users', component: UserComponent},
+  { path: 'test', component: RoomlistComponent}
 ];
 
 @NgModule({

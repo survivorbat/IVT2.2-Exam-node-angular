@@ -8,7 +8,7 @@ router.options(/\/api*/, (req,res) => {
 
 router.get("/api", (req,res,next) => {
     res.status(200).json({
-        message:"Welcome to the Avancinema API! Please, make yourself at home :)",
+        message:"Welcome to the Avancinema API Lite! Please, make yourself at home :)",
         routes: [
             {
                 resource_name: "",

@@ -5,7 +5,7 @@ import Location from '../domain/Location';
 
 @Injectable()
 export class LocationsService {
-  private URL: string = "https://avancinema.herokuapp.com/api/locations";
+  private URL: string = "https://avancinemalite.herokuapp.com/api/locations";
   constructor(private http: HttpClient) {}
 
   getAll(): Observable<Location[]>{
@@ -15,24 +15,12 @@ export class LocationsService {
     return this.http.get<Location>(this.URL+"/"+id);
   }
   addOne(location: Location){
-    return this.http.post(this.URL,location, {
-      headers: {
-        'Authorization': 'Bearer '+window.localStorage.getItem('API_TOKEN'),
-      }
-    });
+    return this.http.post(this.URL,location);
   }
   patch(location: Location){
-    return this.http.patch(this.URL+'/'+location._id,location, {
-      headers: {
-        'Authorization': 'Bearer '+window.localStorage.getItem('API_TOKEN'),
-      }
-    });
+    return this.http.patch(this.URL+'/'+location._id,location);
   }
   delete(id: String) {
-    return this.http.delete(this.URL+'/'+id, {
-      headers: {
-        'Authorization': 'Bearer '+window.localStorage.getItem('API_TOKEN'),
-      }
-    });
+    return this.http.delete(this.URL+'/'+id);
   }
 }

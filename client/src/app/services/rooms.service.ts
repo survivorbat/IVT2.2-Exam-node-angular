@@ -5,7 +5,7 @@ import Room from '../domain/Room';
 
 @Injectable()
 export class RoomsService {
-  private URL: string = "https://avancinema.herokuapp.com/api/rooms";
+  private URL: string = "https://avancinemalite.herokuapp.com/api/rooms";
   constructor(private http: HttpClient) {}
 
   getAll(): Observable<Room[]>{
@@ -18,24 +18,12 @@ export class RoomsService {
     return this.http.get<Room>(this.URL+"/"+id);
   }
   addOne(room: Room){
-    return this.http.post(this.URL,room, {
-      headers: {
-        'Authorization': 'Bearer '+window.localStorage.getItem('API_TOKEN'),
-      }
-    });
+    return this.http.post(this.URL,room);
   }
   patch(room: Room){
-    return this.http.patch(this.URL+'/'+room._id,room, {
-      headers: {
-        'Authorization': 'Bearer '+window.localStorage.getItem('API_TOKEN'),
-      }
-    });
+    return this.http.patch(this.URL+'/'+room._id,room);
   }
   delete(id: String) {
-    return this.http.delete(this.URL+'/'+id, {
-      headers: {
-        'Authorization': 'Bearer '+window.localStorage.getItem('API_TOKEN'),
-      }
-    });
+    return this.http.delete(this.URL+'/'+id);
   }
 }

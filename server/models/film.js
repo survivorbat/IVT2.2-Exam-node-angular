@@ -37,13 +37,13 @@ const filmSchema = new Schema({
         required:false
     },
     year: {
-        type: String,
+        type: Number,
         required: [true, 'A year is required'],
         min: [1800, 'The year has to be higher than 1800'],
         max: [2100, 'The year can not be higher than 2100']
     },
     duration: {
-        type: String,
+        type: Number,
         required: [true, 'A film duration is required'],
         min: [5, 'Duration has to be at least 5 minutes'],
         max: [400, 'Duration has to be at maximum 400 minutes']

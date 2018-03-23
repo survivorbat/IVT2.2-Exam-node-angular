@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import Film from '../../../domain/Film';
-import AdminCheck from '../../../domain/interfaces/AdminCheck';
 import { FilmsService } from '../../../services/films.service';
 
 @Component({

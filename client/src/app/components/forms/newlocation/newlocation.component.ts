@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import Location from '../../../domain/Location';
-import AdminCheck from '../../../domain/interfaces/AdminCheck';
 import { LocationsService } from '../../../services/locations.service';
 
 @Component({
