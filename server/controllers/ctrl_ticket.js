@@ -56,7 +56,7 @@ module.exports = {
         }).catch(err => next(err))
     },
     getByUser(req, res, next){
-        Ticket.find({username: req.body.username}).populate({path:'showing', populate: {path:'room', populate:{path: 'location'}}}).populate({path:'showing', populate: {path:'film'}}).exec().then(tickets => {
+        Ticket.find({username: req.params._id}).populate({path:'showing', populate: {path:'room', populate:{path: 'location'}}}).populate({path:'showing', populate: {path:'film'}}).exec().then(tickets => {
             if(!tickets){
                 res.status(200).json([])
                 return

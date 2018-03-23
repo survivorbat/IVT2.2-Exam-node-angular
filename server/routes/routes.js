@@ -35,7 +35,7 @@ routes.get('/showings/:_id', showingcontroller.getById)
 routes.get('/showings/location/:_id', showingcontroller.getByLocation)
 
 routes.get('/tickets/', ticketcontroller.getAll)
-routes.get('/tickets/user', ticketcontroller.getByUser)
+routes.get('/tickets/user/:_id', ticketcontroller.getByUser)
 routes.get('/tickets/:_id', ticketcontroller.getById)
 routes.get('/tickets/showing/:_id', ticketcontroller.getByShowing)
 routes.post('/tickets/', ticketcontroller.post)
